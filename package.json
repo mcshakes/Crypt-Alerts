@@ -1,5 +1,6 @@
 {
-  "name": "react-express-app",
+  "name": "TrackCryptoMarkets",
+  "main": "server.js",
   "version": "1.0.0",
   "scripts": {
     "start": "concurrently \"npm run server\" \"npm run client\"",
@@ -8,9 +9,12 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "eslint": "^5.4.0",
     "express": "^4.16.2",
-    "nodemon": "^1.18.3"
+    "morgan": "^1.9.0",
+    "nodemon": "^1.18.3",
+    "socket.io": "^2.1.1"
   },
   "devDependencies": {
     "concurrently": "^3.5.0"
