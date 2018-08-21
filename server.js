@@ -5,7 +5,6 @@ const path = require("path");
 const axios = require('axios');
 require("dotenv").config();
 
-mongoose.Promise = global.Promise;
 
 const app = express();
 const server = require("http").Server(app);
@@ -23,17 +22,18 @@ const key = process.env.NOMICS_KEY
 
 //------------ DATABASE ------------------------
 
-const db = mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
+mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
             .MONGO_PASS}@ds127342.mlab.com:27342/crypt-alerts`);
 
-db.on('error', err => {
-    console.log('FAILED to connect to mongoose');
-    console.error(err);
-});
+mongoose.Promise = global.Promise;
 
-db.once('open', () => {
-    console.log('connected to mongoose');
-});
+// db.on('error', err => {
+//     console.error.bind('FAILED to connect to mongoose', err);
+// });
+//
+// db.once('open', () => {
+//     console.log('connected to mongoose');
+// });
 
 // NOTE: Specific price
 
