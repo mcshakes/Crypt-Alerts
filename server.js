@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 server.listen(3001, () => {
-  console.log("listening on Port 3000")
+  console.log("listening on Port 3001")
 });
 
 const key = process.env.NOMICS_KEY
@@ -54,7 +54,7 @@ app.get("/api/market-leaders", (req, res) => {
       return collection
     })
     .then((collection) => {
-      res.json(collection)
+      return res.json(collection)
     })
     .catch((error) => {
       res.status(400).send(error);

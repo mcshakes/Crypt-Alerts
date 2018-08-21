@@ -3,8 +3,8 @@ import Client from "../Client";
 
 class CapLeader extends React.Component {
   constructor() {
-
-    state = {
+    super();
+    this.state = {
       data: null,
     };
   }
