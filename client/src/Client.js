@@ -1,9 +1,9 @@
 function marketLeaders(callback) {
-  return fetch(`api/market-leaders`, {
+  return fetch(`/api/market-leaders`, {
     accept: "application/json"
   })
   .then(checkStatus)
-  .then(parseJSON)
+  // .then(parseJSON)
   .then(callback);
 }
 

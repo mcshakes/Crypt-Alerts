@@ -36,9 +36,10 @@ mongoose.Promise = global.Promise;
 // });
 
 // NOTE: Specific price
+
 const capLeaders = ["BTC", "ETH", "XRP", "BCH", "EOS"]
 
-app.get("/api/price", (req, res) => {
+app.get("/api/market-leaders", (req, res) => {
   axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
     .then((response) => {
       let collection = []
