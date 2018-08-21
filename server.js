@@ -43,7 +43,9 @@ app.get("/api/price", (req, res) => {
       // res.data is array of objects
       response.data.find((coin) => {
         if (coin.currency === "BTC")  {
-          console.log(coin)
+          res.json({
+            
+          })
         }
       })
     })
