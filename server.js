@@ -1,8 +1,11 @@
 const express = require("express");
 const morgan = require("morgan");
+const mongoose = require("mongoose");
 const path = require("path");
 const axios = require('axios');
 require("dotenv").config();
+
+mongoose.Promise = global.Promise;
 
 const app = express();
 const server = require("http").Server(app);
@@ -17,10 +20,19 @@ server.listen(3001, () => {
 });
 
 const key = process.env.NOMICS_KEY
-// app.get("https://api.nomics.com/v1/prices?key=${key}", (resp) => {
-//   res.send(data)
-// })
 
+//------------ DATABASE ------------------------
+
+const db = mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
+            .MONGO_PASS}@ds127342.mlab.com:27342/crypt-alerts`);
+
+db.on('error', err => {
+    console.log('FAILED to connect to mongoose');
+    console.error(err);
+});
+db.once('open', () => {
+    console.log('connected to mongoose');
+});
 
 // NOTE: Specific price
 
