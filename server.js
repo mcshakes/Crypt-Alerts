@@ -30,6 +30,7 @@ db.on('error', err => {
     console.log('FAILED to connect to mongoose');
     console.error(err);
 });
+
 db.once('open', () => {
     console.log('connected to mongoose');
 });
