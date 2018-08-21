@@ -43,6 +43,9 @@ mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
 
 mongoose.Promise = global.Promise;
 
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // NOTE: Specific price
 
 const capLeaders = ["BTC", "ETH", "XRP", "BCH", "EOS"]
