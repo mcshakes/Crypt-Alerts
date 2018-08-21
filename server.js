@@ -21,6 +21,7 @@ server.listen(3001, () => {
 
 const key = process.env.NOMICS_KEY
 
+
 let interval;
 
 io.on("connection", socket => {
@@ -66,7 +67,7 @@ app.get("/api/market-leaders", (req, res) => {
       return collection
     })
     .then((collection) => {
-      return res.json(collection)
+      res.json(collection)
     })
     .catch((error) => {
       res.status(400).send(error);

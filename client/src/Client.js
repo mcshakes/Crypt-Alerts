@@ -1,10 +1,10 @@
 const axios = require('axios');
 
-function marketLeaders() {
-  axios.get(`/api/market-leaders`)
-  .then((response) => {
-    console.log(response.data)
-  });
+function marketLeaders(cb) {
+  return fetch(`/api/market-leaders`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(cb)
 }
 
 function checkStatus(response) {

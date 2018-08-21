@@ -9,7 +9,7 @@ class CapLeader extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     Client.marketLeaders(coins => {
       this.setState({
         data: coins
@@ -20,7 +20,8 @@ class CapLeader extends React.Component {
   render() {
     return (
       <div className="leader-coin">
-
+        {this.state.data == null ? "Please Wait..." :
+        this.state.data.map((coin, idx) => <div>{coin.currency} : {coin.price}</div>)}
       </div>
     );
   }
