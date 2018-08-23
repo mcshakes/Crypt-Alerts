@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import CapLeader from "./CapLeader";
+import SearchBar from "./SearchBar";
 
 class App extends Component {
   render() {
@@ -11,6 +12,7 @@ class App extends Component {
         </header>
         <div className="market-cap-leader">
           <CapLeader />
+          <SearchBar />
         </div>
       </div>
     );
