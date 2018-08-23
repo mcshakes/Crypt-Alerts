@@ -8,17 +8,25 @@ require("dotenv").config();
 
 const app = express();
 const server = require("http").Server(app);
+
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-server.listen(3001, () => {
-  console.log("listening on Port 3000")
-});
 
 const key = process.env.NOMICS_KEY
+
+let interval;
+
+io.on('connection', function (socket) {
+  console.log('A new WebSocket connection established with' + socket.id);
+});
+
+server.listen(3001, () => {
+  console.log("listening on Port 3001")
+});
 
 //------------ DATABASE ------------------------
 
@@ -27,46 +35,51 @@ mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
 
 mongoose.Promise = global.Promise;
 
-// db.on('error', err => {
-//     console.error.bind('FAILED to connect to mongoose', err);
-// });
-//
-// db.once('open', () => {
-//     console.log('connected to mongoose');
-// });
+const db = mongoose.connection;
 
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // NOTE: Specific price
 
-app.get("/api/price", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+const capLeaders = ["BTC", "ETH", "XRP", "BCH", "EOS"]
+
+function getMarketLeaders() {
+  return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
     .then((response) => {
-      // res.data is array of objects
-      response.data.find((coin) => {
-        if (coin.currency === "BTC")  {
-          res.json({
-            
-          })
-        }
+      let collection = []
+
+      capLeaders.map((ticker) => {
+        response.data.filter((coin) => {
+          if (coin.currency === ticker) {
+            collection.push(coin)
+          }
+        })
       })
+      return collection
+    })
+}
+app.get("/api/market-leaders", (req, res) => {
+    getMarketLeaders()
+    .then((collection) => {
+      res.json(collection)
     })
     .catch((error) => {
-      res.status(400).send(err);
+      res.status(400).send(error);
     })
 })
 
-// NOTE: Price by markets
-
-app.get("/api/bitcoin-price", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/markets/prices?key=${key}&currency=BTC`)
-  .then((data) => {
-    console.log(data)
-  })
-  .catch((error) => {
-    res.status(400).send(error);
-  })
+app.get("/api/search", (req, res) => {
+  axios.get(`https://api.nomics.com/v1/dashboard?key=${key}`)
+    .then((collection) => {
+      res.json(collection.data)
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 })
 
+
 // NOTE: Price by market interval
+
 app.get("/api/market-interval-btc", (req, res) => {
   axios.get(`https://api.nomics.com/v1/exchange-markets/interval?key=${key}&currency=BTC&start=2018-04-14T00%3A00%3A00Z&end=2018-07-14T00%3A00%3A00Z`
     )
@@ -81,10 +94,11 @@ app.get("/api/market-interval-btc", (req, res) => {
 // NOTE: Aggregated OHLC candles
 
 app.get("/api/candles", (req, res) => {
+  // res
   axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=ETH&start=2018-04-14T00%3A00%3A00Z&end=2018-05-14T00%3A00%3A00Z`
     )
     .then((response) => {
-      console.log(response)
+      res.json(response.data)
     })
     .catch((error) => {
       res.status(400).send(error);
