@@ -1,4 +1,5 @@
 import React from "react";
+import Client from "../Client";
 
 class SearchBar extends React.Component {
   state = {
@@ -8,9 +9,28 @@ class SearchBar extends React.Component {
 
   handleSearchChange = e => {
     e.preventDefault()
+    const value = e.target.value
 
     this.setState({
-      searchValue: this.search.value
+      searchValue: value
+    });
+
+    if (value === "") {
+      this.setState({
+        coins: []
+      })
+    } else {
+      this.getInfo()
+    }
+  }
+
+  getInfo = () => {
+    Client.searchList()
+    .then((data) => {
+      // this.setState({
+      //   coins: data
+      // })
+      console.log(data)
     })
   }
 
@@ -21,9 +41,13 @@ class SearchBar extends React.Component {
           <input
             type="text"
             className="prompt"
-            value={this.state.handleSearchChange}
+            placeholder="Add Currency Name or Ticker..."
+            ref={input => this.search = input}
+            value={this.state.searchValue}
+            onChange={this.handleSearchChange}
           />
         </form>
+
 
       </div>
     );

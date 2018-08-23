@@ -1,7 +1,15 @@
 const axios = require('axios');
+const key = process.env.NOMICS_KEY
 
 function marketLeaders(cb) {
   return fetch(`/api/market-leaders`)
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(cb)
+}
+
+function searchList(cb) {
+  return fetch("/api/search")
   .then(checkStatus)
   .then(parseJSON)
   .then(cb)
@@ -22,7 +30,7 @@ function parseJSON(response) {
   return response.json();
 }
 
-const Client = { marketLeaders };
+const Client = { marketLeaders, searchList };
 export default Client;
 // Proxy error: Could not proxy request /api/market-leaders from localhost:3000 to http://localhost:3001/.
 // [1] See https://nodejs.org/api/errors.html#errors_common_system_errors for more information (ECONNREFUSED).

@@ -18,7 +18,6 @@ app.use(bodyParser.json());
 
 const key = process.env.NOMICS_KEY
 
-
 let interval;
 
 io.on('connection', function (socket) {
@@ -68,17 +67,16 @@ app.get("/api/market-leaders", (req, res) => {
     })
 })
 
-// NOTE: Price by markets
+app.get("/api/search", (req, res) => {
+  axios.get(`https://api.nomics.com/v1/dashboard?key=${key}`)
+    .then((collection) => {
+      res.json(collection.data)
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+})
 
-// app.get("/api/market-price", (req, res) => {
-//   axios.get(`https://api.nomics.com/v1/markets/prices?key=${key}&currency=BTC`)
-//   .then((data) => {
-//
-//   })
-//   .catch((error) => {
-//     res.status(400).send(error);
-//   })
-// })
 
 // NOTE: Price by market interval
 
