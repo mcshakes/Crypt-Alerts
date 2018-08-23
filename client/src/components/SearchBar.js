@@ -1,5 +1,6 @@
 import React from "react";
 import Client from "../Client";
+import SearchSuggestions from "./SearchSuggestions"
 
 class SearchBar extends React.Component {
   state = {
@@ -27,10 +28,9 @@ class SearchBar extends React.Component {
   getInfo = () => {
     Client.searchList()
     .then((data) => {
-      // this.setState({
-      //   coins: data
-      // })
-      console.log(data)
+      this.setState({
+        coins: data
+      })
     })
   }
 
@@ -41,11 +41,12 @@ class SearchBar extends React.Component {
           <input
             type="text"
             className="prompt"
-            placeholder="Add Currency Name or Ticker..."
+            placeholder="BTC...ETH...AEON"
             ref={input => this.search = input}
             value={this.state.searchValue}
             onChange={this.handleSearchChange}
           />
+          <SearchSuggestions coins={this.state.coins} />
         </form>
 
 
