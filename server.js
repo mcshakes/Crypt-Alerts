@@ -15,26 +15,18 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-server.listen(3001, () => {
-  console.log("listening on Port 3001")
-});
 
 const key = process.env.NOMICS_KEY
 
 
 let interval;
 
-io.on("connection", socket => {
-  console.log("New IO Connected ...");
-  if (interval) {
-    clearInterval(interval);
-  }
+io.on('connection', function (socket) {
+  console.log('A new WebSocket connection established with' + socket.id);
+});
 
-  interval = setInterval(() => getApiAndEmit(socket), 10000);
-
-  socket.on("disconnect", () => {
-    console.log("Client disconnected");
-  });
+server.listen(3001, () => {
+  console.log("listening on Port 3001")
 });
 
 //------------ DATABASE ------------------------
@@ -51,9 +43,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 const capLeaders = ["BTC", "ETH", "XRP", "BCH", "EOS"]
 
-
-app.get("/api/market-leaders", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+function getMarketLeaders() {
+  return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
     .then((response) => {
       let collection = []
 
@@ -66,6 +57,9 @@ app.get("/api/market-leaders", (req, res) => {
       })
       return collection
     })
+}
+app.get("/api/market-leaders", (req, res) => {
+    getMarketLeaders()
     .then((collection) => {
       res.json(collection)
     })
