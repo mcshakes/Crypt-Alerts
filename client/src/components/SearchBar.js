@@ -58,11 +58,14 @@ class SearchBar extends React.Component {
         {
           coins.filter(searchingFor(searchValue)).map( coin =>
             <div>
-              <h2> { coin.currency } </h2>
+              <ul>
+                <li>
+                  <h3> { coin.currency } </h3>
+                </li>
+              </ul>
             </div>
           )
         }
-
       </div>
     );
   }
