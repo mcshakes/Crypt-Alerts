@@ -40,7 +40,7 @@ const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 // NOTE: Specific price
 
-const capLeaders = ["BTC", "ETH", "XRP", "BCH", "EOS"]
+const capLeaders = ["BTC", "ETH", "XRP", "BCH", "LTC", "ADA", "NEO", "XLM", "EOS", "DASH"]
 
 function getMarketLeaders() {
   return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
