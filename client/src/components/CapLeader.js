@@ -1,5 +1,6 @@
 import React from "react";
 import Client from "../Client";
+import '../css/CapLeader.css';
 
 class CapLeader extends React.Component {
   constructor() {
@@ -19,7 +20,7 @@ class CapLeader extends React.Component {
 
   render() {
     return (
-      <div className="leader-coin">
+      <div>
         {this.state.data == null ? "Please Wait..." :
         this.state.data.map((coin, idx) => <div>{coin.currency} : {coin.price}</div>)}
       </div>

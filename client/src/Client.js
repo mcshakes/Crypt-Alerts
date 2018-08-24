@@ -22,7 +22,7 @@ function checkStatus(response) {
   const error = new Error(`HTTP Error ${response.statusText}`);
   error.status = response.statusText;
   error.response = response;
-  console.log(error); // eslint-disable-line no-console
+  console.log(error); 
   throw error;
 }
 
@@ -32,5 +32,3 @@ function parseJSON(response) {
 
 const Client = { marketLeaders, searchList };
 export default Client;
-// Proxy error: Could not proxy request /api/market-leaders from localhost:3000 to http://localhost:3001/.
-// [1] See https://nodejs.org/api/errors.html#errors_common_system_errors for more information (ECONNREFUSED).

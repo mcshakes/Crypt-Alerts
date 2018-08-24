@@ -10,8 +10,10 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">CryptAlert</h1>
         </header>
-        <div className="market-cap-leader">
-          <CapLeader />
+        <div class="container">
+          <div className="market-cap-leader">
+            <CapLeader />
+          </div>
           <SearchBar />
         </div>
       </div>
