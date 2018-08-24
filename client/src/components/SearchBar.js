@@ -2,13 +2,19 @@ import React from "react";
 import Client from "../Client";
 import SearchSuggestions from "./SearchSuggestions"
 
+function searchingFor(term) {
+  return function(x) {
+    x.currency.toLowerCase().includes(term.toLowerCase()) || !term;
+  }
+}
+
 class SearchBar extends React.Component {
   state = {
     coins: [],
     searchValue: ""
   }
 
-  handleSearchChange = e => {
+  searchHandler = e => {
     e.preventDefault()
     const value = e.target.value
 
@@ -35,6 +41,8 @@ class SearchBar extends React.Component {
   }
 
   render() {
+    const {coins, searchValue} = this.state
+    
     return (
       <div className="coin-search">
         <form>
@@ -42,13 +50,15 @@ class SearchBar extends React.Component {
             type="text"
             className="prompt"
             placeholder="BTC...ETH...AEON"
-            ref={input => this.search = input}
+            // ref={input => this.search = input}
             value={this.state.searchValue}
-            onChange={this.handleSearchChange}
+            onChange={this.searchHandler}
           />
-          <SearchSuggestions coins={this.state.coins} />
+          {/* <SearchSuggestions coins={this.state.coins} /> */}
         </form>
-
+        {
+          coins.filter(searchingFor(searchValue))
+        }
 
       </div>
     );
