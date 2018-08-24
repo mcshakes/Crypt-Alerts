@@ -3,8 +3,7 @@ import Client from "../Client";
 import SearchSuggestions from "./SearchSuggestions"
 
 function searchingFor(term) {
-    let searchLet = term.split("")
-  // console.log(searchLet)
+    let searchLet = term.split("").slice(0,3).join("")
     return function(x) {
       return x.currency.toLowerCase().includes(searchLet.toLowerCase()) || !term;
     }
