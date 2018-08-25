@@ -16,8 +16,10 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 const key = process.env.NOMICS_KEY
+
+const userRouter = require("./routes/user")
+app.use(userRouter);
 
 let interval;
 
@@ -104,46 +106,4 @@ app.get("/api/candles", (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     })
-})
-
-app.post("/api/signup", (req, res) => {
-  User.find({ email: req.body.email })
-    .exec()
-    .then(user => {
-      if (user) { // If User exists already
-        return res.status(422).json({
-          message: "Email already exists"
-        })
-      } else {
-
-        bcrypt.hash(req.body.password, 10, (err, hash) => {
-          if (err) {
-            return res.status(500).json({
-              error:err
-            })
-          } else {
-            const user = new User({
-              _id: new mongoose.Types.ObjectId(),
-              email: req.body.email,
-              password: hash
-            });
-            user.save()
-            .then(result => {
-              console.log(result)
-              res.status(201).json({
-                message: "User Created"
-              })
-            })
-            .catch(err => {
-              console.log(err)
-              res.status(500).json({
-                error: err
-              })
-            })
-          }
-        })
-      } // End of success block
-    })
-
-
 })
