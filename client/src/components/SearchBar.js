@@ -1,6 +1,7 @@
 import React from "react";
 import Client from "../Client";
 import SearchSuggestions from "./SearchSuggestions"
+import '../css/Search.css';
 
 function searchingFor(term) {
     let searchLet = term.split("").slice(0,3).join("")
@@ -54,28 +55,28 @@ class SearchBar extends React.Component {
           <input
             type="text"
             className="prompt"
-            placeholder="BTC...ETH...AEON"
+            placeholder="Search by ticker symbol"
             value={searchValue}
             onChange={this.searchHandler}
           />
         </form>
-        {
-          coins.filter(searchingFor(searchValue)).map( coin =>
-            <div>
-              <ul className="search-suggestions">
-                <li>
-                  <h3 > { coin.currency } </h3>
-                  <button
-                    className="add-to-list"
-                    // onClick={this.addToWatchlist}
-                    >
-                      + to Watchlist
-                    </button>
-                </li>
-              </ul>
-            </div>
-          )
-        }
+        <ul className="search-suggestions">
+          {
+            coins.filter(searchingFor(searchValue)).map( coin =>
+              <div className="search-results">
+                  <li>
+                    <h3> { coin.currency } </h3>
+                    <button
+                      className="add-to-list"
+                      // onClick={this.addToWatchlist}
+                      >
+                        + to Watchlist
+                      </button>
+                  </li>
+              </div>
+            )
+          }
+        </ul>
       </div>
     );
   }
