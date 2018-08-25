@@ -6,7 +6,7 @@ const axios = require('axios');
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 
-const User = require("./models/user");
+const { User } = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
 
@@ -113,7 +113,7 @@ app.post("/api/signup", (req, res) => {
         error:err
       })
     } else {
-      const user = newUser({
+      const user = new User({
         _id: new mongoose.Types.ObjectId(),
         email: req.body.email,
         password: hash
