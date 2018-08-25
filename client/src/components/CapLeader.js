@@ -1,5 +1,6 @@
 import React from "react";
 import Client from "../Client";
+import '../css/CapLeader.css';
 import LeaderCoin from "./LeaderCoin"
 
 class CapLeader extends React.Component {
@@ -20,7 +21,7 @@ class CapLeader extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="market-cap-leader">
         {this.state.data == null ? "Please Wait..." :
         this.state.data.map((coin, idx) => <LeaderCoin currency={coin.currency} price={coin.price}/>)}
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import Client from "../Client";
+import '../css/CapLeader.css';
 
 class LeaderCoin extends React.Component {
   render() {

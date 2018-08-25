@@ -11,9 +11,7 @@ class App extends Component {
           <h1 className="App-title">CryptAlert</h1>
         </header>
         <div class="container">
-          <div className="market-cap-leader">
-            <CapLeader />
-          </div>
+          <CapLeader />
           <SearchBar />
         </div>
       </div>
