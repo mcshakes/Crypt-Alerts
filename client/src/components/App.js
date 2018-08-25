@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import CapLeader from "./CapLeader";
 import SearchBar from "./SearchBar";
+import Login from "./Login";
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
         </header>
         <div class="container">
           <CapLeader />
+          <Login />
           <SearchBar />
         </div>
       </div>
