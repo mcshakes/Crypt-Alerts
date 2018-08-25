@@ -3,7 +3,7 @@ const router = express.Router()
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-
+const jwt = require('jsonwebtoken');
 const { User } = require("../models/user")
 
 router.post("/api/users/login", (req, res) => {
@@ -23,8 +23,17 @@ router.post("/api/users/login", (req, res) => {
           })
         }
         if (result) {
+          const token = jwt.sign({
+                                    email: user[0].email,
+                                    userId: user[0]._id     // The payload
+                                  }, process.env.JWT_KEY,
+                                  {
+                                    expiresIn: "1h"         // The options
+                                  });
+
           return res.status(200).json({
-            message: "Auth succesful"
+            message: "Auth succesful",
+            token: token
           })
         }
         return res.status(401).json({
