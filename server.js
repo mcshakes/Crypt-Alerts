@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require('axios');
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
-
+const User = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
 
@@ -103,4 +104,33 @@ app.get("/api/candles", (req, res) => {
     .catch((error) => {
       res.status(400).send(error);
     })
+})
+
+app.post("/api/signup", (req, res) => {
+  bcrypt.hash(req.body.password, 10, (err, hash) => {
+    if (err) {
+      return res.status(500).json({
+        error:err
+      })
+    } else {
+      const user = newUser({
+        _id: new mongoose.Types.ObjectId(),
+        email: req.body.email,
+        password: hash
+      });
+      user.save()
+      .then(result => {
+        console.log(result)
+        res.status(201).json({
+          message: "User Created"
+        })
+      })
+      .catch(err => {
+        console.log(err)
+        res.status(500).json({
+          error: err
+        })
+      })
+    }
+  })
 })

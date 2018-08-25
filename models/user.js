@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 mongoose.Promise = global.Promise;
 
+
 const userSchema = mongoose.Schema({
   email: {
     type: String,
@@ -8,12 +9,14 @@ const userSchema = mongoose.Schema({
     lowercase: true,
     trim: true
   },
-  username: {
+  password: {
     type: String,
-    unique: true,
     required: true
   },
-  firstName: { type: String, required: true },
+  firstName: {
+    type: String,
+    required: true
+  },
   createdDate: {type: Date, default: Date.now}
 })
 
