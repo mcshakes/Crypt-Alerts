@@ -9,6 +9,7 @@ const bcrypt = require("bcrypt");
 const { User } = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
+require("./passport");
 
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
@@ -19,6 +20,9 @@ app.use(bodyParser.json());
 const key = process.env.NOMICS_KEY
 
 const userRouter = require("./routes/user")
+const auth = require("./routes/auth");
+
+app.use(auth);
 app.use(userRouter);
 
 let interval;
