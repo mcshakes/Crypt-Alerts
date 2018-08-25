@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #F3F3F3;
 }
 
 .App-logo {
@@ -30,8 +31,4 @@ ul {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
-}
-
-.market-cap-leader {
-  grid-column-start: 1
 }

@@ -1,0 +1,14 @@
+.coin-search {
+  grid-column-start:3;
+  grid-column-end:5;
+}
+
+.prompt {
+  width: 300px;
+}
+
+.search-results {
+  border-radius: 20px;
+  border: 2.5px solid darkcyan;
+  padding-bottom: 5px;
+}

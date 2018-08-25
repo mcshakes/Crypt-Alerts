@@ -4,10 +4,12 @@ const mongoose = require("mongoose");
 const path = require("path");
 const axios = require('axios');
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
-
+const { User } = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
+require("./passport");
 
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
@@ -15,8 +17,13 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-
 const key = process.env.NOMICS_KEY
+
+const userRouter = require("./routes/user")
+// const auth = require("./routes/auth");
+//
+// app.use(auth);
+app.use(userRouter);
 
 let interval;
 

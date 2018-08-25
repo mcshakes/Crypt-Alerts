@@ -1,0 +1,14 @@
+.market-cap-leader {
+  display: grid;
+  grid-gap: 1rem;
+
+  /* from parent */
+  grid-column-start: 1;
+}
+
+.leader-coin {
+  border: 2.5px solid darkcyan;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
