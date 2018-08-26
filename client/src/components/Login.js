@@ -8,6 +8,7 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    alert("SUBMIT")
   }
 
   handleChange = (event) => {
@@ -16,6 +17,10 @@ class Login extends React.Component {
       password: event.target.password
     })
   }
+
+  // validateForm() {
+  //   return this.state.email.length > 0 && this.state.password.length > 0;
+  // }
 
   render() {
     return (
@@ -33,6 +38,11 @@ class Login extends React.Component {
             onChange={this.handleChange}
             value={this.state.password}
           />
+          <button
+            // disabled={!this.validateForm()}
+            type="submit">
+            Log In
+          </button>
         </form>
       </div>
     );
