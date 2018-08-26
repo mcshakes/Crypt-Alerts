@@ -8,7 +8,29 @@ class Login extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    alert("SUBMIT")
+
+    const { email, password } = this.state;
+
+    fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    })
+      .then(response => {
+        return response.json()
+      })
+      .then(data => {
+        console.log(data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
 
   handleChange = (event) => {
