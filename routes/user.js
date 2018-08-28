@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require("../models/user")
 
 router.post("/api/users/login", (req, res) => {
+
   User.find({ email: req.body.email })
     .exec()
     .then(user => {
@@ -32,7 +33,7 @@ router.post("/api/users/login", (req, res) => {
                                   });
 
           return res.status(200).json({
-            message: "Auth succesful",
+            message: "Auth successful",
             token: token
           })
         }

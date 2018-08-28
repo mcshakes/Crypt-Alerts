@@ -1,6 +1,5 @@
 import React from "react";
 import Client from "../Client";
-import SearchSuggestions from "./SearchSuggestions"
 import '../css/Search.css';
 
 function searchingFor(term) {
