@@ -8,12 +8,9 @@ import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
 
 class App extends Component {
-  state = {
-    isLoggedIn: false
-  }
 
-  if (isLoggedIn) {
-    return <SearchBar />
+  authCheck = () => {
+    this.forceUpdate()
   }
 
   render() {
@@ -24,7 +21,7 @@ class App extends Component {
         </header>
         <div className="container">
           <CapLeader />
-          {authService.authenticated() ? <UserDashboard /> : <Login />}
+          {authService.authenticated() ? <UserDashboard /> : <Login authCheck={this.authCheck}/>}
         </div>
       </div>
     );
