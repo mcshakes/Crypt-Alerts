@@ -11,8 +11,6 @@ class UserDashboard extends React.Component {
   }
 
   componentWillMount() {
-    // this.checkAuthentication(this.props);
-    // const auth = new AuthService()
     authService.checkAuthentication(this.props);
   }
 
