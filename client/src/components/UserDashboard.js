@@ -4,6 +4,7 @@ import '../css/CapLeader.css';
 import SearchBar from "./SearchBar"
 import { authService } from "./AuthService"
 import Login from "./Login";
+import { Link } from 'react-router-dom';
 
 class UserDashboard extends React.Component {
   state = {
@@ -21,9 +22,19 @@ class UserDashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-      <SearchBar />
+        <div className="menu">
+          { this.isLoggedIn() ? (
+            <Link to="/logout">
+              Logout
+            </Link>
+          ) : (
+            <Link to="/login">
+              Login
+            </Link>
+          ) }
+        </div>
+        <SearchBar />
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
-        {!this.isLoggedIn() && <Login />}
       </div>
     );
   }

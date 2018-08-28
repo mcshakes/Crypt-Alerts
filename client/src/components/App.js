@@ -3,6 +3,7 @@ import '../css/App.css';
 import CapLeader from "./CapLeader";
 import SearchBar from "./SearchBar";
 import Login from "./Login";
+import Logout from "./Logout";
 import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
 
