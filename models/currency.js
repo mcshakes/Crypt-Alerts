@@ -14,7 +14,11 @@ currencySchema.methods.serialize = function() {
     id: this._id,
     name: this.name,
     ticker: this.ticker,
-    price: this.price
+    price: this.price,
+    watcher: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    }]
   }
 }
 
