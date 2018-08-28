@@ -28,6 +28,14 @@ class AuthService {
       })
     }
   }
+
+  removeToken() {
+    localStorage.removeItem("token");
+  }
+
+  logout() {
+    this.removeToken();
+  }
 }
 
 export const authService = new AuthService();
