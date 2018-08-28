@@ -3,15 +3,16 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import App from "./App";
 import CapLeader from "./CapLeader";
-import PrivateRoute from "./PrivateRoute";
+import Login from "./Login";
 import UserDashboard from "./UserDashboard";
+import AuthService from "./AuthService";
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={App}/>
-      <Route exact path="/" component={CapLeader}/>
-      <PrivateRoute path="/dashboard" component={UserDashboard} exact/>
+      <Route exact path="/" component={App} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/dashboard" component={UserDashboard} />
     </Switch>
   </BrowserRouter>
 )

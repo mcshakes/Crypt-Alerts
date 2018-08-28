@@ -1,6 +1,7 @@
 import React from 'react';
 
 class Login extends React.Component {
+
   state = {
     email: "",
     password: ""
@@ -27,6 +28,9 @@ class Login extends React.Component {
       })
       .then(res => {
         localStorage.setItem("token", res.token)
+        console.log(this.props.history)
+        // .push("/dashboard")
+         // NOTE: Need to hide this and show DashBoard
       })
       .catch(err => {
         console.log(err)
@@ -62,7 +66,7 @@ class Login extends React.Component {
             value={this.state.password}
           />
           <button
-            // disabled={!this.validateForm()}
+
             type="submit">
             Log In
           </button>

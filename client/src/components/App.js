@@ -3,18 +3,27 @@ import '../css/App.css';
 import CapLeader from "./CapLeader";
 import SearchBar from "./SearchBar";
 import Login from "./Login";
+import { authService } from "./AuthService";
+import UserDashboard from "./UserDashboard";
 
 class App extends Component {
+  state = {
+    isLoggedIn: false
+  }
+
+  if (isLoggedIn) {
+    return <SearchBar />
+  }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">CryptAlert</h1>
         </header>
-        <div class="container">
+        <div className="container">
           <CapLeader />
-          <Login />
-          <SearchBar />
+          {authService.authenticated() ? <UserDashboard /> : <Login />}
         </div>
       </div>
     );
