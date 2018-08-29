@@ -5,8 +5,10 @@ mongoose.Promise = global.Promise;
 
 const currencySchema = mongoose.Schema({
   name: String
-  ticker: String,
-  price: String
+  ticker: {
+    type: String,
+    retuired: true
+  }
   // watcher: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "User"
