@@ -26,4 +26,4 @@ currencySchema.methods.serialize = function() {
 
 const currency = mongoose.model("Currency", currencySchema)
 
-module.exports = { currency, currencySchema };
+module.exports = { currency };

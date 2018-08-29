@@ -19,7 +19,8 @@ const userSchema = mongoose.Schema({
   },
   watchlist: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Watchlist"
+    ref: "Watchlist",
+    require: true
   },
   createdDate: {type: Date, default: Date.now}
 })
