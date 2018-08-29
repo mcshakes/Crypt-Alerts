@@ -8,12 +8,22 @@ const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
 // create and save the watchlist a user has
-router.post("/api/users/:id/add-coin", (req, res) => {
+router.post("/api/add-coin", (req, res) => {
   let userId = req.params.id;
+  let ticker = req.body
 
-  Currency
-  .create({
-    
-  })
-  User.find({userId})
+  console.log("ID", userId)
+  console.log("TICKER", ticker)
+  
+  // create watchlist
+  // attached the user
+  // pushing the coin onto the list
+
+  // Currency
+  // .create({
+  //
+  // })
+  // User.find({userId})
 })
+
+module.exports = router;

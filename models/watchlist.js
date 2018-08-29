@@ -6,10 +6,10 @@ const WatchlistSchema = mongoose.Schema({
     { type: mongoose.Schema.Types.ObjectId,
       ref: "Currency"
     }
-  ]
+  ],
   valueAmount: String,
   direction: String
 })
 
 const watchlist = mongoose.model("Watchlist", WatchlistSchema)
-module.exports = { watchList };
+module.exports = { watchlist };
