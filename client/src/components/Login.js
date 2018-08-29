@@ -28,7 +28,8 @@ class Login extends React.Component {
       })
       .then(res => {
         localStorage.setItem("token", res.token)
-        console.log(this.props.history)
+        this.props.authCheck()
+        // console.log(this.props.history)
         // .push("/dashboard")
          // NOTE: Need to hide this and show DashBoard
       })

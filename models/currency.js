@@ -7,7 +7,13 @@ const currencySchema = mongoose.Schema({
   name: String
   ticker: String,
   price: String
+  // watcher: [{
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User"
+  // }]
 });
+
+// version 2 above
 
 currencySchema.methods.serialize = function() {
   return {
@@ -20,4 +26,4 @@ currencySchema.methods.serialize = function() {
 
 const currency = mongoose.model("Currency", currencySchema)
 
-module.exports = { currency, currencySchema };
+module.exports = { currency };

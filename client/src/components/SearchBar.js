@@ -64,7 +64,7 @@ class SearchBar extends React.Component {
             coins.filter(searchingFor(searchValue)).map( coin =>
               <div className="search-results">
                   <li>
-                    <h3> { coin.currency } </h3>
+                    <h3> { coin.currency }  </h3>
                     <button
                       className="add-to-list"
                       // onClick={this.addToWatchlist}
