@@ -1,6 +1,7 @@
 import React from "react";
 import Client from "../Client";
 import '../css/Search.css';
+import Currency from "./Currency"
 
 function searchingFor(term) {
     let searchLet = term.split("").slice(0,3).join("")
@@ -62,17 +63,7 @@ class SearchBar extends React.Component {
         <ul className="search-suggestions">
           {
             coins.filter(searchingFor(searchValue)).map( coin =>
-              <div className="search-results">
-                  <li>
-                    <h3> { coin.currency }  </h3>
-                    <button
-                      className="add-to-list"
-                      // onClick={this.addToWatchlist}
-                      >
-                        + to Watchlist
-                      </button>
-                  </li>
-              </div>
+              <Currency coin={coin} />
             )
           }
         </ul>
