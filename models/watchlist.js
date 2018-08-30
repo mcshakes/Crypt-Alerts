@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 mongoose.Promise = global.Promise;
 
-const WatchlistSchema = mongoose.Schema({
+const watchlistSchema = mongoose.Schema({
   list: [
     { type: mongoose.Schema.Types.ObjectId,
       ref: "Currency"
@@ -11,5 +11,5 @@ const WatchlistSchema = mongoose.Schema({
   direction: String
 })
 
-const watchlist = mongoose.model("Watchlist", WatchlistSchema)
-module.exports = { watchlist };
+const Watchlist = mongoose.model("Watchlist", watchlistSchema)
+module.exports = { Watchlist };

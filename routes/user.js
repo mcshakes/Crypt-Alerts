@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 const { User } = require("../models/user")
+const { Watchlist } = require("../models/watchlist")
 
 router.post("/api/users/login", (req, res) => {
 
@@ -67,20 +68,24 @@ router.post("/api/users/signup", (req, res) => {
               error:err
             })
           } else {
+            const watchlist = new Watchlist({
+              _id: new mongoose.Types.ObjectId(),
+            });
+
             const user = new User({
               _id: new mongoose.Types.ObjectId(),
               email: req.body.email,
-              password: hash
+              password: hash,
+              watchlist: watchlist._id
             });
+            watchlist.save()
             user.save()
-            // .then(result => {
-            //   res.status(201).json({
-            //     message: "User Created"
-            //   })
-            // })
-            .then(result => {
 
+            .then(result => {
               console.log(result)
+              res.status(201).json({
+                message: "User Created"
+              })
             })
             .catch(err => {
               console.log(err)
