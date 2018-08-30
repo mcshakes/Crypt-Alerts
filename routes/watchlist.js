@@ -9,12 +9,27 @@ const { Currency } = require("../models/currency")
 
 // create and save the watchlist a user has
 router.post("/api/add-coin", (req, res) => {
-  let userId = req.params.id;
-  let ticker = req.body
+  let userId = req;
+  let ticker = req.body.ticker
 
   console.log("ID", userId)
-  console.log("TICKER", ticker)
-  
+
+
+  Currency
+    .create({
+              _id: new mongoose.Types.ObjectId(),
+              ticker: ticker
+            })
+    .then((coin) => {
+      // need to push into Watchlist
+    })
+
+  // let watchlist = new Watchlist({
+  //   _id: new mongoose.Types.ObjectId()
+  //   list: [
+  //
+  //   ]
+  // })
   // create watchlist
   // attached the user
   // pushing the coin onto the list

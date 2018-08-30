@@ -73,11 +73,14 @@ router.post("/api/users/signup", (req, res) => {
               password: hash
             });
             user.save()
+            // .then(result => {
+            //   res.status(201).json({
+            //     message: "User Created"
+            //   })
+            // })
             .then(result => {
+
               console.log(result)
-              res.status(201).json({
-                message: "User Created"
-              })
             })
             .catch(err => {
               console.log(err)
