@@ -2,6 +2,7 @@ import React from "react";
 import Client from "../Client";
 import '../css/CapLeader.css';
 import SearchBar from "./SearchBar"
+import UserWatchlist from "./UserWatchlist"
 import { authService } from "./AuthService"
 import Login from "./Login";
 import { Link } from 'react-router-dom';
@@ -33,8 +34,9 @@ class UserDashboard extends React.Component {
             </Link>
           ) }
         </div>
-        <SearchBar />
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
+        <SearchBar />
+        <UserWatchlist />
       </div>
     );
   }

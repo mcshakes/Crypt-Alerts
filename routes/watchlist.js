@@ -12,13 +12,6 @@ const { Currency } = require("../models/currency")
 router.post("/api/add-coin", checkAuth, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker
-  // ID { email: 'test88@test.com',
-  // [0]   userId: '5b884d120373243877c5b1a3',
-
-
-  // Find the User by ID
-  // FInd the watchlist of the User
-  // Populate the currency within the Watchlist
 
   Currency
     .create({
@@ -31,13 +24,25 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
         { "new": true, "upsert": true },
         function (err, user) {
           if (err) throw err;
-          console.log("DA USER", user)
+
           return res.status(201).json(user)
         }
       );
     })
+})
 
+router.get("/api/coin-watchlist", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
 
+  User
+  .findById(userId)
+  .then(user => {
+    return res.status(200).json(user)
+  })
+  .catch(err => {
+      console.log(err);
+      res.status(500).json({ message: "Internal server error" });
+  })
 })
 
 module.exports = router;
