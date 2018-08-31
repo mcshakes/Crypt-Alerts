@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const bodyParser = require("body-parser");
+const checkAuth = require("../middleware/check-auth");
 
 const mongoose = require("mongoose");
 const { User } = require("../models/user")
@@ -8,12 +9,16 @@ const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
 // create and save the watchlist a user has
-router.post("/api/add-coin", (req, res) => {
-  let userId = req;
+router.post("/api/add-coin", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
   let ticker = req.body.ticker
+  // ID { email: 'test88@test.com',
+  // [0]   userId: '5b884d120373243877c5b1a3',
 
-  console.log("ID", userId)
 
+  // Find the User by ID
+  // FInd the watchlist of the User
+  // Populate the currency within the Watchlist
 
   Currency
     .create({
@@ -21,24 +26,18 @@ router.post("/api/add-coin", (req, res) => {
               ticker: ticker
             })
     .then((coin) => {
-      // need to push into Watchlist
+      User.findByIdAndUpdate(userId,
+        { "$push": { "watchlist": coin } },
+        { "new": true, "upsert": true },
+        function (err, user) {
+          if (err) throw err;
+
+          return res.status(201).json(user)
+        }
+      );
     })
 
-  // let watchlist = new Watchlist({
-  //   _id: new mongoose.Types.ObjectId()
-  //   list: [
-  //
-  //   ]
-  // })
-  // create watchlist
-  // attached the user
-  // pushing the coin onto the list
 
-  // Currency
-  // .create({
-  //
-  // })
-  // User.find({userId})
 })
 
 module.exports = router;

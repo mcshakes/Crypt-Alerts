@@ -2,8 +2,6 @@ import React from "react";
 import { authService } from "./AuthService";
 
 class Currency extends React.Component {
-  // This has data, like a ticker saved as currency
-  // When a user clicks, we call an API and send to the back
 
   addToWatchlist = () => {
     let ticker = this.props.coin.currency
