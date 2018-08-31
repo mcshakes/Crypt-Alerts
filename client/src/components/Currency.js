@@ -1,4 +1,5 @@
 import React from "react";
+import { authService } from "./AuthService";
 
 class Currency extends React.Component {
   // This has data, like a ticker saved as currency
@@ -6,18 +7,20 @@ class Currency extends React.Component {
 
   addToWatchlist = () => {
     let ticker = this.props.coin.currency
+    let token = authService.getToken();
 
     const settings = {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
         ticker: ticker
       })
     };
-    
+
     fetch("/api/add-coin", settings)
       .then((response) => {
         return response.json()
