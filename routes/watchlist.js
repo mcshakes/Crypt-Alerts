@@ -37,6 +37,7 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   User
   .findById(userId)
   .then(user => {
+    // console.log(user)
     return res.status(200).json(user)
   })
   .catch(err => {

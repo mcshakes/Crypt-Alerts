@@ -8,7 +8,7 @@ class UserWatchlist extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: []
+      data: null
     }
   }
 
@@ -28,17 +28,17 @@ class UserWatchlist extends React.Component {
     .then((response) => {
       return response.json()
     })
+    .then((json) => {
+      console.log("from FETCH", json)
+      this.setState({ data: json.watchlist })
+    })
     .catch(err => {
       return err
     })
   }
 
   componentDidMount() {
-    this.getAllCoins(stuff => {
-      this.setState({
-        data: stuff
-      })
-    })
+    this.getAllCoins()
   }
 
 
