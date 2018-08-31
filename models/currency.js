@@ -9,10 +9,6 @@ const currencySchema = mongoose.Schema({
     type: String,
     required: true
   }
-  // watcher: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User"
-  // }]
 });
 
 // version 2 above

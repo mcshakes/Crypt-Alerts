@@ -17,16 +17,16 @@ const userSchema = mongoose.Schema({
   firstName: {
     type: String
   },
-  // watchlist: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "Watchlist",
-  //   require: true
-  // },
-  watchlist: [
-    { type: mongoose.Schema.Types.ObjectId,
-      ref: "Currency"
-    }
-  ],
+  watchlist: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Watchlist",
+    require: true
+  }],
+  // watchlist: [
+  //   { type: mongoose.Schema.Types.ObjectId,
+  //     ref: "Currency"
+  //   }
+  // ],
   createdDate: {type: Date, default: Date.now}
 })
 
