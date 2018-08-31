@@ -23,7 +23,7 @@ class CapLeader extends React.Component {
     return (
       <div className="market-cap-leader">
         {this.state.data == null ? "Please Wait..." :
-        this.state.data.map((coin, idx) => <LeaderCoin currency={coin.currency} price={coin.price}/>)}
+        this.state.data.map((coin, idx) => <LeaderCoin key={idx} currency={coin.currency} price={coin.price}/>)}
       </div>
     );
   }

@@ -7,12 +7,8 @@ const currencySchema = mongoose.Schema({
   name: String,
   ticker: {
     type: String,
-    retuired: true
+    required: true
   }
-  // watcher: [{
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: "User"
-  // }]
 });
 
 // version 2 above

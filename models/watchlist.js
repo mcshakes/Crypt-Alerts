@@ -7,6 +7,10 @@ const watchlistSchema = mongoose.Schema({
       ref: "Currency"
     }
   ],
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User"
+  },
   valueAmount: String,
   direction: String
 })

@@ -41,10 +41,6 @@ class Login extends React.Component {
     })
   }
 
-  // validateForm() {
-  //   return this.state.email.length > 0 && this.state.password.length > 0;
-  // }
-
   render() {
     return (
       <div className="login-form">
