@@ -21,11 +21,12 @@ const key = process.env.NOMICS_KEY
 
 const userRouter = require("./routes/user")
 const watchlistRouter = require("./routes/watchlist")
-// const auth = require("./routes/auth");
+const currencyRouter = require("./routes/currency")
 //
 // app.use(auth);
 app.use(userRouter);
 app.use(watchlistRouter);
+app.use(currencyRouter);
 
 let interval;
 
