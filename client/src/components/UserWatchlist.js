@@ -8,7 +8,7 @@ class UserWatchlist extends React.Component {
   constructor() {
     super();
     this.state = {
-      data: null
+      data: []
     }
   }
 
@@ -45,7 +45,8 @@ class UserWatchlist extends React.Component {
   render() {
     return (
       <div>
-
+        These are the coins you are watching:
+        {this.state.data.map((coin) => <div>{coin}</div>)}
       </div>
     )
   }
