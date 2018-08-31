@@ -22,11 +22,6 @@ const userSchema = mongoose.Schema({
     ref: "Watchlist",
     require: true
   }],
-  // watchlist: [
-  //   { type: mongoose.Schema.Types.ObjectId,
-  //     ref: "Currency"
-  //   }
-  // ],
   createdDate: {type: Date, default: Date.now}
 })
 

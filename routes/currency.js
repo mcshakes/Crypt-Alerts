@@ -11,7 +11,6 @@ const { Currency } = require("../models/currency")
 router.post("/api/add-coin", checkAuth, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker
-  // console.log("CLICK HERE?", ticker)
 
   Currency.find({
       ticker: ticker
