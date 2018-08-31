@@ -68,15 +68,12 @@ router.post("/api/users/signup", (req, res) => {
               error:err
             })
           } else {
-            // const watchlist = new Watchlist({
-            //   _id: new mongoose.Types.ObjectId(),
-            // });
+
 
             const user = new User({
               _id: new mongoose.Types.ObjectId(),
               email: req.body.email,
               password: hash,
-              watchlist: []
             });
             // watchlist.save()
             user.save()

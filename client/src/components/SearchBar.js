@@ -41,10 +41,7 @@ class SearchBar extends React.Component {
       })
     })
   }
-
-  addToWatchList = () => {
-    console.log("HEEY")
-  }
+d
 
   render() {
     const {coins, searchValue} = this.state

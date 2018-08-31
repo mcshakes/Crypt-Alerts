@@ -11,7 +11,7 @@ const { Currency } = require("../models/currency")
 router.post("/api/add-coin", checkAuth, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker
-  console.log("CLICK HERE?", ticker)
+  // console.log("CLICK HERE?", ticker)
 
   Currency.find({
       ticker: ticker
@@ -19,18 +19,40 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
     .count()
     .then(count => {
       if (count <= 0) {
-        const coin = new Currency({
+        const watchlist = new Watchlist({
           _id: new mongoose.Types.ObjectId(),
-          ticker: ticker
+          userId: userId
         })
-        coin.save()
-        .then(coin => {
-          console.log("COIN created => ", coin)
-        })
-      }
-      // return the coin
-    })
+        watchlist.save()
 
+        Currency
+          .create({
+            _id: new mongoose.Types.ObjectId(),
+            ticker: ticker
+          })
+          .then((coin) => {
+            Watchlist.findByIdAndUpdate(watchlist._id,
+              { "$push": { "list": coin } },
+              { "new": true, "upsert": true },
+              function(err, user) {
+                if (err) throw err;
+                return res.status(201)
+              }
+            );
+          })
+      }
+    })
+    .then(result => {
+      res.status(201).json({
+        message: "Watch created on coin"
+      })
+    })
+    .catch(err => {
+      console.log(err)
+      res.status(500).json({
+        error: err
+      })
+    })
 })
 
 module.exports = router;
