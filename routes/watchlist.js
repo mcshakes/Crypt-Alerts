@@ -31,7 +31,7 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
         { "new": true, "upsert": true },
         function (err, user) {
           if (err) throw err;
-
+          console.log("DA USER", user)
           return res.status(201).json(user)
         }
       );
