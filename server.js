@@ -20,10 +20,12 @@ app.use(bodyParser.json());
 const key = process.env.NOMICS_KEY
 
 const userRouter = require("./routes/user")
+const watchlistRouter = require("./routes/watchlist")
 // const auth = require("./routes/auth");
 //
 // app.use(auth);
 app.use(userRouter);
+app.use(watchlistRouter);
 
 let interval;
 

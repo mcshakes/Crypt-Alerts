@@ -4,9 +4,11 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 const currencySchema = mongoose.Schema({
-  name: String
-  ticker: String,
-  price: String
+  name: String,
+  ticker: {
+    type: String,
+    retuired: true
+  }
   // watcher: [{
   //   type: mongoose.Schema.Types.ObjectId,
   //   ref: "User"
@@ -24,6 +26,5 @@ currencySchema.methods.serialize = function() {
   }
 }
 
-const currency = mongoose.model("Currency", currencySchema)
-
-module.exports = { currency };
+const Currency = mongoose.model("Currency", currencySchema)
+module.exports = { Currency };
