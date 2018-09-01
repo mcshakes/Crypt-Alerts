@@ -17,11 +17,13 @@ const userSchema = mongoose.Schema({
   firstName: {
     type: String
   },
-  watchlist: [{
+  watchlist: [
+    {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Watchlist",
     require: true
-  }],
+    }
+  ],
   createdDate: {type: Date, default: Date.now}
 })
 
