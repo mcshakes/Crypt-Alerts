@@ -36,6 +36,7 @@ class UserDashboard extends React.Component {
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
         <SearchBar />
+        <UserWatchlist />
       </div>
     );
   }

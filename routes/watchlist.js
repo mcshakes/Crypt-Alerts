@@ -9,19 +9,20 @@ const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
 
-// router.get("/api/coin-watchlist", checkAuth, (req, res) => {
-//   let userId = req.userData.userId;
-//
-//   User
-//   .findById(userId)
-//   .then(user => {
-//     // console.log(user)
-//     return res.status(200).json(user)
-//   })
-//   .catch(err => {
-//       console.log(err);
-//       res.status(500).json({ message: "Internal server error" });
-//   })
-// })
+router.get("/api/coin-watchlist", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
+
+
+  // Watchlist
+  // .findById({})
+  // .then(user => {
+  //   // console.log(user)
+  //   return res.status(200).json(user)
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   res.status(500).json({ message: "Internal server error" });
+  // })
+})
 
 module.exports = router;

@@ -8,10 +8,6 @@ const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
-function createWatchlist(id) {
-  return
-}
-
 router.post("/api/add-coin", checkAuth, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker
@@ -30,13 +26,14 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
           })
           .then((coin) => {
 
-            let watcher = Watchlist.create({
-              _id: new mongoose.Types.ObjectId(),
-              userId: userId,
-              list: [
-                coin
-              ]
-            })
+            let watcher = Watchlist
+                            .create({
+                              _id: new mongoose.Types.ObjectId(),
+                              userId: userId,
+                              list: [
+                                coin
+                              ]
+                            })
           })
           .catch(err => {
             console.log(err)
@@ -44,14 +41,17 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
               error: err
             })
           })
-      } // If the coin doesn't exist...
-
-      // If coin does exist
-      Watchlist.create({
-        _id: new mongoose.Types.ObjectId(),
-        userId: userId,
-        list: [ coin[0] ]
-      })
+      } else {
+        Watchlist
+          .create({
+            _id: new mongoose.Types.ObjectId(),
+            userId: userId,
+            list: [ coin[0] ]
+          })
+          .then((watchItem) => {
+            return response.json(watchItem)
+          })
+      }
 
     })
     .then(result => {
