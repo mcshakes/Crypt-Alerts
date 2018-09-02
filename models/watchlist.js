@@ -16,4 +16,4 @@ const watchlistSchema = mongoose.Schema({
 })
 
 const Watchlist = mongoose.model("Watchlist", watchlistSchema)
-module.exports = { Watchlist };
+module.exports = { Watchlist, watchlistSchema };

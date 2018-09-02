@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 mongoose.Promise = global.Promise;
-
+const { watchlistSchema } = require("../models/watchlist")
 
 const userSchema = mongoose.Schema({
   email: {
