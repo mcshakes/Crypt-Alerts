@@ -3,6 +3,7 @@ import Client from "../Client";
 import '../css/CapLeader.css';
 import { authService } from "./AuthService"
 import { Link } from 'react-router-dom';
+import ListItem from "./ListItem"
 
 class UserWatchlist extends React.Component {
   constructor() {
@@ -53,7 +54,7 @@ class UserWatchlist extends React.Component {
         <ul>
           {
             this.state.data.map((coin, idx) => {
-              return <li key={idx}>{coin.ticker}</li>
+              return <ListItem key={idx} coin={coin.ticker}/>
             })
           }
         </ul>
