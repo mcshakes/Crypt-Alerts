@@ -43,14 +43,20 @@ class UserWatchlist extends React.Component {
         data: things
       })
     })
-
   }
 
 
   render() {
     return (
       <div>
-        These are the coins you are watching:
+        <h2>These are the coins you are watching:</h2>
+        <ul>
+          {
+            this.state.data.map((coin, idx) => {
+              return <li key={idx}>{coin.ticker}</li>
+            })
+          }
+        </ul>
       </div>
     )
   }
