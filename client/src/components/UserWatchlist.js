@@ -24,13 +24,12 @@ class UserWatchlist extends React.Component {
       }
     };
 
-    fetch("/api/coin-watchlist", settings)
+  return fetch("/api/coin-watchlist", settings)
     .then((response) => {
       return response.json()
     })
-    .then((json) => {
-      console.log("from FETCH", json)
-      this.setState({ data: json.watchlist })
+    .then(data => {
+      return data
     })
     .catch(err => {
       return err
@@ -39,6 +38,12 @@ class UserWatchlist extends React.Component {
 
   componentDidMount() {
     this.getAllCoins()
+    .then(things => {
+      this.setState({
+        data: things
+      })
+    })
+
   }
 
 

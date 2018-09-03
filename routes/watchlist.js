@@ -33,7 +33,7 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   })
   .then(allCoins => {
     // { _id: 5b8c5fca8d1e3230eaf68ea6, ticker: 'XRP', __v: 0 }
-    return allCoins
+    res.json(allCoins)
   })
 })
 
