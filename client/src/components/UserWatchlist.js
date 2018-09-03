@@ -3,6 +3,7 @@ import Client from "../Client";
 import '../css/CapLeader.css';
 import { authService } from "./AuthService"
 import { Link } from 'react-router-dom';
+import ListItem from "./ListItem"
 
 class UserWatchlist extends React.Component {
   constructor() {
@@ -24,13 +25,12 @@ class UserWatchlist extends React.Component {
       }
     };
 
-    fetch("/api/coin-watchlist", settings)
+  return fetch("/api/coin-watchlist", settings)
     .then((response) => {
       return response.json()
     })
-    .then((json) => {
-      console.log("from FETCH", json)
-      this.setState({ data: json.watchlist })
+    .then(data => {
+      return data
     })
     .catch(err => {
       return err
@@ -39,14 +39,25 @@ class UserWatchlist extends React.Component {
 
   componentDidMount() {
     this.getAllCoins()
+    .then(things => {
+      this.setState({
+        data: things
+      })
+    })
   }
 
 
   render() {
     return (
       <div>
-        These are the coins you are watching:
-        {this.state.data.map((coin, idx) => <div key={idx}>{coin}</div>)}
+        <h2>These are the coins you are watching:</h2>
+        <ul>
+          {
+            this.state.data.map((coin, idx) => {
+              return <ListItem key={idx} coin={coin.ticker}/>
+            })
+          }
+        </ul>
       </div>
     )
   }

@@ -13,14 +13,6 @@ const currencySchema = mongoose.Schema({
 
 // version 2 above
 
-currencySchema.methods.serialize = function() {
-  return {
-    id: this._id,
-    name: this.name,
-    ticker: this.ticker,
-    price: this.price
-  }
-}
 
 const Currency = mongoose.model("Currency", currencySchema)
 module.exports = { Currency };

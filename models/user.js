@@ -1,6 +1,6 @@
 const mongoose = require("mongoose")
 mongoose.Promise = global.Promise;
-
+const { watchlistSchema } = require("../models/watchlist")
 
 const userSchema = mongoose.Schema({
   email: {
@@ -17,11 +17,12 @@ const userSchema = mongoose.Schema({
   firstName: {
     type: String
   },
-  watchlist: [{
+  watchlist: [
+    {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Watchlist",
-    require: true
-  }],
+    }
+  ],
   createdDate: {type: Date, default: Date.now}
 })
 
