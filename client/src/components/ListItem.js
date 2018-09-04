@@ -43,8 +43,8 @@ class ListItem extends React.Component {
 
   render() {
     return (
-      <div>
-        <div className="leader-coin">
+      <div className="leader-coin">
+        <div >
           <h3>{this.state.coin}</h3>
         </div>
         <div className="volume-data">
