@@ -6,6 +6,7 @@ const axios = require('axios');
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 
+const { ISODateString, encode } = require("./helpers/dates")
 const { User } = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
@@ -106,11 +107,13 @@ app.get("/api/market-interval-btc", (req, res) => {
 // NOTE: Aggregated OHLC candles
 
 app.get("/api/candles", (req, res) => {
-  let coin = req.query.coin
+  let coin = req.query.coin;
+  let date = ISODateString(new Date());
+  let startDate = encode(date);
 
-  axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=${coin}`)
+  axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=${coin}&start=${startDate}`)
     .then((response) => {
-      res.json(response)
+      res.json(response.data[0])
     })
     .catch((error) => {
       res.status(400).send(error);

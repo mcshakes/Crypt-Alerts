@@ -45,7 +45,14 @@ class ListItem extends React.Component {
     return (
       <div>
         <div className="leader-coin">
-          {this.state.coin}
+          <h3>{this.state.coin}</h3>
+        </div>
+        <div className="volume-data">
+            <p>Market Open:{this.state.data.open} USD</p>
+            <p>Market Close: {this.state.data.close} USD</p>
+            <p>High: {this.state.data.high} USD</p>
+            <p>Low: {this.state.data.low} USD</p>
+            <p>Volume: {this.state.data.low}</p>
         </div>
       </div>
     )
