@@ -39,14 +39,13 @@ io.on('connection', function (socket) {
 
 //------------ Cron Job ------------------------
 
-console.log("BEFORE JOB START")
 
-const job = new CronJob("* * * * *", function() {
-  console.log("Running a task every minute....EVERY MINUTE")
+const job = new CronJob('0 */10 * * * *', function() {
+  const d = new Date()
+  console.log("Running task every TENTH minute: ", d)
 });
 
-console.log("AFTER JOB START")
-job.start()
+// job.start()
 //--------------------------------------------
 
 server.listen(3001, () => {
@@ -118,8 +117,10 @@ app.get("/api/market-interval-btc", (req, res) => {
     })
 })
 
+// NOTE: Just Prices for All Coins
+
 app.get("/api/price", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/prices?key=${key}&currency=BTC&start=2018-04-14T00%3A00%3A00Z&end=2018-07-14T00%3A00%3A00Z`
+  axios.get(`https://api.nomics.com/v1/prices?key=${key}`
     )
     .then((response) => {
       res.json(response.data)
