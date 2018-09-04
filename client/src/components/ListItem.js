@@ -5,7 +5,8 @@ import '../css/UserWatchlist.css';
 class ListItem extends React.Component {
 
   state = {
-    coin: this.props.coin
+    coin: this.props.coin,
+    data: []
   }
 
   getCoinData = () => {
@@ -20,10 +21,24 @@ class ListItem extends React.Component {
             };
 
     return fetch(`/api/candles?coin=${coin}`, settings)
+      .then((response) => {
+        return response.json()
+      })
+      .then(data => {
+        return data
+      })
+      .catch(err => {
+        return err
+      })
   }
 
   componentDidMount() {
     this.getCoinData()
+      .then(data => {
+        this.setState({
+          data: data
+        })
+      })
   }
 
   render() {

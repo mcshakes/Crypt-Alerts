@@ -106,13 +106,13 @@ app.get("/api/market-interval-btc", (req, res) => {
 // NOTE: Aggregated OHLC candles
 
 app.get("/api/candles", (req, res) => {
-  // req.query
-  console.log(req.query)
-  // axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=${coin}`)
-  //   .then((response) => {
-  //     res.json(response.data)
-  //   })
-  //   .catch((error) => {
-  //     res.status(400).send(error);
-  //   })
+  let coin = req.query.coin
+
+  axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=${coin}`)
+    .then((response) => {
+      res.json(response)
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
 })
