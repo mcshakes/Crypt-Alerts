@@ -6,6 +6,8 @@ const axios = require('axios');
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 
+const CronJob = require("cron").CronJob;
+
 const { ISODateString, encode } = require("./helpers/dates")
 const { User } = require("./models/user");
 const app = express();
@@ -34,6 +36,18 @@ let interval;
 io.on('connection', function (socket) {
   console.log('A new WebSocket connection established with' + socket.id);
 });
+
+//------------ Cron Job ------------------------
+
+console.log("BEFORE JOB START")
+
+const job = new CronJob("* * * * *", function() {
+  console.log("Running a task every minute....EVERY MINUTE")
+});
+
+console.log("AFTER JOB START")
+job.start()
+//--------------------------------------------
 
 server.listen(3001, () => {
   console.log("listening on Port 3001")
