@@ -107,12 +107,13 @@ app.get("/api/market-interval-btc", (req, res) => {
 
 app.get("/api/candles", (req, res) => {
   // res
-  axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=ETH&start=2018-04-14T00%3A00%3A00Z&end=2018-05-14T00%3A00%3A00Z`
-    )
-    .then((response) => {
-      res.json(response.data)
-    })
-    .catch((error) => {
-      res.status(400).send(error);
-    })
+  console.log(req.body)
+  // axios.get
+  //   )
+  //   .then((response) => {
+  //     res.json(response.data)
+  //   })
+  //   .catch((error) => {
+  //     res.status(400).send(error);
+  //   })
 })
