@@ -108,7 +108,7 @@ app.get("/api/price", (req, res) => {
   axios.get(`https://api.nomics.com/v1/prices?key=${key}&currency=BTC&start=2018-04-14T00%3A00%3A00Z&end=2018-07-14T00%3A00%3A00Z`
     )
     .then((response) => {
-      console.log(response)
+      res.json(response.data)
     })
     .catch((error) => {
       res.status(400).send(error);

@@ -6,7 +6,7 @@ class ListItem extends React.Component {
 
   state = {
     coin: this.props.coin,
-    data: []
+    data: [],
   }
 
   getCoinData = () => {

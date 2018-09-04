@@ -46,7 +46,6 @@ class UserWatchlist extends React.Component {
     })
   }
 
-
   render() {
     return (
       <div>
