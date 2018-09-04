@@ -15,6 +15,13 @@ function searchList(cb) {
   .then(cb)
 }
 
+function getPrice(cb) {
+  return fetch("/api/price")
+  .then(checkStatus)
+  .then(parseJSON)
+  .then(cb)
+}
+
 function checkStatus(response) {
   if (response.status >= 200 && response.status < 300) {
     return response;

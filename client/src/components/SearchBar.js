@@ -41,7 +41,6 @@ class SearchBar extends React.Component {
       })
     })
   }
-d
 
   render() {
     const {coins, searchValue} = this.state
