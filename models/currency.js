@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 
 const currencySchema = mongoose.Schema({
+  price: String,
   name: String,
   ticker: {
     type: String,

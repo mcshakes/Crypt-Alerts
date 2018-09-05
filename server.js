@@ -94,7 +94,7 @@ app.get("/api/market-leaders", (req, res) => {
 })
 
 app.get("/api/search", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/dashboard?key=${key}`)
+  axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
     .then((collection) => {
       res.json(collection.data)
     })
