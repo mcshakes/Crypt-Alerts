@@ -50,18 +50,18 @@ function getNewPrices() {
     })
 }
 
-function findCurrentCoins() {
+
+const job = new CronJob('* * * * * *', function() {
+  let collection = new Array();
+
   Currency.find()
     .exec()
     .then((allCoins) => {
-      return allCoins
+      allCoins.map((coin) => {
+        collection.push(coin.ticker)
+      })
+      return collection
     })
-}
-
-const job = new CronJob('* * * * * *', function() {
-  let promise = findCurrentCoins()
-
-    promise
     .then(shit => {
       console.log(shit)
     })
