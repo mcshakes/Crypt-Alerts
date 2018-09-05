@@ -11,18 +11,19 @@ const { Currency } = require("../models/currency")
 router.post("/api/add-coin", checkAuth, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker
+  let price = req.body.price
 
   Currency.find({
       ticker: ticker
     })
     .exec()
     .then(coin => {
-
       if (coin.length < 1) {
         Currency
           .create({
             _id: new mongoose.Types.ObjectId(),
-            ticker: ticker
+            ticker: ticker,
+            price: price
           })
           .then((coin) => {
 

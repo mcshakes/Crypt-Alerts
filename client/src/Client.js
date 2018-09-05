@@ -15,7 +15,7 @@ function searchList(cb) {
   .then(cb)
 }
 
-function getPrice(cb) {
+function getPrices(cb) {
   return fetch("/api/price")
   .then(checkStatus)
   .then(parseJSON)

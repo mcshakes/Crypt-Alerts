@@ -5,6 +5,7 @@ class Currency extends React.Component {
 
   addToWatchlist = () => {
     let ticker = this.props.coin.currency
+    let price = this.props.coin.price
     let token = authService.getToken();
 
     const settings = {
@@ -15,7 +16,8 @@ class Currency extends React.Component {
         "Authorization": `Bearer ${token}`
       },
       body: JSON.stringify({
-        ticker: ticker
+        ticker: ticker,
+        price: price
       })
     };
 

@@ -53,7 +53,10 @@ class UserWatchlist extends React.Component {
         <ul className="coin-watchlist">
           {
             this.state.data.map((coin, idx) => {
-              return <ListItem key={idx} coin={coin.ticker}/>
+              return <ListItem key={idx}
+                              coin={coin.ticker}
+                              price={coin.price}
+                      />
             })
           }
         </ul>

@@ -6,6 +6,10 @@ const axios = require('axios');
 require("dotenv").config();
 const bcrypt = require("bcrypt");
 
+const CronJob = require("cron").CronJob;
+const { Watchlist } = require("./models/watchlist")
+const { Currency } = require("./models/currency")
+
 const { ISODateString, encode } = require("./helpers/dates")
 const { User } = require("./models/user");
 const app = express();
@@ -34,6 +38,59 @@ let interval;
 io.on('connection', function (socket) {
   console.log('A new WebSocket connection established with' + socket.id);
 });
+
+//------------ Cron Job ------------------------
+function getNewPrices() {
+  return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+    .then((response) => {
+      return response.data
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+}
+
+
+const job = new CronJob('*/10 * * * *', function() {
+  let collection = new Array();
+
+  Currency.find()
+    .exec()
+    .then((allCoins) => {
+      allCoins.map((coin) => {
+        collection.push(coin.ticker)
+      })
+      return collection
+    })
+    .then(tickers => {
+
+      getNewPrices()
+        .then(APIresults => {
+          return APIresults.filter((result) => {
+            return tickers.some(dbTick => {
+              if (dbTick === result.currency) {
+                return result
+              }
+            })
+          })
+        })
+        .then(updates => {
+          updates.map((newPrice) => {
+            let query = Currency.findOneAndUpdate(
+              {ticker: newPrice.currency},
+              {price: newPrice.price}
+            )
+            query.exec();
+          })
+        })
+
+    })
+
+});
+
+job.start()
+
+//--------------------------------------------
 
 server.listen(3001, () => {
   console.log("listening on Port 3001")
@@ -81,7 +138,7 @@ app.get("/api/market-leaders", (req, res) => {
 })
 
 app.get("/api/search", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/dashboard?key=${key}`)
+  axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
     .then((collection) => {
       res.json(collection.data)
     })
@@ -104,8 +161,10 @@ app.get("/api/market-interval-btc", (req, res) => {
     })
 })
 
+// NOTE: Just Prices for All Coins
+
 app.get("/api/price", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/prices?key=${key}&currency=BTC&start=2018-04-14T00%3A00%3A00Z&end=2018-07-14T00%3A00%3A00Z`
+  axios.get(`https://api.nomics.com/v1/prices?key=${key}`
     )
     .then((response) => {
       res.json(response.data)
