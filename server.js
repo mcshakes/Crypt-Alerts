@@ -51,7 +51,7 @@ function getNewPrices() {
 }
 
 
-const job = new CronJob('* * * * * *', function() {
+const job = new CronJob('*/10 * * * *', function() {
   let collection = new Array();
 
   Currency.find()
@@ -62,22 +62,33 @@ const job = new CronJob('* * * * * *', function() {
       })
       return collection
     })
-    .then(shit => {
-      console.log(shit)
+    .then(tickers => {
+
+      getNewPrices()
+        .then(APIresults => {
+          return APIresults.filter((result) => {
+            return tickers.some(dbTick => {
+              if (dbTick === result.currency) {
+                return result
+              }
+            })
+          })
+        })
+        .then(updates => {
+          updates.map((newPrice) => {
+            let query = Currency.findOneAndUpdate(
+              {ticker: newPrice.currency},
+              {price: newPrice.price}
+            )
+            query.exec();
+          })
+        })
+
     })
-  // getNewPrices()
-  //   .then(APIresults => {
-
-
-    // })
-  // get all prices and save
-
 
 });
 
-// Add a Date.now for updatedAt
-
-// job.start()
+job.start()
 
 //--------------------------------------------
 
