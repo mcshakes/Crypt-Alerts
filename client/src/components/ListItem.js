@@ -6,7 +6,7 @@ class ListItem extends React.Component {
 
   state = {
     coin: this.props.coin,
-
+    price: this.props.price
   }
 
   // getCoinData = () => {
@@ -41,23 +41,15 @@ class ListItem extends React.Component {
   //     })
   // }
 
-  // <div className="leader-coin">
-  //   <div >
-  //     <h3>{this.state.coin}</h3>
-  //   </div>
-  //   <div className="volume-data">
-  //       <p>Market Open:{this.state.data.open} USD</p>
-  //       <p>Market Close: {this.state.data.close} USD</p>
-  //       <p>High: {this.state.data.high} USD</p>
-  //       <p>Low: {this.state.data.low} USD</p>
-  //       <p>Volume: {this.state.data.low}</p>
-  //   </div>
-  // </div>
+
 
   render() {
     return (
-      <div>
-        All coins
+      <div className="leader-coin">
+        <div >
+          <h3>{this.state.coin}</h3>
+          <h3>{this.state.price}</h3>
+        </div>
       </div>
     )
   }
