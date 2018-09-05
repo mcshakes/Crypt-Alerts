@@ -8,10 +8,6 @@ import ListItem from "./ListItem"
 class UserWatchlist extends React.Component {
   constructor(props) {
     super(props)
-
-    // this.state = {
-    //   data: []
-    // }
   }
 
   // static getDerivedStateFromProps(nextProps, prevState) {
