@@ -44,13 +44,13 @@ class UserDashboard extends React.Component {
     })
   }
 
-  componentDidMount() {
+  addWishlist = () => {
     this.getAllCoins()
-    .then(things => {
-      this.setState({
-        data: things
+      .then(things => {
+        this.setState({
+          data: things
+        })
       })
-    })
   }
 
   render() {
@@ -68,8 +68,12 @@ class UserDashboard extends React.Component {
           ) }
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
-        <SearchBar />
-        <UserWatchlist data={this.state.data}/>
+        <SearchBar
+          addWishlist={this.addWishlist}
+        />
+        <UserWatchlist
+          data={this.state.data}
+        />
       </div>
     );
   }

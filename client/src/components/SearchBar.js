@@ -11,10 +11,15 @@ function searchingFor(term) {
 }
 
 class SearchBar extends React.Component {
-  state = {
-    coins: [],
-    searchValue: ""
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      coins: [],
+      searchValue: ""
+    }
   }
+
 
   searchHandler = e => {
     e.preventDefault()
@@ -42,6 +47,10 @@ class SearchBar extends React.Component {
     })
   }
 
+  addWishlist = () => {
+    this.props.addWishlist();
+  }
+
   render() {
     const {coins, searchValue} = this.state
 
@@ -59,7 +68,10 @@ class SearchBar extends React.Component {
         <ul className="search-suggestions">
           {
             coins.filter(searchingFor(searchValue)).map( coin =>
-              <Currency coin={coin} />
+              <Currency
+                coin={coin}
+                addWishlist={this.addWishlist}
+              />
             )
           }
         </ul>
