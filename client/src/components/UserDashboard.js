@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 class UserDashboard extends React.Component {
   state = {
-    user: undefined
+    data: []
   }
 
   componentWillMount() {
@@ -18,6 +18,49 @@ class UserDashboard extends React.Component {
 
   isLoggedIn = () => {
     return authService.authenticated()
+  }
+
+  getAllCoins = () => {
+    let token = authService.getToken();
+
+    const settings = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    };
+
+  return fetch("/api/coin-watchlist", settings)
+    .then((response) => {
+      return response.json()
+    })
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      return err
+    })
+  }
+
+  addWishlist = () => {
+    this.getAllCoins()
+      .then(things => {
+        this.setState({
+          data: things
+        })
+      })
+    console.log("CHILD WAS CLICKED")
+  }
+
+  componentDidMount() {
+    this.getAllCoins()
+      .then(things => {
+        this.setState({
+          data: things
+        })
+      })
   }
 
   render() {
@@ -35,8 +78,12 @@ class UserDashboard extends React.Component {
           ) }
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
-        <SearchBar />
-        <UserWatchlist />
+        <SearchBar
+          addWishlist={this.addWishlist}
+        />
+        <UserWatchlist
+          data={this.state.data}
+        />
       </div>
     );
   }

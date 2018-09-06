@@ -8,6 +8,7 @@ class Currency extends React.Component {
     let price = this.props.coin.price
     let token = authService.getToken();
 
+    // console.log(this.props)
     const settings = {
       method: "POST",
       headers: {
@@ -22,12 +23,17 @@ class Currency extends React.Component {
     };
 
     fetch("/api/add-coin", settings)
-      .then((response) => {
-        return response.json()
-      })
+      // .then((response) => {
+      //   return response.json()
+      // })
       .catch(err => {
         return err
       })
+  }
+
+  clickHandler = () => {
+    this.addToWatchlist()
+    this.props.addWishlist()
   }
 
   render() {
@@ -37,7 +43,7 @@ class Currency extends React.Component {
             <h3> { this.props.coin.currency } </h3>
             <button
               className="add-to-list"
-              onClick={this.addToWatchlist}
+              onClick={this.clickHandler}
               >
                 + to Watchlist
               </button>

@@ -13,48 +13,68 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
   let ticker = req.body.ticker
   let price = req.body.price
 
-  Currency.find({
-      ticker: ticker
-    })
-    .exec()
-    .then(coin => {
-      if (coin.length < 1) {
-        Currency
-          .create({
-            _id: new mongoose.Types.ObjectId(),
-            ticker: ticker,
-            price: price
-          })
-          .then((coin) => {
+  // Watchlist.find({userId: userId})
+  //   .then(userLists => {
+  //     userLists.forEach(item => {
+  //       let xid = item.list[0]
+  //
+  //       Currency.find({_id: xid})
+  //         .then(coin => {
+  //           if (coin.length < 1) {
+  //             ///
+  //
+  //             ///
+  //           } else {
+  //             console.log("LENGTH", coin.length)
+  //             console.log("ALREADY GOT THIS COIN IN YOUR WATCHLIST")
+  //           }
+  //         })
+  //     })
+  //   })
 
-            let watcher = Watchlist
-                            .create({
-                              _id: new mongoose.Types.ObjectId(),
-                              userId: userId,
-                              list: [
-                                coin
-                              ]
-                            })
-          })
-          .catch(err => {
-            console.log(err)
-            res.status(500).json({
-              error: err
+    Currency.find({
+        ticker: ticker
+      })
+      .exec()
+      .then(coin => {
+        if (coin.length < 1) {
+          Currency
+            .create({
+              _id: new mongoose.Types.ObjectId(),
+              ticker: ticker,
+              price: price
             })
-          })
-      } else {
-        Watchlist
-          .create({
-            _id: new mongoose.Types.ObjectId(),
-            userId: userId,
-            list: [ coin[0] ]
-          })
-          .then((watchItem) => {
-            return response.json(watchItem)
-          })
-      }
+            .then((coin) => {
 
-    })
+              let watcher = Watchlist
+                              .create({
+                                _id: new mongoose.Types.ObjectId(),
+                                userId: userId,
+                                list: [
+                                  coin
+                                ]
+                              })
+            })
+            .catch(err => {
+              console.log(err)
+              res.status(500).json({
+                error: err
+              })
+            })
+        } else {
+
+            Watchlist
+              .create({
+                _id: new mongoose.Types.ObjectId(),
+                userId: userId,
+                list: [ coin[0] ]
+              })
+              .then((watchItem) => {
+                return response.json(watchItem)
+              })
+        } //end of else block
+      })
+
     .then(result => {
       res.status(201).json({
         message: "Watch created on coin"
