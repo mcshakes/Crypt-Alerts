@@ -50,8 +50,7 @@ class UserDashboard extends React.Component {
         this.setState({
           data: things
         })
-      })
-    console.log("CHILD WAS CLICKED")
+      }, console.log("PING"))
   }
 
   componentDidMount() {
