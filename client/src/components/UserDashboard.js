@@ -45,7 +45,13 @@ class UserDashboard extends React.Component {
   }
 
   addWishlist = () => {
-    alert("FROM BELOW", this.state)
+    this.getAllCoins()
+      .then(things => {
+        this.setState({
+          data: things
+        })
+      })
+    console.log("CHILD WAS CLICKED")
   }
 
   componentDidMount() {

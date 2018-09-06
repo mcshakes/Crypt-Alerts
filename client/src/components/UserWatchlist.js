@@ -10,9 +10,11 @@ class UserWatchlist extends React.Component {
     super(props)
   }
 
-  // static getDerivedStateFromProps(nextProps, prevState) {
-  //   prevState.data = nextProps.data;
-  //   return prevState
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.data !== prevProps.data) {
+  //     console.log("CURRENT", this.props.data)
+  //     console.log("PREVs", prevProps.data)
+  //   }
   // }
 
   render() {
