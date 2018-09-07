@@ -12,10 +12,10 @@ class UserDashboard extends React.Component {
     super(props)
 
     this.state = {
-      coins: []
+      coins: [],
+      query: ""
     }
-
-    this.addCoinWatchlist = this.addCoinWatchlist.bind(this)
+    this.addCoinNameWatchlist = this.addCoinNameWatchlist.bind(this)
   }
 
   componentWillMount() {
@@ -50,16 +50,13 @@ class UserDashboard extends React.Component {
     })
   }
 
-  addCoinWatchlist(coin) {
+  addCoinNameWatchlist(coin) {
+    // let fullQuery = this.getAllCoin()
+
     this.setState((state) => ({
       coins: state.coins.concat([coin])
     }))
-    // this.setState({ state: this.state });
   }
-
-  // forceRender() {
-  //   this.setState({ state: this.state });
-  // }
 
 
   componentDidMount() {
@@ -87,7 +84,7 @@ class UserDashboard extends React.Component {
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
         <SearchBar
-          addNew={this.addCoinWatchlist}
+          addNew={this.addCoinNameWatchlist}
         />
         <UserWatchlist
           coins={this.state.coins}

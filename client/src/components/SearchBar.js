@@ -4,6 +4,7 @@ import '../css/Search.css';
 import Currency from "./Currency"
 
 function searchingFor(term) {
+    if(!term) return ()=>false;
     let searchLet = term.split("").slice(0,3).join("")
     return function(x) {
       return x.currency.toLowerCase().includes(searchLet.toLowerCase()) || !term;
@@ -47,8 +48,12 @@ class SearchBar extends React.Component {
     })
   }
 
-  handleAddNew = () => {
-    this.props.addNew(this.state.searchValue)
+  handleAddNew = (coin) => {
+    this.props.addNew(coin)
+    // this.props.addNew(this.state.searchValue)
+    this.setState({
+      searchValue: ''
+    });
   }
 
   render() {
