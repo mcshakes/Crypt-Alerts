@@ -8,8 +8,14 @@ import Login from "./Login";
 import { Link } from 'react-router-dom';
 
 class UserDashboard extends React.Component {
-  state = {
-    data: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      coins: [],
+      query: ""
+    }
+    this.addCoinNameWatchlist = this.addCoinNameWatchlist.bind(this)
   }
 
   componentWillMount() {
@@ -44,21 +50,20 @@ class UserDashboard extends React.Component {
     })
   }
 
-  addWishlist = () => {
-    this.getAllCoins()
-      .then(things => {
-        this.setState({
-          data: things
-        })
-      })
-    console.log("CHILD WAS CLICKED")
+  addCoinNameWatchlist(coin) {
+    // let fullQuery = this.getAllCoin()
+
+    this.setState((state) => ({
+      coins: state.coins.concat([coin])
+    }))
   }
+
 
   componentDidMount() {
     this.getAllCoins()
       .then(things => {
         this.setState({
-          data: things
+          coins: things
         })
       })
   }
@@ -79,10 +84,10 @@ class UserDashboard extends React.Component {
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
         <SearchBar
-          addWishlist={this.addWishlist}
+          addNew={this.addCoinNameWatchlist}
         />
         <UserWatchlist
-          data={this.state.data}
+          coins={this.state.coins}
         />
       </div>
     );

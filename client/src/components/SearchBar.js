@@ -4,6 +4,7 @@ import '../css/Search.css';
 import Currency from "./Currency"
 
 function searchingFor(term) {
+    if(!term) return ()=>false;
     let searchLet = term.split("").slice(0,3).join("")
     return function(x) {
       return x.currency.toLowerCase().includes(searchLet.toLowerCase()) || !term;
@@ -47,8 +48,12 @@ class SearchBar extends React.Component {
     })
   }
 
-  addWishlist = () => {
-    this.props.addWishlist();
+  handleAddNew = (coin) => {
+    this.props.addNew(coin)
+    // this.props.addNew(this.state.searchValue)
+    this.setState({
+      searchValue: ''
+    });
   }
 
   render() {
@@ -70,7 +75,7 @@ class SearchBar extends React.Component {
             coins.filter(searchingFor(searchValue)).map( coin =>
               <Currency
                 coin={coin}
-                addWishlist={this.addWishlist}
+                addNew={this.handleAddNew}
               />
             )
           }
