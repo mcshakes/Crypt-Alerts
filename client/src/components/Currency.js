@@ -23,9 +23,9 @@ class Currency extends React.Component {
     };
 
     fetch("/api/add-coin", settings)
-      // .then((response) => {
-      //   return response.json()
-      // })
+      .then((response) => {
+        return response.json()
+      })
       .catch(err => {
         return err
       })
@@ -33,7 +33,8 @@ class Currency extends React.Component {
 
   clickHandler = () => {
     this.addToWatchlist()
-    this.props.addNew
+    // this.props.addNew(this.props.coin)
+    this.props.addNew(this.props.coin)
   }
 
   render() {

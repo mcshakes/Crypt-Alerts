@@ -14,6 +14,8 @@ class UserDashboard extends React.Component {
     this.state = {
       coins: []
     }
+
+    this.addCoinWatchlist = this.addCoinWatchlist.bind(this)
   }
 
   componentWillMount() {
@@ -54,6 +56,7 @@ class UserDashboard extends React.Component {
     }))
   }
 
+
   componentDidMount() {
     this.getAllCoins()
       .then(things => {
@@ -82,7 +85,7 @@ class UserDashboard extends React.Component {
           addNew={this.addCoinWatchlist}
         />
         <UserWatchlist
-          data={this.state.coins}
+          coins={this.state.coins}
         />
       </div>
     );

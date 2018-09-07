@@ -6,10 +6,6 @@ import { Link } from 'react-router-dom';
 import ListItem from "./ListItem"
 
 class UserWatchlist extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   // componentDidUpdate(prevProps) {
   //   if (this.props.data !== prevProps.data) {
   //     console.log("CURRENT", this.props.data)
@@ -23,7 +19,7 @@ class UserWatchlist extends React.Component {
         <h2>These are Cryptos you are watching:</h2>
         <ul className="coin-watchlist">
           {
-            this.props.data.map((coin, idx) => {
+            this.props.coins.map((coin, idx) => {
               return <ListItem key={idx}
                               coin={coin.ticker}
                               price={coin.price}

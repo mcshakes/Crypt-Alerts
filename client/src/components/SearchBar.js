@@ -49,6 +49,7 @@ class SearchBar extends React.Component {
 
   handleAddNew() {
     this.props.addNew(this.state.searchValue)
+    alert(this.props)
   }
 
   render() {
