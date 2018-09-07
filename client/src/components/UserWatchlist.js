@@ -20,7 +20,7 @@ class UserWatchlist extends React.Component {
   render() {
     return (
       <div>
-        <h2>These are tssssyou are watching:</h2>
+        <h2>These are Cryptos you are watching:</h2>
         <ul className="coin-watchlist">
           {
             this.props.data.map((coin, idx) => {

@@ -8,8 +8,12 @@ import Login from "./Login";
 import { Link } from 'react-router-dom';
 
 class UserDashboard extends React.Component {
-  state = {
-    data: []
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      coins: []
+    }
   }
 
   componentWillMount() {
@@ -44,20 +48,17 @@ class UserDashboard extends React.Component {
     })
   }
 
-  addWishlist = () => {
-    this.getAllCoins()
-      .then(things => {
-        this.setState({
-          data: things
-        })
-      }, console.log("PING"))
+  addCoinWatchList(coin) {
+    this.setState((state) => ({
+      coins: state.coins.concat([coin])
+    }))
   }
 
   componentDidMount() {
     this.getAllCoins()
       .then(things => {
         this.setState({
-          data: things
+          coins: things
         })
       })
   }
@@ -81,7 +82,7 @@ class UserDashboard extends React.Component {
           addWishlist={this.addWishlist}
         />
         <UserWatchlist
-          data={this.state.data}
+          data={this.state.coins}
         />
       </div>
     );
