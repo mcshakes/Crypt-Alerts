@@ -6,12 +6,6 @@ import { Link } from 'react-router-dom';
 import ListItem from "./ListItem"
 
 class UserWatchlist extends React.Component {
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.data !== prevProps.data) {
-  //     console.log("CURRENT", this.props.data)
-  //     console.log("PREVs", prevProps.data)
-  //   }
-  // }
 
   render() {
     return (

@@ -54,7 +54,12 @@ class UserDashboard extends React.Component {
     this.setState((state) => ({
       coins: state.coins.concat([coin])
     }))
+    // this.setState({ state: this.state });
   }
+
+  // forceRender() {
+  //   this.setState({ state: this.state });
+  // }
 
 
   componentDidMount() {

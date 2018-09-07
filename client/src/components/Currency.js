@@ -33,7 +33,6 @@ class Currency extends React.Component {
 
   clickHandler = () => {
     this.addToWatchlist()
-    // this.props.addNew(this.props.coin)
     this.props.addNew(this.props.coin)
   }
 
