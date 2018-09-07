@@ -47,8 +47,8 @@ class SearchBar extends React.Component {
     })
   }
 
-  addWishlist = () => {
-    this.props.addWishlist();
+  handleAddNew() {
+    this.props.addNew(this.state.searchValue)
   }
 
   render() {
@@ -70,7 +70,7 @@ class SearchBar extends React.Component {
             coins.filter(searchingFor(searchValue)).map( coin =>
               <Currency
                 coin={coin}
-                addWishlist={this.addWishlist}
+                addNew={this.handleAddNew}
               />
             )
           }

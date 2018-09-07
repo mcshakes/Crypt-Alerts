@@ -48,7 +48,7 @@ class UserDashboard extends React.Component {
     })
   }
 
-  addCoinWatchList(coin) {
+  addCoinWatchlist(coin) {
     this.setState((state) => ({
       coins: state.coins.concat([coin])
     }))
@@ -79,7 +79,7 @@ class UserDashboard extends React.Component {
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
         <SearchBar
-          addWishlist={this.addWishlist}
+          addNew={this.addCoinWatchlist}
         />
         <UserWatchlist
           data={this.state.coins}
