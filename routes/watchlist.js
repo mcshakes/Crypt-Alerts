@@ -37,4 +37,8 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   })
 })
 
+router.post("/api/set-high-alert", checkAuth, (req, res) => {
+  
+})
+
 module.exports = router;

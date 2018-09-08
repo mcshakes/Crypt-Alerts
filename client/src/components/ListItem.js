@@ -1,6 +1,7 @@
 import React from "react";
 import Client from "../Client";
 import '../css/UserWatchlist.css';
+import AlertForm from "./AlertForm";
 
 class ListItem extends React.Component {
 
@@ -11,10 +12,14 @@ class ListItem extends React.Component {
 
   render() {
     return (
-      <div className="leader-coin">
+      <div className="list-item-coin">
         <div >
           <h3>{this.state.coin}</h3>
           <h3>$ {this.state.price} USD</h3>
+        </div>
+
+        <div>
+          <AlertForm />
         </div>
       </div>
     )
