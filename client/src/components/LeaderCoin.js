@@ -6,7 +6,7 @@ class LeaderCoin extends React.Component {
   render() {
     return (
       <div className="leader-coin">
-        {this.props.currency} : {this.props.price}
+        {this.props.currency} : $ {this.props.price} USD
       </div>
     );
   }
