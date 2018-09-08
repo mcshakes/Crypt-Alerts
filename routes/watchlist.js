@@ -37,9 +37,30 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
 })
 
 router.post("/api/set-alert", checkAuth, (req, res) => {
-  console.log(req.body)
-  // { high: '22', low: '0.1' }
+  let userId = req.userData.userId;
 
+  // { high: '22', low: '0.1' }
+  Watchlist.find({userId: userId}, function(err, result) {
+    if (err) throw err;
+  })
+  .then(results => {
+    return results.map(item => {
+      let coinID = item.list[0]
+
+      Currency.findById(coinID)
+        .then(namedResult => {
+          console.log(namedResult)
+
+        // NOTE: Stopped because I came full circle.
+          // { updatedAt: 2018-09-08T23:01:33.074Z,
+          //    _id: 5b93416b50e35f53c4e7de56,
+          //    ticker: 'ZRC',
+          //    price: '1.52894',
+          //    __v: 0 }
+        })
+    })
+    // .find the specific coin I am updating then update it
+  })
 
 })
 
