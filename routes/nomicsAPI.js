@@ -68,7 +68,35 @@ router.get("/api/price", (req, res) => {
     })
 })
 
+//------------ AGGREGATED OHLC CANDLES ------------------------
 
+router.get("/api/candles", (req, res) => {
+  let coin = req.query.coin;
+  let date = ISODateString(new Date());
+  let startDate = encode(date);
+
+  axios.get(`https://api.nomics.com/v1/candles?key=${key}&interval=1d&currency=${coin}&start=${startDate}`)
+    .then((response) => {
+      res.json(response.data[0])
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+})
+
+
+// NOTE: Price by market interval => NOT IMPLEMENTED
+
+router.get("/api/market-interval-btc", (req, res) => {
+  axios.get(`https://api.nomics.com/v1/exchange-markets/interval?key=${key}&currency=BTC&start=2018-04-14T00%3A00%3A00Z&end=2018-07-14T00%3A00%3A00Z`
+    )
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      res.status(400).send(error);
+    })
+})
 
 
 
