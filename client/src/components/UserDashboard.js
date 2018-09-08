@@ -51,8 +51,6 @@ class UserDashboard extends React.Component {
   }
 
   addCoinNameWatchlist(coin) {
-    // let fullQuery = this.getAllCoin()
-
     this.setState((state) => ({
       coins: state.coins.concat([coin])
     }))

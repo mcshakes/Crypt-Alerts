@@ -16,13 +16,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">CryptAlert</h1>
+        <header className="app-header">
+          <h1 className="app-title">CryptAlert</h1>
         </header>
-        <div className="container">
-          <CapLeader />
-          {authService.authenticated() ? <UserDashboard /> : <Login authCheck={this.authCheck}/>}
-        </div>
+        <CapLeader />
+        {authService.authenticated() ? <UserDashboard /> : <Login authCheck={this.authCheck}/>}
       </div>
     );
   }

@@ -14,7 +14,7 @@ class ListItem extends React.Component {
       <div className="leader-coin">
         <div >
           <h3>{this.state.coin}</h3>
-          <h3>{this.state.price}</h3>
+          <h3>$ {this.state.price} USD</h3>
         </div>
       </div>
     )
