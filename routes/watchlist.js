@@ -8,7 +8,6 @@ const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
-
 router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   let userId = req.userData.userId;
 
@@ -37,8 +36,11 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   })
 })
 
-router.post("/api/set-high-alert", checkAuth, (req, res) => {
-  
+router.post("/api/set-alert", checkAuth, (req, res) => {
+  console.log(req.body)
+  // { high: '22', low: '0.1' }
+
+
 })
 
 module.exports = router;

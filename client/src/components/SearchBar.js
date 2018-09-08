@@ -50,7 +50,6 @@ class SearchBar extends React.Component {
 
   handleAddNew = (coin) => {
     this.props.addNew(coin)
-    // this.props.addNew(this.state.searchValue)
     this.setState({
       searchValue: ''
     });
