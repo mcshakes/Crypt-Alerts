@@ -1,6 +1,10 @@
 .App {
   text-align: center;
   background-color: #F3F3F3;
+  display: grid;
+
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-gap: 5px;
 }
 
 .App-logo {
@@ -8,13 +12,14 @@
   height: 80px;
 }
 
-.App-header {
+.app-header {
   background-color: #222;
   padding: 20px;
   color: white;
+  grid-column: 1 / 4;
 }
 
-.App-title {
+.app-title {
   font-size: 1.5em;
 }
 
@@ -27,8 +32,8 @@ ul {
   list-style-type: none;
 }
 
-.container {
+/* .container {
   display: grid;
   grid-template-columns: 20% 20% 20% 20% 20%;
   grid-template-rows: 20% 20% 20% 20% 20%;
-}
+} */
