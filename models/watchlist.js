@@ -11,8 +11,8 @@ const watchlistSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User"
   },
-  valueAmount: String,
-  direction: String
+  highLimit: String,
+  lowLimit: String
 })
 
 const Watchlist = mongoose.model("Watchlist", watchlistSchema)
