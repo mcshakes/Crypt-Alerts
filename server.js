@@ -27,11 +27,14 @@ const key = process.env.NOMICS_KEY
 const userRouter = require("./routes/user")
 const watchlistRouter = require("./routes/watchlist")
 const currencyRouter = require("./routes/currency")
-//
-// app.use(auth);
+
+const APIRouter = require("./routes/nomicsAPI")
+
+
 app.use(userRouter);
 app.use(watchlistRouter);
 app.use(currencyRouter);
+app.use(APIRouter);
 
 let interval;
 
@@ -163,16 +166,16 @@ app.get("/api/market-interval-btc", (req, res) => {
 
 // NOTE: Just Prices for All Coins
 
-app.get("/api/price", (req, res) => {
-  axios.get(`https://api.nomics.com/v1/prices?key=${key}`
-    )
-    .then((response) => {
-      res.json(response.data)
-    })
-    .catch((error) => {
-      res.status(400).send(error);
-    })
-})
+// app.get("/api/price", (req, res) => {
+//   axios.get(`https://api.nomics.com/v1/prices?key=${key}`
+//     )
+//     .then((response) => {
+//       res.json(response.data)
+//     })
+//     .catch((error) => {
+//       res.status(400).send(error);
+//     })
+// })
 
 // NOTE: Aggregated OHLC candles
 

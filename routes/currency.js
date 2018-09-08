@@ -13,25 +13,6 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
   let ticker = req.body.ticker
   let price = req.body.price
 
-  // Watchlist.find({userId: userId})
-  //   .then(userLists => {
-  //     userLists.forEach(item => {
-  //       let xid = item.list[0]
-  //
-  //       Currency.find({_id: xid})
-  //         .then(coin => {
-  //           if (coin.length < 1) {
-  //             ///
-  //
-  //             ///
-  //           } else {
-  //             console.log("LENGTH", coin.length)
-  //             console.log("ALREADY GOT THIS COIN IN YOUR WATCHLIST")
-  //           }
-  //         })
-  //     })
-  //   })
-
     Currency.find({
         ticker: ticker
       })
