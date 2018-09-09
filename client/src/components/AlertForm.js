@@ -20,7 +20,11 @@ class AlertForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    this.addAlertLimits()
+    this.addAlertLimits();
+    this.setState({
+      highLimit: "",
+      lowLimit: ""
+    })
   }
 
   addAlertLimits = () => {
@@ -62,12 +66,14 @@ class AlertForm extends React.Component {
           <input
             type="text"
             name="highLimit"
+            value={this.state.highLimit}
             onChange={this.handleChange}
           />
           <label>Set Low Limit</label>
           <input
             type="text"
             name="lowLimit"
+            value={this.state.lowLimit}
             onChange={this.handleChange}
           />
           <input type="submit" value="Submit" />
