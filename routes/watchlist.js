@@ -47,17 +47,21 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
       return coin[0]._id
     })
     .then(coinID => {
-
-      Watchlist.find({userId: userId, list:[coinID]})
+      let query = {userId: userId, list:[coinID]}
+      Watchlist.find(query)
         .then(userWatchlist => {
-          console.log("THIS?", userWatchlist[0])
+          // console.log("THIS?", userWatchlist[0])
+          return userWatchlist[0].update({
+            $set: {
+              "highLimit": high,
+              "lowLimit": low
+            }
+          })
+        })
+        .catch(error => {
+          console.log(error)
         })
     })
-  // search for userwatchlist by userId
-    // use previous ID and that's the watchlist
-    // add the high and low set
-
-  // { high: '22', low: '22', ticker: 'XRP' }
 
 })
 
