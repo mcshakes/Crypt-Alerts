@@ -19,7 +19,7 @@ class ListItem extends React.Component {
         </div>
 
         <div>
-          <AlertForm />
+          <AlertForm ticker={this.state.coin}/>
         </div>
       </div>
     )

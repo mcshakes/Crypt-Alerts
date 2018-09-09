@@ -27,6 +27,7 @@ class AlertForm extends React.Component {
     let token = authService.getToken();
     let high = this.state.highLimit
     let low = this.state.lowLimit
+    let ticker = this.props.ticker
 
     const settings = {
       method: "POST",
@@ -37,7 +38,8 @@ class AlertForm extends React.Component {
       },
       body: JSON.stringify({
         high: high,
-        low: low
+        low: low,
+        ticker: ticker
       })
     };
 

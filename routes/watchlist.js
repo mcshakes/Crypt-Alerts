@@ -38,29 +38,26 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
 
 router.post("/api/set-alert", checkAuth, (req, res) => {
   let userId = req.userData.userId;
+  let ticker = req.body.ticker
+  let high = req.body.high
+  let low = req.body.low
 
-  // { high: '22', low: '0.1' }
-  Watchlist.find({userId: userId}, function(err, result) {
-    if (err) throw err;
-  })
-  .then(results => {
-    return results.map(item => {
-      let coinID = item.list[0]
+  Currency.find({ticker: ticker})
+    .then(coin => {
+      return coin[0]._id
+    })
+    .then(coinID => {
 
-      Currency.findById(coinID)
-        .then(namedResult => {
-          console.log(namedResult)
-
-        // NOTE: Stopped because I came full circle.
-          // { updatedAt: 2018-09-08T23:01:33.074Z,
-          //    _id: 5b93416b50e35f53c4e7de56,
-          //    ticker: 'ZRC',
-          //    price: '1.52894',
-          //    __v: 0 }
+      Watchlist.find({userId: userId, list:[coinID]})
+        .then(userWatchlist => {
+          console.log("THIS?", userWatchlist[0])
         })
     })
-    // .find the specific coin I am updating then update it
-  })
+  // search for userwatchlist by userId
+    // use previous ID and that's the watchlist
+    // add the high and low set
+
+  // { high: '22', low: '22', ticker: 'XRP' }
 
 })
 
