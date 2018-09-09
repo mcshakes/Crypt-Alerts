@@ -8,7 +8,8 @@ class AlertForm extends React.Component {
     super(props);
     this.state = {
       highLimit: "",
-      lowLimit: ""
+      lowLimit: "",
+      mode: "view"
     }
   }
 
@@ -22,9 +23,14 @@ class AlertForm extends React.Component {
     event.preventDefault();
     this.addAlertLimits();
     this.setState({
-      highLimit: "",
-      lowLimit: ""
+      // highLimit: "",
+      // lowLimit: "",
+      mode: "view"
     })
+  }
+
+  handleEdit = () => {
+    this.setState({ mode: "edit" })
   }
 
   addAlertLimits = () => {
@@ -57,29 +63,41 @@ class AlertForm extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <form className="alert-form"
-              onSubmit={this.handleSubmit}
-          >
-          <label>Set High Limit</label>
-          <input
-            type="text"
-            name="highLimit"
-            value={this.state.highLimit}
-            onChange={this.handleChange}
-          />
-          <label>Set Low Limit</label>
-          <input
-            type="text"
-            name="lowLimit"
-            value={this.state.lowLimit}
-            onChange={this.handleChange}
-          />
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
-    )
+    if (this.state.mode === "view") {
+      return (
+        <div>
+          <p>Your High: {this.state.highLimit}</p>
+          <p>Your Low: {this.state.lowLimit}</p>
+          <button onClick={this.handleEdit}>
+            Edit Price Alerts
+          </button>
+        </div>
+      )
+    } else {
+      return (
+        <div>
+          <form className="alert-form"
+                onSubmit={this.handleSubmit}
+            >
+            <label>Set High Limit</label>
+            <input
+              type="text"
+              name="highLimit"
+              value={this.state.highLimit}
+              onChange={this.handleChange}
+            />
+            <label>Set Low Limit</label>
+            <input
+              type="text"
+              name="lowLimit"
+              value={this.state.lowLimit}
+              onChange={this.handleChange}
+            />
+            <input type="submit" value="Submit" />
+          </form>
+        </div>
+      )
+    }
   }
 }
 
