@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 import ListItem from "./ListItem"
 
 class UserWatchlist extends React.Component {
+  state = {
+    
+  }
 
   render() {
     return (

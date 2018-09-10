@@ -55,7 +55,7 @@ function getNewPrices() {
 }
 
 
-const job = new CronJob('*/10 * * * *', function() {
+const job = new CronJob('*/8 * * * *', function() {
   let collection = new Array();
 
   Currency.find()
