@@ -54,7 +54,8 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
           return userWatchlist[0].update({
             $set: {
               "highLimit": high,
-              "lowLimit": low
+              "lowLimit": low,
+              "hasAlert": true
             }
           })
         })

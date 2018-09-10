@@ -14,7 +14,7 @@ const { ISODateString, encode } = require("../helpers/dates")
 const { User } = require("../models/user");
 
 const lookAndSee = new CronJob("* * * * *", function() {
-  console.log("YOUR NEW JOB")
+  
 })
 
 lookAndSee.start()
