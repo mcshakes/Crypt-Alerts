@@ -9,7 +9,8 @@ const currencySchema = mongoose.Schema({
   ticker: {
     type: String,
     required: true
-  }
+  },
+  updatedAt: { type: Date, default: Date.now}
 });
 
 

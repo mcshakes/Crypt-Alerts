@@ -4,3 +4,19 @@
   grid-column-start: 2;
   grid-column-end: 4;
 }
+
+.list-item-coin {
+  border: 2.5px solid darkcyan;
+  border-radius: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.alert-form {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-gap: 3px;
+  
+}
