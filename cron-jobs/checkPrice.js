@@ -14,7 +14,7 @@ const { ISODateString, encode } = require("../helpers/dates")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("*/3 * * * *", function() {
+const lookAndSee = new CronJob("* * * * *", function() {
   // console.log("Taking a look-see on your watchlists...")
   let collection = new Array();
 
