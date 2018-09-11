@@ -13,8 +13,7 @@ class UserDashboard extends React.Component {
 
     this.state = {
       coins: [],
-      watchHigh: "",
-      watchLow: "",
+      listInfo: [],
       query: ""
     }
     this.addCoinNameWatchlist = this.addCoinNameWatchlist.bind(this)
@@ -69,7 +68,7 @@ class UserDashboard extends React.Component {
       return response.json()
     })
     .then(data => {
-      console.log(data[0].highLimit)
+      return data
     })
     .catch(err => {
       return err
@@ -85,6 +84,11 @@ class UserDashboard extends React.Component {
 
   componentDidMount() {
     this.getWatchers()
+      .then(stuff => {
+        this.setState({
+          listInfo: stuff
+        })
+      })
 
     this.getAllCoins()
       .then(things => {
