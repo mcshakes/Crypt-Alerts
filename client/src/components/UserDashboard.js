@@ -50,6 +50,30 @@ class UserDashboard extends React.Component {
     })
   }
 
+  getWatchers = () => {
+    let token = authService.getToken();
+
+    const settings = {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      }
+    };
+
+  return fetch("/api/watchlist-status", settings)
+    .then((response) => {
+      return response.json()
+    })
+    .then(data => {
+      console.log( data)
+    })
+    .catch(err => {
+      return err
+    })
+  }
+
   addCoinNameWatchlist(coin) {
     this.setState((state) => ({
       coins: state.coins.concat([coin])

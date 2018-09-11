@@ -36,6 +36,18 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   })
 })
 
+router.get("/api/watchlist-status", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
+
+  Watchlist.find({userId: userId})
+    .then(response => {
+      res.json(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
+
 router.post("/api/set-alert", checkAuth, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker

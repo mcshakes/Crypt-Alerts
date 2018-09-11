@@ -14,7 +14,7 @@ const { ISODateString, encode } = require("../helpers/dates")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("* * * * *", function() {
+const lookAndSee = new CronJob("*/3 * * * *", function() {
   // console.log("Taking a look-see on your watchlists...")
   let collection = new Array();
 
@@ -25,13 +25,8 @@ const lookAndSee = new CronJob("* * * * *", function() {
       })
     })
     .then(coinIDs => {
-      // console.log("SOME COINS", coinIDs)
-      // do a comparison where
+
       coinIDs.forEach(id => {
-        let dbValue;
-        let highVal;
-        let lowVal;
-        console.log(id)
         Currency.find( { _id: id } )
           .then(coin => {
             // coin.price here within DB
@@ -44,7 +39,7 @@ const lookAndSee = new CronJob("* * * * *", function() {
                     let priceIdx = parseFloat(coin.price, 10)
                     let diff = Math.abs(high - priceIdx)
 
-                    if (diff < 3.5) {
+                    if (diff < 3.50) {
                       console.log("\nCLOSE. SELL IMMEDIATELY!")
                     } else {
                       console.log("\nDifference is greater than $3.50")

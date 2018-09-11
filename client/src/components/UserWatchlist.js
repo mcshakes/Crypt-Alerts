@@ -4,12 +4,9 @@ import '../css/UserWatchlist.css';
 import { authService } from "./AuthService"
 import { Link } from 'react-router-dom';
 import ListItem from "./ListItem"
+import AlertForm from "./AlertForm"
 
 class UserWatchlist extends React.Component {
-  state = {
-    
-  }
-
   render() {
     return (
       <div>
