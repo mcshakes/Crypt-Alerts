@@ -2,6 +2,7 @@ import React from "react";
 import Client from "../Client";
 import '../css/UserWatchlist.css';
 import AlertForm from "./AlertForm";
+import { authService } from "./AuthService"
 
 class ListItem extends React.Component {
 

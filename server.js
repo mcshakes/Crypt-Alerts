@@ -7,6 +7,7 @@ require("dotenv").config();
 const bcrypt = require("bcrypt");
 
 const CronJob = require("cron").CronJob;
+const { lookAndSee } = require("./cron-jobs/checkPrice")
 const { Watchlist } = require("./models/watchlist")
 const { Currency } = require("./models/currency")
 
@@ -14,7 +15,6 @@ const { ISODateString, encode } = require("./helpers/dates")
 const { User } = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
-require("./passport");
 
 const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
@@ -43,6 +43,7 @@ io.on('connection', function (socket) {
 });
 
 //------------ Cron Job ------------------------
+
 function getNewPrices() {
   return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
     .then((response) => {
@@ -54,7 +55,7 @@ function getNewPrices() {
 }
 
 
-const job = new CronJob('*/10 * * * *', function() {
+const job = new CronJob('*/8 * * * *', function() {
   let collection = new Array();
 
   Currency.find()

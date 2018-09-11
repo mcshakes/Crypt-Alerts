@@ -18,6 +18,7 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   .then(results => {
     return results.map(item => {
       let coinID = item.list[0]
+      let high = item.watchHigh
 
     return Currency.findById(coinID, (err, coin) => {
         if (err) throw err;
@@ -34,6 +35,18 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
     // { _id: 5b8c5fca8d1e3230eaf68ea6, ticker: 'XRP', __v: 0 }
     res.json(allCoins)
   })
+})
+
+router.get("/api/watchlist-status", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
+
+  Watchlist.find({userId: userId})
+    .then(response => {
+      res.json(response)
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 router.post("/api/set-alert", checkAuth, (req, res) => {
@@ -54,7 +67,8 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
           return userWatchlist[0].update({
             $set: {
               "highLimit": high,
-              "lowLimit": low
+              "lowLimit": low,
+              "hasAlert": true
             }
           })
         })
