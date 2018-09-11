@@ -8,7 +8,46 @@ class ListItem extends React.Component {
 
   state = {
     coin: this.props.coin,
-    price: this.props.price
+    price: this.props.price,
+    id: this.props.id,
+    watchdata: []
+  }
+
+  componentDidMount() {
+    this.getWatchers()
+      .then(data => {
+        this.setState({
+          watchdata: data
+        })
+      })
+  }
+
+  getWatchers = () => {
+    let token = authService.getToken();
+    let coinID = this.state.id
+
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        coinID: coinID
+      })
+    };
+
+  return fetch("/api/watchlist-status", settings)
+    .then((response) => {
+      return response.json()
+    })
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      return err
+    })
   }
 
   render() {
@@ -20,7 +59,10 @@ class ListItem extends React.Component {
         </div>
 
         <div>
-          <AlertForm ticker={this.state.coin}/>
+          <AlertForm
+            ticker={this.state.coin}
+            watchData={this.state.watchData}
+          />
         </div>
       </div>
     )

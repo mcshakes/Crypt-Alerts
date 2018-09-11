@@ -22,6 +22,7 @@ class UserWatchlist extends React.Component {
               return <ListItem key={idx}
                               coin={coin.ticker || coin.currency}
                               price={coin.price}
+                              id={coin._id}
                       />
             })
           }

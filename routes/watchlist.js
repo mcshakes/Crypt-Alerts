@@ -69,15 +69,16 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
 
 router.post("/api/watchlist-status", checkAuth, (req, res) => {
   let userId = req.userData.userId;
-  let request = req.body
-  console.log(request.body)
-  // Watchlist.find({userId: userId})
-  //   .then(response => {
-  //     res.json(response)
-  //   })
-  //   .catch(error => {
-  //     console.log(error)
-  //   })
+  let coinId = req.body.coinID
+
+  let query = {userId: userId, list:[coinId]}
+  Watchlist.find(query)
+    .then(data => {
+      res.json(data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 module.exports = router;

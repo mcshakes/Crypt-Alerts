@@ -50,34 +50,6 @@ class UserDashboard extends React.Component {
     })
   }
 
-  getWatchers = () => {
-    let token = authService.getToken();
-    let coinIDS = this.state.coins.map(coin => coin._id)
-    console.log("HERE", coinIDS)
-  //   const settings = {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       "Authorization": `Bearer ${token}`
-  //     },
-  //     body: JSON.stringify({
-  //       coinIDS: coinIDS
-  //     })
-  //   };
-  //
-  // return fetch("/api/watchlist-status", settings)
-  //   .then((response) => {
-  //     return response.json()
-  //   })
-  //   .then(data => {
-  //     return data
-  //   })
-  //   .catch(err => {
-  //     return err
-  //   })
-  }
-
   addCoinNameWatchlist(coin) {
     this.setState((state) => ({
       coins: state.coins.concat([coin])
