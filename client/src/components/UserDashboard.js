@@ -81,7 +81,6 @@ class UserDashboard extends React.Component {
     }))
   }
 
-
   componentDidMount() {
     this.getWatchers()
       .then(stuff => {
@@ -118,6 +117,7 @@ class UserDashboard extends React.Component {
         />
         <UserWatchlist
           coins={this.state.coins}
+
         />
       </div>
     );

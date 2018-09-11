@@ -18,6 +18,7 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   .then(results => {
     return results.map(item => {
       let coinID = item.list[0]
+      let high = item.watchHigh
 
     return Currency.findById(coinID, (err, coin) => {
         if (err) throw err;
