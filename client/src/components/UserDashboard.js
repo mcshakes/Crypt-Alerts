@@ -13,7 +13,6 @@ class UserDashboard extends React.Component {
 
     this.state = {
       coins: [],
-      listInfo: [],
       query: ""
     }
     this.addCoinNameWatchlist = this.addCoinNameWatchlist.bind(this)
@@ -53,26 +52,30 @@ class UserDashboard extends React.Component {
 
   getWatchers = () => {
     let token = authService.getToken();
-
-    const settings = {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      }
-    };
-
-  return fetch("/api/watchlist-status", settings)
-    .then((response) => {
-      return response.json()
-    })
-    .then(data => {
-      return data
-    })
-    .catch(err => {
-      return err
-    })
+    let coinIDS = this.state.coins.map(coin => coin._id)
+    console.log("HERE", coinIDS)
+  //   const settings = {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       "Authorization": `Bearer ${token}`
+  //     },
+  //     body: JSON.stringify({
+  //       coinIDS: coinIDS
+  //     })
+  //   };
+  //
+  // return fetch("/api/watchlist-status", settings)
+  //   .then((response) => {
+  //     return response.json()
+  //   })
+  //   .then(data => {
+  //     return data
+  //   })
+  //   .catch(err => {
+  //     return err
+  //   })
   }
 
   addCoinNameWatchlist(coin) {
@@ -82,12 +85,6 @@ class UserDashboard extends React.Component {
   }
 
   componentDidMount() {
-    this.getWatchers()
-      .then(stuff => {
-        this.setState({
-          listInfo: stuff
-        })
-      })
 
     this.getAllCoins()
       .then(things => {
@@ -117,7 +114,7 @@ class UserDashboard extends React.Component {
         />
         <UserWatchlist
           coins={this.state.coins}
-
+          ids={this.state.coins.map(coin => coin._id)}
         />
       </div>
     );
