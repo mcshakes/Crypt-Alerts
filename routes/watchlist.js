@@ -13,7 +13,6 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
 
   Watchlist.find({userId: userId}, function(err, result) {
     if (err) throw err;
-  // console.log(result)
   })
   .then(results => {
     return results.map(item => {
