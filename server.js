@@ -96,7 +96,9 @@ job.start()
 
 //--------------------------------------------
 
-server.listen(3001, () => {
+const port = process.env.PORT || 3001
+
+server.listen(port, () => {
   console.log("listening on Port 3001")
 });
 
