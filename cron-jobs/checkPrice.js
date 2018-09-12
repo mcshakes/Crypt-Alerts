@@ -14,8 +14,8 @@ const { ISODateString, encode } = require("../helpers/dates")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("*/3 * * * *", function() {
-  // console.log("Taking a look-see on your watchlists...")
+const lookAndSee = new CronJob("*/10 * * * *", function() {
+  console.log("\nTaking a look-see on your watchlists...")
   let collection = new Array();
 
   Watchlist.find({ hasAlert: true })
@@ -34,15 +34,18 @@ const lookAndSee = new CronJob("*/3 * * * *", function() {
               .then(lists => {
                 // An array of watchlists that are watching a specific coin
                 lists.map(watcher => {
-
                     let high = parseFloat(watcher.highLimit)
-                    let priceIdx = parseFloat(coin.price, 10)
+                    let priceIdx = parseFloat(coin[0].price, 10)
                     let diff = Math.abs(high - priceIdx)
+
+                    // console.log("HIGH", high)
+                    // console.log("real-PRICE", priceIdx)
+                    // console.log("DIFF: ", diff)
 
                     if (diff < 3.50) {
                       console.log("\nCLOSE. SELL IMMEDIATELY!")
                     } else {
-                      console.log("\nDifference is greater than $3.50")
+                      console.log("\nDifference is greater than $3.50. Let's wait and see...")
                     }
 
                 })

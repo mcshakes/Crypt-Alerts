@@ -7,16 +7,25 @@ import ListItem from "./ListItem"
 import AlertForm from "./AlertForm"
 
 class UserWatchlist extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
   render() {
+    console.log(this.props.coins)
     return (
       <div>
         <h2>These are Cryptos you are watching:</h2>
         <ul className="coin-watchlist">
           {
+
             this.props.coins.map((coin, idx) => {
               return <ListItem key={idx}
-                              coin={coin.ticker || coin.currency}
-                              price={coin.price}
+                              coin={coin._doc.ticker || coin._doc.currency}
+                              price={coin._doc.price}
+                              id={coin._doc._id}
+                              high={coin.high}
+                              low={coin.low}
                       />
             })
           }

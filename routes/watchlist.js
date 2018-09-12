@@ -11,41 +11,28 @@ const { Currency } = require("../models/currency")
 router.get("/api/coin-watchlist", checkAuth, (req, res) => {
   let userId = req.userData.userId;
 
-  Watchlist.find({userId: userId}, function(err, result) {
-    if (err) throw err;
-
-  })
-  .then(results => {
-    return results.map(item => {
-      let coinID = item.list[0]
-      let high = item.watchHigh
-
-    return Currency.findById(coinID, (err, coin) => {
-        if (err) throw err;
-      })
-      .then(coins => {
-        return coins
-      })
-    })
-  })
-  .then(promises => {
-    return Promise.all(promises)
-  })
-  .then(allCoins => {
-    // { _id: 5b8c5fca8d1e3230eaf68ea6, ticker: 'XRP', __v: 0 }
-    res.json(allCoins)
-  })
-})
-
-router.get("/api/watchlist-status", checkAuth, (req, res) => {
-  let userId = req.userData.userId;
-
   Watchlist.find({userId: userId})
-    .then(response => {
-      res.json(response)
+    .then(results => {
+      return results.map(item => {
+        let coinID = item.list[0]
+        let high = item.highLimit
+        let low = item.lowLimit
+
+      return Currency.findById(coinID, (err, coin) => {
+          if (err) throw err;
+        })
+        .then(coin => {
+          const new_coin = Object.assign({}, coin, {high, low});
+          return new_coin
+        })
+      })
     })
-    .catch(error => {
-      console.log(error)
+    .then(promises => {
+      return Promise.all(promises)
+    })
+    .then(allCoins => {
+      // { _id: 5b8c5fca8d1e3230eaf68ea6, ticker: 'XRP', __v: 0 }
+      res.json(allCoins)
     })
 })
 
@@ -77,6 +64,20 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
         })
     })
 
+})
+
+router.post("/api/watchlist-status", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
+  let coinId = req.body.coinID
+
+  let query = {userId: userId, list:[coinId]}
+  Watchlist.find(query)
+    .then(data => {
+      res.json(data)
+    })
+    .catch(error => {
+      console.log(error)
+    })
 })
 
 module.exports = router;

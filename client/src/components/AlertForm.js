@@ -13,6 +13,13 @@ class AlertForm extends React.Component {
     }
   }
 
+  componentDidMount () {
+    this.setState({
+      lowLimit: this.props.low,
+      highLimit: this.props.high
+    })
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name] : event.target.value
@@ -23,8 +30,6 @@ class AlertForm extends React.Component {
     event.preventDefault();
     this.addAlertLimits();
     this.setState({
-      // highLimit: "",
-      // lowLimit: "",
       mode: "view"
     })
   }
