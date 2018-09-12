@@ -30,6 +30,7 @@ const currencyRouter = require("./routes/currency")
 
 const APIRouter = require("./routes/nomicsAPI")
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use(userRouter);
 app.use(watchlistRouter);
