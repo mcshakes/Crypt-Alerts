@@ -13,18 +13,20 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
 
   Watchlist.find({userId: userId}, function(err, result) {
     if (err) throw err;
-
+  // console.log(result)
   })
   .then(results => {
     return results.map(item => {
       let coinID = item.list[0]
-      let high = item.watchHigh
+      let high = item.highLimit
+      let low = item.lowLimit
 
     return Currency.findById(coinID, (err, coin) => {
         if (err) throw err;
       })
-      .then(coins => {
-        return coins
+      .then(coin => {
+        const new_coin = Object.assign({}, coin, {high, low});
+        return new_coin
       })
     })
   })

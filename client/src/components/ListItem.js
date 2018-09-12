@@ -10,7 +10,6 @@ class ListItem extends React.Component {
     coin: this.props.coin,
     price: this.props.price,
     id: this.props.id,
-    watchdata: []
   }
 
   componentDidMount() {
@@ -61,7 +60,8 @@ class ListItem extends React.Component {
         <div>
           <AlertForm
             ticker={this.state.coin}
-            watchData={this.state.watchData}
+            high={this.props.high}
+            low={this.props.low}
           />
         </div>
       </div>

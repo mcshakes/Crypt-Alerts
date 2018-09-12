@@ -13,6 +13,14 @@ class AlertForm extends React.Component {
     }
   }
 
+  componentDidMount () {
+    console.log("this.props", this.props);
+    this.setState({
+      lowLimit: this.props.low,
+      highLimit: this.props.high
+    })
+  }
+
   handleChange = (event) => {
     this.setState({
       [event.target.name] : event.target.value
