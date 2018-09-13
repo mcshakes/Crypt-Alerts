@@ -17,7 +17,6 @@ class NavBar extends React.Component {
   }
 
   render() {
-    console.log("THIS", this)
     return (
       <div className="menu">
         { this.isLoggedIn() ? (

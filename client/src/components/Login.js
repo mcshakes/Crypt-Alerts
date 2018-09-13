@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route, Redirect, browserHistory } from 'react-router'
 
 class Login extends React.Component {
 
@@ -23,13 +24,26 @@ class Login extends React.Component {
         password: password
       })
     })
+      .then(res => res.json())
       .then(response => {
-        return response.json()
+        console.log(response)
+        if (!response.success) {
+          this.setState({
+            signInError: response.message
+          })
+          this.props.history.push("/login");
+          window.location.reload();
+
+        } else {
+          localStorage.setItem("token", response.token)
+          this.props.authCheck()
+        }
+
       })
-      .then(res => {
-        localStorage.setItem("token", res.token)
-        this.props.authCheck()
-      })
+      // .then(res => {
+      //   localStorage.setItem("token", res.token)
+      //   this.props.authCheck()
+      // })
       .catch(err => {
         console.log(err)
       })

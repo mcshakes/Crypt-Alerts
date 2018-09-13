@@ -13,8 +13,14 @@ router.post("/api/users/login", (req, res) => {
     .exec()
     .then(user => {
       if (user.length < 1) {
-        return res.status(401).json({
-          message: "Authorization Failed Here..." // no email
+        // return res.status(401).json({
+        //   success: false,
+        //   message: "That Email doesn't exist..." // no email
+        //
+        // })
+        return res.send({
+          success: false,
+          message: "Email - Password combo failed..." // no email
         })
       }
 
@@ -35,7 +41,8 @@ router.post("/api/users/login", (req, res) => {
 
           return res.status(200).json({
             message: "Auth successful",
-            token: token
+            token: token,
+            success: true
           })
         }
         return res.status(401).json({
