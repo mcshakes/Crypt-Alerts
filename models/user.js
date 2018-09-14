@@ -23,6 +23,7 @@ const userSchema = mongoose.Schema({
     ref: "Watchlist",
     }
   ],
+  phoneNumber: String,
   createdDate: {type: Date, default: Date.now}
 })
 

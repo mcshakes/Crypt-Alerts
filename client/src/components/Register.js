@@ -11,6 +11,48 @@ class Register extends React.Component {
     }
   }
 
+  handleChange = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const { email, password, phoneNumber } = this.state;
+    console.log("REGISTER", this.state)
+    // fetch("/api/users/signup", {
+    //   method: "POST",
+    //   headers: {
+    //     Accept: 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     email: email,
+    //     password: password,
+    //     phoneNumber: phoneNumber
+    //   })
+    // })
+    //   .then(res => res.json())
+    //   .then(response => {
+    //     if (!response.success) {
+    //       this.setState({
+    //         hasError: response.message
+    //       })
+    //       this.props.history.push("/register");
+    //       window.location.reload();
+    //     } else {
+    //       localStorage.setItem("token", response.token)
+    //       this.props.authCheck()
+    //       this.props.history.push("/dashboard");
+    //     }
+    //
+    //   })
+    //   .catch(err => {
+    //     console.log(err)
+    //   })
+  }
   render() {
     return(
       <div className="register-form">

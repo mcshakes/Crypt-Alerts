@@ -65,6 +65,7 @@ router.post("/api/users/signup", (req, res) => {
     .then(user => {
       if (user.length >= 1) { // If User exists already
         return res.status(422).json({
+          success: false,
           message: "Email already exists"
         })
       } else {
@@ -87,6 +88,7 @@ router.post("/api/users/signup", (req, res) => {
 
             .then(result => {
               res.status(201).json({
+                success: true,
                 message: "User Created"
               })
             })
