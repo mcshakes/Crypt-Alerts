@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect, browserHistory } from 'react-router'
+import FormErrors from "./FormErrors";
 
 class Login extends React.Component {
 
@@ -29,7 +30,7 @@ class Login extends React.Component {
         console.log(response)
         if (!response.success) {
           this.setState({
-            signInError: response.message
+            hasError: response.message
           })
           this.props.history.push("/login");
           window.location.reload();
@@ -40,10 +41,6 @@ class Login extends React.Component {
         }
 
       })
-      // .then(res => {
-      //   localStorage.setItem("token", res.token)
-      //   this.props.authCheck()
-      // })
       .catch(err => {
         console.log(err)
       })
@@ -58,7 +55,10 @@ class Login extends React.Component {
   render() {
     return (
       <div className="login-form">
-        <form onSubmit={this.handleSubmit}>
+        <div>
+          <FormErrors formErrors={this.state.hasError} />
+        </div>
+          <form onSubmit={this.handleSubmit}>
           <label>Email</label>
           <input
             type="text"
