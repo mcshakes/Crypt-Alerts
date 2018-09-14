@@ -65,47 +65,57 @@ class Login extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-        <p>
-          Don't have an account with us? Create one!
-          <br/>
-          <button
-            onClick={this.switchForm}
-            >
-              Sign Up
-            </button>
-            {!this.state.registerHidden && <Register />}
-        </p>
+    const { registerHidden } = this.state;
 
-        <div className="login-form">
-          <div>
-            <FormErrors formErrors={this.state.hasError} />
-          </div>
-            <form onSubmit={this.handleSubmit}>
-            <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-            <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              onChange={this.handleChange}
-              value={this.state.password}
-            />
+    if ( registerHidden === true) {
+      return (
+        <div>
+          <p>
+            Don't have an account with us? Create one!
+            <br/>
             <button
+              onClick={this.switchForm}
+              >
+                Sign Up
+              </button>
+          </p>
 
-              type="submit">
-              Log In
-            </button>
-          </form>
+          <div className="login-form">
+            <div>
+              <FormErrors formErrors={this.state.hasError} />
+            </div>
+              <form onSubmit={this.handleSubmit}>
+              <label>Email</label>
+              <input
+                type="text"
+                name="email"
+                value={this.state.email}
+                onChange={this.handleChange}
+              />
+              <label>Password</label>
+              <input
+                type="password"
+                name="password"
+                onChange={this.handleChange}
+                value={this.state.password}
+              />
+              <button
+
+                type="submit">
+                Log In
+              </button>
+            </form>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <Register />
+        </div>
+      )
+    }
+
   }
 }
 
