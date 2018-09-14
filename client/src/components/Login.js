@@ -1,5 +1,6 @@
 import React from 'react';
-import { Route, Redirect, browserHistory } from 'react-router'
+import { Route, Redirect, browserHistory} from 'react-router';
+import { Link } from "react-router-dom";
 import FormErrors from "./FormErrors";
 
 class Login extends React.Component {
@@ -79,6 +80,12 @@ class Login extends React.Component {
             Log In
           </button>
         </form>
+
+      <p>
+        Don't have an account with us? Create one!
+        <br/>
+        <Link to="/register">Sign Up</Link>
+      </p>
       </div>
     );
   }
