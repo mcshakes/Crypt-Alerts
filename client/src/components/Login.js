@@ -1,4 +1,7 @@
 import React from 'react';
+import { Route, Redirect, browserHistory} from 'react-router';
+import { Link } from "react-router-dom";
+import FormErrors from "./FormErrors";
 
 class Login extends React.Component {
 
@@ -23,12 +26,21 @@ class Login extends React.Component {
         password: password
       })
     })
+      .then(res => res.json())
       .then(response => {
-        return response.json()
-      })
-      .then(res => {
-        localStorage.setItem("token", res.token)
-        this.props.authCheck()
+        console.log(response)
+        if (!response.success) {
+          this.setState({
+            hasError: response.message
+          })
+          this.props.history.push("/login");
+          window.location.reload();
+
+        } else {
+          localStorage.setItem("token", response.token)
+          this.props.authCheck()
+        }
+
       })
       .catch(err => {
         console.log(err)
@@ -44,7 +56,10 @@ class Login extends React.Component {
   render() {
     return (
       <div className="login-form">
-        <form onSubmit={this.handleSubmit}>
+        <div>
+          <FormErrors formErrors={this.state.hasError} />
+        </div>
+          <form onSubmit={this.handleSubmit}>
           <label>Email</label>
           <input
             type="text"
@@ -65,6 +80,12 @@ class Login extends React.Component {
             Log In
           </button>
         </form>
+
+      <p>
+        Don't have an account with us? Create one!
+        <br/>
+        <Link to="/register">Sign Up</Link>
+      </p>
       </div>
     );
   }

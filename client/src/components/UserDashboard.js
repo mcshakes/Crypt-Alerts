@@ -5,6 +5,8 @@ import SearchBar from "./SearchBar"
 import UserWatchlist from "./UserWatchlist"
 import { authService } from "./AuthService"
 import Login from "./Login";
+import NavBar from "./NavBar";
+
 import { Link } from 'react-router-dom';
 
 class UserDashboard extends React.Component {
@@ -69,16 +71,10 @@ class UserDashboard extends React.Component {
   render() {
     return (
       <div className="dashboard">
-        <div className="menu">
-          { this.isLoggedIn() ? (
-            <Link to="/logout">
-              Logout
-            </Link>
-          ) : (
-            <Link to="/login">
-              Login
-            </Link>
-          ) }
+        <div>
+          <NavBar
+            isLoggedIn={this.isLoggedIn}
+          />
         </div>
         <h1>HI, WELCOME TO USER DASHBOARD</h1>
         <SearchBar

@@ -3,9 +3,11 @@ import '../css/App.css';
 import CapLeader from "./CapLeader";
 import SearchBar from "./SearchBar";
 import Login from "./Login";
+import Register from "./Register";
 import Logout from "./Logout";
 import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
+import NavBar from "./NavBar";
 
 class App extends Component {
 
@@ -20,7 +22,9 @@ class App extends Component {
           <h1 className="app-title">CryptAlert</h1>
         </header>
         <CapLeader />
-        {authService.authenticated() ? <UserDashboard /> : <Login authCheck={this.authCheck}/>}
+        {authService.authenticated() ?
+          <UserDashboard /> :
+          <Login authCheck={this.authCheck}/>}
       </div>
     );
   }
