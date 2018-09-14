@@ -2,6 +2,7 @@ import React from 'react';
 import Login from "./Login";
 import { Link } from 'react-router-dom';
 import { authService } from "./AuthService"
+import '../css/App.css';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -19,15 +20,17 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="menu">
-        { this.isLoggedIn() ? (
-          <Link to="/logout">
-            Logout
-          </Link>
-        ) : (
-          <Link to="/login">
-            Login
-          </Link>
-        ) }
+        <div className="navigation">
+          { this.isLoggedIn() ? (
+            <Link to="/logout">
+                Logout
+              </Link>
+            ) : (
+              <Link to="/login">
+              Login
+            </Link>
+          ) }
+        </div>
       </div>
     )
   }

@@ -6,6 +6,7 @@ import Login from "./Login";
 import Logout from "./Logout";
 import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
+import NavBar from "./NavBar";
 
 class App extends Component {
 
