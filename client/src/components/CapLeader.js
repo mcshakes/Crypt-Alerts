@@ -14,13 +14,13 @@ class CapLeader extends React.Component {
     };
   }
 
-  // componentWillMount() {
-  //   Client.marketLeaders(coins => {
-  //     this.setState({
-  //       data: coins
-  //     })
-  //   })
-  // }
+  componentWillMount() {
+    Client.marketLeaders(coins => {
+      this.setState({
+        data: coins
+      })
+    })
+  }
 
   componentDidMount() {
     const { endpoint } = this.state;
