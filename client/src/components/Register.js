@@ -4,6 +4,7 @@ import FormErrors from "./FormErrors";
 class Register extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       email: "",
       password: "",
@@ -21,7 +22,6 @@ class Register extends React.Component {
     event.preventDefault();
 
     const { email, password, phoneNumber } = this.state;
-    console.log("REGISTER", this.state)
     fetch("/api/users/signup", {
       method: "POST",
       headers: {

@@ -13,11 +13,6 @@ router.post("/api/users/login", (req, res) => {
     .exec()
     .then(user => {
       if (user.length < 1) {
-        // return res.status(401).json({
-        //   success: false,
-        //   message: "That Email doesn't exist..." // no email
-        //
-        // })
         return res.send({
           success: false,
           message: "Email - Password combo failed..." // no email
@@ -87,9 +82,19 @@ router.post("/api/users/signup", (req, res) => {
             user.save()
 
             .then(result => {
-              res.status(201).json({
+              // console.log(result)
+              const token = jwt.sign({
+                                        email: result.email,
+                                        userId: result._id     // The payload
+                                      }, process.env.JWT_KEY,
+                                      {
+                                        expiresIn: "1h"         // The options
+                                      });
+
+              return res.status(201).json({
                 success: true,
-                message: "User Created"
+                message: "User Created",
+                token: token
               })
             })
             .catch(err => {
