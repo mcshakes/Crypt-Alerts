@@ -1,5 +1,6 @@
 import React from "react";
 import FormErrors from "./FormErrors";
+import '../css/Forms.css';
 
 class Register extends React.Component {
   constructor(props) {
