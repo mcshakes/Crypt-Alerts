@@ -8,6 +8,7 @@ class Login extends React.Component {
 
   constructor(props) {
     super(props)
+
     this.state={
       registerHidden: true,
       email: "",
@@ -111,7 +112,7 @@ class Login extends React.Component {
     } else {
       return (
         <div>
-          <Register />
+          <Register authCheck={this.props.authCheck}/>
         </div>
       )
     }
