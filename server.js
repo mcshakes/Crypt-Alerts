@@ -16,7 +16,6 @@ const { User } = require("./models/user");
 const app = express();
 const server = require("http").Server(app);
 
-const io = require("socket.io")(server);
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -39,8 +38,10 @@ app.use(APIRouter);
 
 let interval;
 
+const io = require("socket.io")(server);
+
 io.on('connection', function (socket) {
-  console.log('A new WebSocket connection established with' + socket.id);
+  console.log('A new WebSocket connection established with' + socket);
 });
 
 //------------ Cron Job ------------------------
