@@ -53,6 +53,7 @@ class Register extends React.Component {
         console.log(err)
       })
   }
+
   render() {
     return(
       <div className="register-form">
@@ -76,7 +77,7 @@ class Register extends React.Component {
           />
           <label>Phone Number</label>
           <input
-            type="phoneNumber"
+            type="number"
             name="phoneNumber"
             onChange={this.handleChange}
             value={this.state.phoneNumber}
