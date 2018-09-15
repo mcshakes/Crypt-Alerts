@@ -40,7 +40,7 @@ class Register extends React.Component {
           this.setState({
             hasError: response.message
           })
-          // this.props.history.push("/register");
+          this.props.history.push("/register");
           window.location.reload();
         } else {
           localStorage.setItem("token", response.token)
