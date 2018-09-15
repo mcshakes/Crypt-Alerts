@@ -45,6 +45,7 @@ class UserDashboard extends React.Component {
       return response.json()
     })
     .then(data => {
+      console.log("FROM DASHBOARD", data)
       return data
     })
     .catch(err => {
@@ -69,6 +70,7 @@ class UserDashboard extends React.Component {
   }
 
   render() {
+    // console.log("MOUNTED $$$ DASHBOARD")
     return (
       <div className="dashboard">
         <div>
