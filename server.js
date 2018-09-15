@@ -41,8 +41,36 @@ let interval;
 const io = require("socket.io")(server);
 
 io.on('connection', function (socket) {
-  console.log('A new WebSocket connection established with' + socket);
+  console.log("Updating market cap leaders"), setInterval(
+    () => emitCapLeaders(socket),
+    10000
+  );
+  socket.on("disconnect", () => console.log("Client disconnected"))
 });
+
+const capLeaders = ["BTC", "ETH", "XRP", "BCH", "LTC", "ADA", "NEO", "XLM", "EOS", "DASH"]
+
+const emitCapLeaders = async socket => {
+  try {
+    return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+                    .then((response) => {
+                      let collection = []
+
+                      capLeaders.map((ticker) => {
+                        response.data.filter((coin) => {
+                          if (coin.currency === ticker) {
+                            collection.push(coin)
+                          }
+                        })
+                      })
+
+                      socket.emit("FromAPI", collection)
+                    })
+
+  } catch (error) {
+    console.log(`Error: ${error.code}`);
+  }
+}
 
 //------------ Cron Job ------------------------
 

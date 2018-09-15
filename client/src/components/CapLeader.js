@@ -14,32 +14,32 @@ class CapLeader extends React.Component {
     };
   }
 
-  componentWillMount() {
-    Client.marketLeaders(coins => {
-      this.setState({
-        data: coins
-      })
-    })
-  }
+  // componentWillMount() {
+  //   Client.marketLeaders(coins => {
+  //     this.setState({
+  //       data: coins
+  //     })
+  //   })
+  // }
 
   componentDidMount() {
     const { endpoint } = this.state;
     const socket = IOClient(endpoint);
     socket.on("FromAPI", data => {
+      // console.log(data)
       this.setState({
-        response: data
+        data: data
       })
     })
   }
 
-  // <div className="market-cap-leader">
-  //   {this.state.data == null ? "Please Wait..." :
-  //   this.state.data.map((coin, idx) => <LeaderCoin key={idx} currency={coin.currency} price={coin.price}/>)}
-  // </div>
   render() {
     return (
       <div>
-        TBD
+        <div className="market-cap-leader">
+          {this.state.data == null ? "Please Wait..." :
+          this.state.data.map((coin, idx) => <LeaderCoin key={idx} currency={coin.currency} price={coin.price}/>)}
+        </div>
       </div>
     );
   }

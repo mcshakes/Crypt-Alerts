@@ -45,6 +45,7 @@ function getMarketLeaders() {
     })
 }
 
+
 router.get("/api/market-leaders", (req, res) => {
     getMarketLeaders()
     .then((collection) => {
