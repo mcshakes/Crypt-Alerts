@@ -1,6 +1,7 @@
 import React from "react";
 import FormErrors from "./FormErrors";
 import '../css/Forms.css';
+import { Link, BrowserRouter, Route } from 'react-router-dom'
 
 class Register extends React.Component {
   constructor(props) {
@@ -57,11 +58,11 @@ class Register extends React.Component {
 
   render() {
     return(
-      <div className="register-form">
+      <div className="register-container">
         <div>
           <FormErrors formErrors={this.state.hasError} />
         </div>
-          <form onSubmit={this.handleSubmit}>
+          <form className="register-form" onSubmit={this.handleSubmit}>
           <label>Email</label>
           <input
             type="text"

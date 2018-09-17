@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Redirect, browserHistory} from 'react-router';
 import { Link } from "react-router-dom";
 import FormErrors from "./FormErrors";
+import '../css/Forms.css';
 import Register from "./Register";
 
 class Login extends React.Component {
@@ -81,9 +82,9 @@ class Login extends React.Component {
               </button>
           </p>
 
-          <div className="login-form">
+          <div className="login-container">
             <div>
-              <FormErrors formErrors={this.state.hasError} />
+              <FormErrors className="login-form" formErrors={this.state.hasError} />
             </div>
               <form onSubmit={this.handleSubmit}>
               <label>Email</label>
