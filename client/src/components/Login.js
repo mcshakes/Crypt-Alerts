@@ -72,16 +72,6 @@ class Login extends React.Component {
     if ( registerHidden === true) {
       return (
         <div>
-          <p>
-            Don't have an account with us? Create one!
-            <br/>
-            <button
-              onClick={this.switchForm}
-              >
-                Sign Up
-              </button>
-          </p>
-
           <div className="login-container">
             <div>
               <FormErrors className="login-form" formErrors={this.state.hasError} />
@@ -107,6 +97,18 @@ class Login extends React.Component {
                 Log In
               </button>
             </form>
+          </div>
+
+          <div>
+            <p>
+              Don't have an account? Create one instead
+              <br/>
+              <button
+                onClick={this.switchForm}
+                >
+                  Sign Up
+                </button>
+              </p>
           </div>
         </div>
       );

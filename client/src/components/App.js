@@ -20,6 +20,8 @@ class App extends Component {
       <div className="App">
         <header className="app-header">
           <h1 className="app-title">CryptAlert</h1>
+          <p>Track your favorite cryptocurrencies</p>
+          <p>Get SMS alerts when the price is right</p>
         </header>
         <CapLeader />
         {authService.authenticated() ?
