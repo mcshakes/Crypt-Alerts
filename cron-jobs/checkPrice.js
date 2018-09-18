@@ -14,7 +14,7 @@ const { ISODateString, encode } = require("../helpers/dates")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("*/10 * * * *", function() {
+const lookAndSee = new CronJob("* * * * *", function() {
   console.log("\nTaking a look-see on your watchlists...")
   let collection = new Array();
 
@@ -43,7 +43,8 @@ const lookAndSee = new CronJob("*/10 * * * *", function() {
                     // console.log("DIFF: ", diff)
 
                     if (diff < 3.50) {
-                      console.log("\nCLOSE. SELL IMMEDIATELY!")
+
+                      console.log("YOUR WATCHLIST:\n", watcher)
                     } else {
                       console.log("\nDifference is greater than $3.50. Let's wait and see...")
                     }
