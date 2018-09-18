@@ -55,7 +55,8 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
             $set: {
               "highLimit": high,
               "lowLimit": low,
-              "hasAlert": true
+              "hasAlert": true,
+              "sentAlert": false
             }
           })
         })
