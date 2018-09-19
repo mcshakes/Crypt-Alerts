@@ -11,6 +11,7 @@ const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
 const { ISODateString, encode } = require("../helpers/dates")
+const { createMessage } = require("../helpers/twilioAlert")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
@@ -43,8 +44,17 @@ const lookAndSee = new CronJob("* * * * *", function() {
                     // console.log("DIFF: ", diff)
 
                     if (diff < 3.50) {
+                      console.log("\nSENDING A MESSAGE...")
 
-                      console.log("YOUR WATCHLIST:\n", watcher)
+                      Currency.find({ _id: watcher.list[0] })
+                        .then(currency => {
+                          return currency[0]
+                        })
+                        .then(data => {
+
+                          createMessage(watcher.highLimit)
+                        })
+
                     } else {
                       console.log("\nDifference is greater than $3.50. Let's wait and see...")
                     }
