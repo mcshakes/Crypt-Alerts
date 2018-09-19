@@ -51,8 +51,10 @@ const lookAndSee = new CronJob("* * * * *", function() {
                           return currency[0]
                         })
                         .then(data => {
-
-                          createMessage(watcher.highLimit)
+                          let contents = []
+                          contents.push(data, watcher.highLimit)
+                          
+                          createMessage(contents)
                         })
 
                     } else {
