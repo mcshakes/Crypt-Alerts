@@ -82,6 +82,9 @@ class UserDashboard extends React.Component {
         <SearchBar
           addNew={this.addCoinNameWatchlist}
         />
+        <div className="p p-1"></div>
+       <div className="p p-2"></div>
+       <div className="p p-3"></div>
         <UserWatchlist
           coins={this.state.coins}
           ids={this.state.coins.map(coin => coin._id)}
