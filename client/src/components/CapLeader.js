@@ -26,7 +26,6 @@ class CapLeader extends React.Component {
     const { endpoint } = this.state;
     const socket = IOClient(endpoint);
     socket.on("FromAPI", data => {
-      // console.log(data)
       this.setState({
         data: data
       })

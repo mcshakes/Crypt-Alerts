@@ -39,23 +39,37 @@ const lookAndSee = new CronJob("* * * * *", function() {
                     let priceIdx = parseFloat(coin[0].price, 10)
                     let diff = Math.abs(high - priceIdx)
 
-                    // console.log("HIGH", high)
-                    // console.log("real-PRICE", priceIdx)
-                    // console.log("DIFF: ", diff)
+                    // { list: [ 5ba1959000775e0f229563e5 ],
+                    // //   _id: 5ba1959100775e0f229563e7,
+                    // //   userId: 5ba18ee300775e0f229563e3,
+                    // //   __v: 0,
+                    // //   hasAlert: true,
+                    // //   highLimit: '208',
+                    // //   lowLimit: '190',
+                    //   sentAlert: false })
 
                     if (diff < 3.50) {
                       console.log("\nSENDING A MESSAGE...")
+                      let userData = new Object();
 
-                      Currency.find({ _id: watcher.list[0] })
-                        .then(currency => {
-                          return currency[0]
+                      User.findById({_id: watcher.userId})
+                        .exec()
+                        .then(user => {
+
+                          Currency.find({ _id: watcher.list[0] })
+                          .then(currency => {
+                            return currency[0]
+                          })
+                          .then(data => {
+                            let contents = []
+
+                            contents.push(data, watcher.highLimit, user)
+
+                            createMessage(contents)
+                          })
                         })
-                        .then(data => {
-                          let contents = []
-                          contents.push(data, watcher.highLimit)
-                          
-                          createMessage(contents)
-                        })
+
+
 
                     } else {
                       console.log("\nDifference is greater than $3.50. Let's wait and see...")
