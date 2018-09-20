@@ -76,6 +76,7 @@ router.post("/api/users/signup", (req, res) => {
             const user = new User({
               _id: new mongoose.Types.ObjectId(),
               email: req.body.email,
+              phoneNumber: req.body.phoneNumber,
               password: hash,
             });
             // watchlist.save()
