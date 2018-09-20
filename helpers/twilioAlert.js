@@ -25,15 +25,15 @@ function createMessage(message) {
      // createdDate: 2018-09-18T23:48:51.227Z,
      // __v: 0 } ]
 
-  // client.messages
-  // .create({
-  //   body: `This is an Alert that ${message[0].ticker} is close to your price alert of $ ${message[1]} USD`,
-  //   from: 'whatsapp:+14155238886',
-  //   to: 'whatsapp:+19707691296'
-  // })
-  // .then(message => console.log(message.sid))
-  // .catch(err => console.log(err))
-  // .done();
+  client.messages
+  .create({
+    body: `This is an Alert that ${ticker} is approaching your custom price alert of $ ${message[1]} USD. The current price is ${realPrice}. Log in to your marketplace to take action`,
+    from: 'whatsapp:+14155238886',
+    to: `whatsapp:+${phoneNumber}`
+  })
+  .then(message => console.log("MESSAGE", message))
+  .catch(err => console.log(err))
+  .done();
 }
 
 module.exports = { createMessage }

@@ -50,7 +50,6 @@ const lookAndSee = new CronJob("* * * * *", function() {
 
                     if (diff < 3.50) {
                       console.log("\nSENDING A MESSAGE...")
-                      let userData = new Object();
 
                       User.findById({_id: watcher.userId})
                         .exec()
@@ -64,12 +63,9 @@ const lookAndSee = new CronJob("* * * * *", function() {
                             let contents = []
 
                             contents.push(data, watcher.highLimit, user)
-
-                            createMessage(contents)
+                            // createMessage(contents)
                           })
                         })
-
-
 
                     } else {
                       console.log("\nDifference is greater than $3.50. Let's wait and see...")
