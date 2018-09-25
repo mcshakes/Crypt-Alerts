@@ -15,7 +15,7 @@ const { createMessage } = require("../helpers/twilioAlert")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("*/10 * * * *", function() {
+const lookAndSee = new CronJob("* * * * *", function() {
   console.log("\nTaking a look-see on your watchlists...")
   let collection = new Array();
 
@@ -64,9 +64,14 @@ const lookAndSee = new CronJob("*/10 * * * *", function() {
                             let contents = []
 
                             contents.push(data, watcher.highLimit, user)
-                            createMessage(contents)
+                            // createMessage(contents)
 
-                            Watchlist.update({ _id: watcher.id }, { sentAlert: true})
+                            Watchlist.update({ _id: watcher._id }, { sentAlert: true}, function(err, raw) {
+                              if (err) {
+                                res.send(err);
+                              }
+                              console.log("raw response from Mongo was ", raw)
+                            })
                           })
                         })
 
