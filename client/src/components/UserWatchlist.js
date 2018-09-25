@@ -25,7 +25,7 @@ class UserWatchlist extends React.Component {
 
     return (
       <div>
-        <h2>These are Cryptos you are watching:</h2>
+        <h2>Cryptos you are Watching:</h2>
         <ul className="coin-watchlist">
           {
 

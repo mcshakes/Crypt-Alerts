@@ -9,6 +9,7 @@
 
 .search-results {
   border-radius: 20px;
-  border: 2.5px solid darkcyan;
+  border: 2.5px solid hsla(281, 100%, 50%, 1);
   padding-bottom: 5px;
+  background-color: darkcyan;
 }

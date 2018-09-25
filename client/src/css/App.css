@@ -47,3 +47,8 @@ ul {
 body {
   font-family: 'Montserrat', sans-serif;
 }
+
+.dashboard {
+  margin-top: 30px;
+  margin-left: 30px;
+}

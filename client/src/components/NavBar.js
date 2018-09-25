@@ -19,18 +19,16 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div className="menu">
-        <div className="navigation">
-          { this.isLoggedIn() ? (
-            <Link to="/logout">
-                Logout
-              </Link>
-            ) : (
-              <Link to="/login">
-              Login
+      <div className="navigation">
+        { this.isLoggedIn() ? (
+          <Link to="/logout">
+              Logout
             </Link>
-          ) }
-        </div>
+          ) : (
+            <Link to="/login">
+            Login
+          </Link>
+        ) }
       </div>
     )
   }
