@@ -15,7 +15,7 @@ const { createMessage } = require("../helpers/twilioAlert")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("* * * * *", function() {
+const lookAndSee = new CronJob("*/10 * * * *", function() {
   console.log("\nTaking a look-see on your watchlists...")
   let collection = new Array();
 
@@ -51,6 +51,7 @@ const lookAndSee = new CronJob("* * * * *", function() {
                     if (diff < 3.50) {
                       console.log("\nSENDING A MESSAGE...")
 
+                      // if sentAlert is true
                       User.findById({_id: watcher.userId})
                         .exec()
                         .then(user => {
@@ -63,7 +64,9 @@ const lookAndSee = new CronJob("* * * * *", function() {
                             let contents = []
 
                             contents.push(data, watcher.highLimit, user)
-                            // createMessage(contents)
+                            createMessage(contents)
+
+                            Watchlist.update({ _id: watcher.id }, { sentAlert: true})
                           })
                         })
 
