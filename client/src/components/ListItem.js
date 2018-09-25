@@ -50,6 +50,24 @@ class ListItem extends React.Component {
   }
 
   render() {
+    const watchData = this.state.watchdata
+    const sentAlert = watchData && watchData[0].sentAlert === true
+
+    if (sentAlert) {
+      return (
+        <div className="list-item-coin">
+          <div >
+            <h3>{this.state.coin}</h3>
+            <h3>$ {this.state.price} USD</h3>
+          </div>
+
+          <div>
+            PRICE ALERT REACHED. LOG IN TO MARKETPLACE
+          </div>
+        </div>
+      )
+    }
+
     return (
       <div className="list-item-coin">
         <div >
