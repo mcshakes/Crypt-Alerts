@@ -1,6 +1,6 @@
 import React from "react";
 import Client from "../Client";
-import '../css/CapLeader.css';
+import '../css/App.css';
 import SearchBar from "./SearchBar"
 import UserWatchlist from "./UserWatchlist"
 import { authService } from "./AuthService"
@@ -78,10 +78,13 @@ class UserDashboard extends React.Component {
             isLoggedIn={this.isLoggedIn}
           />
         </div>
-        <h1>HI, WELCOME TO USER DASHBOARD</h1>
+        <h1>WELCOME TO YOUR DASHBOARD</h1>
         <SearchBar
           addNew={this.addCoinNameWatchlist}
         />
+        <div className="p p-1"></div>
+       <div className="p p-2"></div>
+       <div className="p p-3"></div>
         <UserWatchlist
           coins={this.state.coins}
           ids={this.state.coins.map(coin => coin._id)}

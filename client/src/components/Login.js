@@ -76,7 +76,10 @@ class Login extends React.Component {
             <div>
               <FormErrors className="login-form" formErrors={this.state.hasError} />
             </div>
-              <form onSubmit={this.handleSubmit}>
+              <form
+                onSubmit={this.handleSubmit}
+                className="login-form"
+                >
               <label>Email</label>
               <input
                 type="text"

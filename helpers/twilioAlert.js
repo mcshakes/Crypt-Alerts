@@ -29,9 +29,9 @@ function createMessage(message) {
   .create({
     body: `This is an Alert that ${ticker} is approaching your custom price alert of $ ${message[1]} USD. The current price is ${realPrice}. Log in to your marketplace to take action`,
     from: 'whatsapp:+14155238886',
-    to: `whatsapp:+${phoneNumber}`
+    to: `whatsapp:+19707691297`
   })
-  .then(message => console.log("MESSAGE", message))
+  .then(message => console.log("MESSAGE", message.sid))
   .catch(err => console.log(err))
   .done();
 }

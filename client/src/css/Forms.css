@@ -17,7 +17,7 @@
   margin-bottom: 10px;
 }
 
-register-form button {
+.register-form button {
   color: #0099CC;
   background: transparent;
   border: 2px solid #008CBA;
@@ -35,8 +35,9 @@ register-form button {
   text-decoration: none;
   text-transform: uppercase;
 }
-register-form button :hover {
-  background-color: #008CBA;
+
+.register-form button:hover {
+  background-color: darkcyan;
   color: white;
 }
 
@@ -56,9 +57,10 @@ register-form button :hover {
   padding: 50px;
   margin: 0 auto;
   margin-bottom: 10px;
+  grid-gap: 0.3em 0.6em;
 }
 
-login-form button {
+.login-form button {
   color: #0099CC;
   background: transparent;
   border: 2px solid #008CBA;
@@ -76,7 +78,8 @@ login-form button {
   text-decoration: none;
   text-transform: uppercase;
 }
-login-form button :hover {
-  background-color: #008CBA;
+
+.login-form button:hover {
+  background-color: darkcyan;
   color: white;
 }
