@@ -43,9 +43,6 @@ const io = require("socket.io")(server);
 
 //------------ Currency Charts Component ------------------------
 
-// get cryptocompare charts every 10 seconds
-// get the name of the crypto here
-
 io.on("connection", function (socket) {
   let strData;
 
@@ -54,8 +51,26 @@ io.on("connection", function (socket) {
     publishKey: process.env.PUBLISH_KEY
   })
 
+  console.log("Updating chartz"), setInterval(
+    () => emitChartData(socket),
+    10000
+  );
+  socket.on("disconnect", () => console.log("Chartz disconnected"))
+
 
 })
+
+const emitChartData = async socket => {
+  try {
+    return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+                    .then((response) => {
+                      socket.emit("FromAPI", response.data)
+                    })
+
+  } catch (error) {
+    console.log(`Error: ${error.code}`);
+  }
+}
 
 //------------ Market Leaders Component ------------------------
 
