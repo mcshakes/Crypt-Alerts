@@ -9,6 +9,9 @@ import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
 import NavBar from "./NavBar";
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
 class App extends Component {
 
   authCheck = () => {

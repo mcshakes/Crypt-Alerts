@@ -5,6 +5,7 @@ const path = require("path");
 const axios = require('axios');
 require("dotenv").config();
 const bcrypt = require("bcrypt");
+const PubNub = require("pubnub")
 
 const CronJob = require("cron").CronJob;
 const { lookAndSee } = require("./cron-jobs/checkPrice")
@@ -39,6 +40,24 @@ app.use(APIRouter);
 let interval;
 
 const io = require("socket.io")(server);
+
+//------------ Currency Charts Component ------------------------
+
+// get cryptocompare charts every 10 seconds
+// get the name of the crypto here
+
+io.on("connection", function (socket) {
+  let strData;
+
+  pubnub = new PubNub({
+    subscribeKey: process.env.SUBSCRIBE_KEY,
+    publishKey: process.env.PUBLISH_KEY
+  })
+
+
+})
+
+//------------ Market Leaders Component ------------------------
 
 io.on('connection', function (socket) {
   console.log("Updating market cap leaders"), setInterval(
