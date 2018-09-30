@@ -34,7 +34,7 @@ class CapLeader extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="leader-container">
         <aside className="market-cap-leader">
           {this.state.data == null ? "Please Wait..." :
           this.state.data.map((coin, idx) => <LeaderCoin key={idx} currency={coin.currency} price={coin.price}/>)}
