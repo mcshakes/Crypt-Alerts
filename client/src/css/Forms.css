@@ -1,20 +1,18 @@
 /*  =========================  REGISTER FORM ========================*/
 
 .register-container {
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  grid-gap: 5px;
+  grid-column: 2/6;
 }
 
 .register-form {
   display: grid;
-  grid-template-columns: 200px 1fr;
   background-color: #F6F7F8;
   border: 1px solid #D6D9DC;
   border-radius: 3px;
   padding: 50px;
   margin: 0 auto;
   margin-bottom: 10px;
+  grid-gap: 0.3em 0.6em;
 }
 
 .register-form button {
@@ -42,16 +40,13 @@
 }
 
 /*  =========================  LOGIN FORM ========================*/
-.login-container {
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
 
-  grid-gap: 5px;
+.login-container {
+  grid-column: 2/6;
 }
 
 .login-form {
   display: grid;
-  grid-template-columns: 200px 1fr;
   background-color: #F6F7F8;
   border: 1px solid #D6D9DC;
   border-radius: 3px;
@@ -69,7 +64,6 @@
   border: none;
   color: black;
   padding: 16px 32px;
-  text-align: center;
   display: inline-block;
   font-size: 16px;
   margin: 4px 2px;
@@ -122,4 +116,18 @@
 .alternative-signup button:hover {
   background-color: darkcyan;
   color: white;
+}
+
+@media only screen and (min-width: 1024px) {
+  .login-form {
+    width: 450px;
+  }
+
+  .register-form {
+    width: 450px;
+  }
+
+  .alternative-signup {
+    width: 450px;
+  }
 }

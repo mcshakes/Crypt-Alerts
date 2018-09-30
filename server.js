@@ -43,34 +43,34 @@ const io = require("socket.io")(server);
 
 //------------ Currency Charts Component ------------------------
 
-io.on("connection", function (socket) {
-  let strData;
-
-  pubnub = new PubNub({
-    subscribeKey: process.env.SUBSCRIBE_KEY,
-    publishKey: process.env.PUBLISH_KEY
-  })
-
-  console.log("Updating chartz"), setInterval(
-    () => emitChartData(socket),
-    10000
-  );
-  socket.on("disconnect", () => console.log("Chartz disconnected"))
-
-
-})
-
-const emitChartData = async socket => {
-  try {
-    return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
-                    .then((response) => {
-                      socket.emit("FromAPI", response.data)
-                    })
-
-  } catch (error) {
-    console.log(`Error: ${error.code}`);
-  }
-}
+// io.on("connection", function (socket) {
+//   let strData;
+//
+//   pubnub = new PubNub({
+//     subscribeKey: process.env.SUBSCRIBE_KEY,
+//     publishKey: process.env.PUBLISH_KEY
+//   })
+//
+//   console.log("Updating chartz"), setInterval(
+//     () => emitChartData(socket),
+//     10000
+//   );
+//   socket.on("disconnect", () => console.log("Chartz disconnected"))
+//
+//
+// })
+//
+// const emitChartData = async socket => {
+//   try {
+//     return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+//                     .then((response) => {
+//                       socket.emit("FromAPI", response.data)
+//                     })
+//
+//   } catch (error) {
+//     console.log(`Error: ${error.code}`);
+//   }
+// }
 
 //------------ Market Leaders Component ------------------------
 
