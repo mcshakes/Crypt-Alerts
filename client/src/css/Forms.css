@@ -2,7 +2,7 @@
 
 .register-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 20% 20% 20% 20% 20%;
   grid-gap: 5px;
 }
 
@@ -44,7 +44,8 @@
 /*  =========================  LOGIN FORM ========================*/
 .login-container {
   display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+
   grid-gap: 5px;
 }
 
@@ -80,6 +81,45 @@
 }
 
 .login-form button:hover {
+  background-color: darkcyan;
+  color: white;
+}
+
+/*  =========================  ALTERNATIVE FORM ========================*/
+
+.alternative-signup {
+  display: grid;
+  grid-gap: 5px;
+  display: grid;
+  background-color: #F6F7F8;
+  border: 1px solid #D6D9DC;
+  border-radius: 3px;
+  padding: 50px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  grid-gap: 0.3em 0.6em;
+}
+
+.alternative-signup button {
+  color: #0099CC;
+  background: transparent;
+  border: 2px solid #008CBA;
+  border-radius: 6px;
+  border: none;
+  color: black;
+  padding: 16px 32px;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.alternative-signup button:hover {
   background-color: darkcyan;
   color: white;
 }
