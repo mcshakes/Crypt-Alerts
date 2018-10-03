@@ -2,6 +2,7 @@ import React from "react";
 import Client from "../Client";
 import '../css/UserWatchlist.css';
 import AlertForm from "./AlertForm";
+import CurrencyChart from "./CurrencyChart";
 import { authService } from "./AuthService"
 
 class ListItem extends React.Component {
@@ -48,12 +49,6 @@ class ListItem extends React.Component {
       return err
     })
   }
-
-  // setNewAlert = () => {
-  //   this.setState({
-  //     watchdata[0].sentAlert: false
-  //   })
-  // }
 
   render() {
     const watchData = this.state.watchdata

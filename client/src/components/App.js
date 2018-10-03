@@ -9,6 +9,9 @@ import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
 import NavBar from "./NavBar";
 
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+
 class App extends Component {
 
   authCheck = () => {
@@ -23,6 +26,13 @@ class App extends Component {
           <p>Track your favorite cryptocurrencies</p>
           <p>Get SMS alerts when the price is right</p>
         </header>
+        <div className="p p-1"></div>
+         <div className="p p-2"></div>
+         <div className="p p-3"></div>
+
+         <div className="p p-4"></div>
+          <div className="p p-5"></div>
+          <div className="p p-6"></div>
         <CapLeader />
         {authService.authenticated() ?
           <UserDashboard /> :
