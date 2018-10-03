@@ -45,7 +45,6 @@ class UserDashboard extends React.Component {
       return response.json()
     })
     .then(data => {
-      console.log("FROM DASHBOARD", data)
       return data
     })
     .catch(err => {

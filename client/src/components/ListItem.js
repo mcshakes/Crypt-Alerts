@@ -11,7 +11,6 @@ class ListItem extends React.Component {
     coin: this.props.coin,
     price: this.props.price,
     id: this.props.id,
-    // sentAlert: this.state.watchdata[0].sentAlert
   }
 
   componentDidMount() {
@@ -50,15 +49,6 @@ class ListItem extends React.Component {
       return err
     })
   }
-
-  // setNewAlert = () => {
-  //   this.setState(prevState => ({
-  //     sentAlert: !prevState.sentAlert
-  //   }));
-  //   // console.log(this.state.watchdata[0])
-  //   // this.state.watchdata[0].sentAlert
-  // }
-
   setNewAlert = () => {
     let token = authService.getToken();
     let coinID = this.state.id
@@ -87,9 +77,19 @@ class ListItem extends React.Component {
     })
   }
 
+//   static getDerivedStateFromProps(nextProps, prevState) {
+//      console.log("getDerivedStateFromProps from Child");
+//      console.log("NEXT", nextProps);
+//      console.log("PREV", prevState);
+//      return null;
+// }
+
   render() {
+    console.log("STATE COMING", this.state.watchdata)
+    console.log("props COMING", this.props)
     const watchData = this.state.watchdata
     const sentAlert = watchData && watchData[0].sentAlert === true
+// {coin: "DLT", price: "0.06641", id: undefined, watchdata: Array(0)}
 
     if (sentAlert) {
       return (
@@ -111,24 +111,26 @@ class ListItem extends React.Component {
           </div>
         </div>
       )
+    } else {
+
+      return (
+        <div className="list-item-coin">
+          <div >
+            <h3>{this.state.coin}</h3>
+            <h3>$ {this.state.price} USD</h3>
+          </div>
+
+          <div>
+            <AlertForm
+              ticker={this.state.coin}
+              high={this.props.high}
+              low={this.props.low}
+            />
+          </div>
+        </div>
+      )
     }
 
-    return (
-      <div className="list-item-coin">
-        <div >
-          <h3>{this.state.coin}</h3>
-          <h3>$ {this.state.price} USD</h3>
-        </div>
-
-        <div>
-          <AlertForm
-            ticker={this.state.coin}
-            high={this.props.high}
-            low={this.props.low}
-          />
-        </div>
-      </div>
-    )
   }
 }
 

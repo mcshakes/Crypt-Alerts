@@ -21,7 +21,7 @@ class UserWatchlist extends React.Component {
       }
       return coin;
     })
-    console.log("WATCHLIST => ", (this.props.coins))
+
 
     return (
       <div>
