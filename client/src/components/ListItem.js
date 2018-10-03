@@ -77,18 +77,12 @@ class ListItem extends React.Component {
     })
   }
 
-//   static getDerivedStateFromProps(nextProps, prevState) {
-//      console.log("getDerivedStateFromProps from Child");
-//      console.log("NEXT", nextProps);
-//      console.log("PREV", prevState);
-//      return null;
-// }
+// set default prop of empty array
 
   render() {
-    console.log("STATE COMING", this.state.watchdata)
-    console.log("props COMING", this.props)
+
     const watchData = this.state.watchdata
-    const sentAlert = watchData && watchData[0].sentAlert === true
+    const sentAlert = watchData && watchData[0] && watchData[0].sentAlert === true
 // {coin: "DLT", price: "0.06641", id: undefined, watchdata: Array(0)}
 
     if (sentAlert) {
