@@ -11,6 +11,7 @@ class ListItem extends React.Component {
     coin: this.props.coin,
     price: this.props.price,
     id: this.props.id,
+    // sentAlert: this.state.watchdata[0].sentAlert
   }
 
   componentDidMount() {
@@ -39,6 +40,42 @@ class ListItem extends React.Component {
     };
 
   return fetch("/api/watchlist-status", settings)
+    .then((response) => {
+      return response.json()
+    })
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      return err
+    })
+  }
+
+  // setNewAlert = () => {
+  //   this.setState(prevState => ({
+  //     sentAlert: !prevState.sentAlert
+  //   }));
+  //   // console.log(this.state.watchdata[0])
+  //   // this.state.watchdata[0].sentAlert
+  // }
+
+  setNewAlert = () => {
+    let token = authService.getToken();
+    let coinID = this.state.id
+
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        coinID: coinID
+      })
+    };
+
+  return fetch("/api/change-alert-status", settings)
     .then((response) => {
       return response.json()
     })

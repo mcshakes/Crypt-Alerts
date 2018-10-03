@@ -81,4 +81,33 @@ router.post("/api/watchlist-status", checkAuth, (req, res) => {
     })
 })
 
+router.post("/api/change-alert-status", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
+  let coinId = req.body.coinID
+
+  let query = {userId: userId, list:[coinId]}
+  Watchlist.find(query)
+    .then(data => {
+      // res.json(data)
+
+      // [ { list: [ 5ba1959000775e0f229563e5 ],
+   // _id: 5ba1959100775e0f229563e7,
+   // userId: 5ba18ee300775e0f229563e3,
+   // __v: 0,
+   // hasAlert: true,
+   // highLimit: '224',
+   // lowLimit: '190',
+   // sentAlert: true } ]
+
+      return data[0].update({
+        $set: {
+          "sentAlert": false
+        }
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
+
 module.exports = router;
