@@ -111,25 +111,25 @@ class ListItem extends React.Component {
           </div>
         </div>
       )
-    } else {
-
-      return (
-        <div className="list-item-coin">
-          <div >
-            <h3>{this.state.coin}</h3>
-            <h3>$ {this.state.price} USD</h3>
-          </div>
-
-          <div>
-            <AlertForm
-              ticker={this.state.coin}
-              high={this.props.high}
-              low={this.props.low}
-            />
-          </div>
-        </div>
-      )
     }
+
+    return (
+      <div className="list-item-coin">
+        <div >
+          <h3>{this.state.coin}</h3>
+          <h3>$ {this.state.price} USD</h3>
+        </div>
+
+        <div>
+          <AlertForm
+            ticker={this.state.coin}
+            high={this.props.high}
+            low={this.props.low}
+          />
+        </div>
+      </div>
+    )
+
 
   }
 }
