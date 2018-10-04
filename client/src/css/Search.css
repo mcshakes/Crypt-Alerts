@@ -7,6 +7,11 @@
   width: 300px;
 }
 
+.search-suggestions {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+}
+
 .search-results {
   border-radius: 20px;
   border: 2.5px solid hsla(281, 100%, 50%, 1);
