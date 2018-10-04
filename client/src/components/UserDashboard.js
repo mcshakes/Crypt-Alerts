@@ -69,7 +69,6 @@ class UserDashboard extends React.Component {
   }
 
   render() {
-    // console.log("MOUNTED $$$ DASHBOARD")
     return (
       <div className="dashboard">
         <div>
@@ -77,7 +76,7 @@ class UserDashboard extends React.Component {
             isLoggedIn={this.isLoggedIn}
           />
         </div>
-        <h1>WELCOME TO YOUR DASHBOARD</h1>
+        <h1>YOUR DASHBOARD</h1>
         <SearchBar
           addNew={this.addCoinNameWatchlist}
         />
