@@ -42,18 +42,41 @@ router.post("/api/add-coin", checkAuth, (req, res) => {
                 error: err
               })
             })
-        } else {
+        }
 
-            Watchlist
-              .create({
-                _id: new mongoose.Types.ObjectId(),
-                userId: userId,
-                list: [ coin[0] ]
-              })
-              .then((watchItem) => {
-                return response.json(watchItem)
-              })
-        } //end of else block
+        if (coin.length > 0) {
+          // console.log("COINS EXISTS IN DB!")
+          // Watchlist.find({userId: userId})
+          //   .then(allWl => {
+          //     allWl.map(watchlist => {
+          //       if (!watchlist.list[0] === coin._id) {
+          //         console.log("DOESNT HAVE IT", coin)
+          //         // Watchlist
+          //         //   .create({
+          //         //     _id: new mongoose.Types.ObjectId(),
+          //         //     userId: userId,
+          //         //     list: [ coin[0] ]
+          //         //   })
+          //         //   .then((watchItem) => {
+          //         //     return response.json(watchItem)
+          //         //   })
+          //       } else {
+          //         // response.send({message: "You are already watching this coin"})
+          //         throw new Error("You are already watching this")
+          //       }
+          //     })
+          //   })
+
+          Watchlist
+            .create({
+              _id: new mongoose.Types.ObjectId(),
+              userId: userId,
+              list: [ coin[0] ]
+            })
+            .then((watchItem) => {
+              return response.json(watchItem)
+            })
+        }
       })
 
     .then(result => {
