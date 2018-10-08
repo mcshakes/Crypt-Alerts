@@ -64,7 +64,7 @@ const lookAndSee = new CronJob("*/10 * * * *", function() {
                             let contents = []
 
                             contents.push(data, watcher.highLimit, user)
-                            createMessage(contents)
+                            // createMessage(contents)
 
                             Watchlist.update({ _id: watcher._id }, { sentAlert: true}, function(err, raw) {
                               if (err) {
