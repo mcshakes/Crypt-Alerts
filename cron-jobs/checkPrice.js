@@ -15,7 +15,7 @@ const { createMessage } = require("../helpers/twilioAlert")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("* * * * *", function() {
+const lookAndSee = new CronJob("*/10 * * * *", function() {
   console.log("\nTaking a look-see on your watchlists...")
   let collection = new Array();
 
