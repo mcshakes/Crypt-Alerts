@@ -115,11 +115,12 @@ class ListItem extends React.Component {
         </div>
 
         <div>
-          <AlertForm
+          <CurrencyChart ticker={this.props.coin}/>
+          {/* <AlertForm
             ticker={this.state.coin}
             high={this.props.high}
             low={this.props.low}
-          />
+          /> */}
         </div>
       </div>
     )

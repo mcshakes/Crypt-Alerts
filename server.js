@@ -63,7 +63,7 @@ movement.on("connection", function (socket) {
 
 const emitChartData = async socket => {
   try {
-    return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
+    return axios.get(`https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD`)
                     .then((response) => {
                       socket.emit("FromAPI", response.data)
                     })
