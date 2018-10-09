@@ -81,4 +81,22 @@ router.post("/api/watchlist-status", checkAuth, (req, res) => {
     })
 })
 
+router.post("/api/change-alert-status", checkAuth, (req, res) => {
+  let userId = req.userData.userId;
+  let coinId = req.body.coinID
+
+  let query = {userId: userId, list:[coinId]}
+  Watchlist.find(query)
+    .then(data => {
+      return data[0].update({
+        $set: {
+          "sentAlert": false
+        }
+      })
+    })
+    .catch(error => {
+      console.log(error)
+    })
+})
+
 module.exports = router;

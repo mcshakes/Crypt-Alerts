@@ -14,7 +14,10 @@ const watchlistSchema = mongoose.Schema({
   highLimit: String,
   lowLimit: String,
   hasAlert: Boolean,
-  sentAlert: Boolean
+  sentAlert: {
+    type: Boolean,
+    default: false
+  }
 })
 
 const Watchlist = mongoose.model("Watchlist", watchlistSchema)

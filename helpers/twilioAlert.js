@@ -4,7 +4,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSID, authToken);
 
 function createMessage(message) {
-  console.log("INCOMING HIGH", message)
+  // console.log("INCOMING HIGH", message)
 
   let phoneNumber = message[2].phoneNumber
   let alertPrice = message[1]
@@ -29,10 +29,10 @@ function createMessage(message) {
   .create({
     body: `This is an Alert that ${ticker} is approaching your custom price alert of $ ${message[1]} USD. The current price is ${realPrice}. Log in to your marketplace to take action`,
     from: 'whatsapp:+14155238886',
-    to: `whatsapp:+19707691297`
+    to: `whatsapp:+${phoneNumber}`
   })
   .then(message => console.log("MESSAGE", message.sid))
-  .catch(err => console.log(err))
+  // .catch(err => console.log(err))
   .done();
 }
 

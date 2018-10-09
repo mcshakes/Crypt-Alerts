@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <header className="app-header">
-          <h1 className="app-title">CryptAlert</h1>
+          <h1 className="app-title">CryptWatch</h1>
           <p>Track your favorite cryptocurrencies</p>
           <p>Get SMS alerts when the price is right</p>
         </header>

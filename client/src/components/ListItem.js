@@ -49,10 +49,41 @@ class ListItem extends React.Component {
       return err
     })
   }
+  setNewAlert = () => {
+    let token = authService.getToken();
+    let coinID = this.state.id
+
+    const settings = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        coinID: coinID
+      })
+    };
+
+  return fetch("/api/change-alert-status", settings)
+    .then((response) => {
+      return response.json()
+    })
+    .then(data => {
+      return data
+    })
+    .catch(err => {
+      return err
+    })
+  }
+
+// set default prop of empty array
 
   render() {
+
     const watchData = this.state.watchdata
-    const sentAlert = watchData && watchData[0].sentAlert === true
+    const sentAlert = watchData && watchData[0] && watchData[0].sentAlert === true
+// {coin: "DLT", price: "0.06641", id: undefined, watchdata: Array(0)}
 
     if (sentAlert) {
       return (
@@ -84,14 +115,17 @@ class ListItem extends React.Component {
         </div>
 
         <div>
-          <AlertForm
+          <CurrencyChart ticker={this.props.coin}/>
+          {/* <AlertForm
             ticker={this.state.coin}
             high={this.props.high}
             low={this.props.low}
-          />
+          /> */}
         </div>
       </div>
     )
+
+
   }
 }
 
