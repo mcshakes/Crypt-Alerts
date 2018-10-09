@@ -1,5 +1,7 @@
 import React from "react";
 import IOClient from "socket.io-client";
+import { VictoryLine } from "victory";
+import LineChart from "./LineChart";
 
 class CurrencyChart extends React.Component {
   constructor() {
@@ -35,7 +37,9 @@ class CurrencyChart extends React.Component {
   render() {
     return (
       <div>
-        I am chart
+        <LineChart
+          data={this.state.data}
+          />
       </div>
     );
   }
