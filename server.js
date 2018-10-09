@@ -46,6 +46,8 @@ const movement = io.of("/charts-io")
 
 movement.on("connection", function (socket) {
   let strData;
+  const ticker = socket.handshake.query.namespace
+  // console.log("HANDSHAKE",socket.handshake.query.namespace)
 
   pubnub = new PubNub({
     subscribeKey: process.env.SUBSCRIBE_KEY,
@@ -53,7 +55,7 @@ movement.on("connection", function (socket) {
   })
 
   console.log("Updating chartz"), setInterval(
-    () => emitChartData(socket),
+    () => emitChartData(socket, ticker),
     10000
   );
   socket.on("disconnect", () => console.log("Chartz disconnected"))
@@ -61,9 +63,9 @@ movement.on("connection", function (socket) {
 
 })
 
-const emitChartData = async socket => {
+const emitChartData = async (socket, ticker) => {
   try {
-    return axios.get(`https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=USD`)
+    return axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${ticker}&tsyms=USD`)
                     .then((response) => {
                       socket.emit("FromAPI", response.data)
                     })
