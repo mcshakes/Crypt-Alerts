@@ -2,7 +2,7 @@ import React from "react";
 import Client from "../Client";
 import '../css/UserWatchlist.css';
 import AlertForm from "./AlertForm";
-import CurrencyChart from "./CurrencyChart";
+import SnapshotChart from "./SnapshotChart";
 import { authService } from "./AuthService"
 
 class ListItem extends React.Component {
@@ -115,12 +115,7 @@ class ListItem extends React.Component {
         </div>
 
         <div>
-          <CurrencyChart ticker={this.props.coin}/>
-          {/* <AlertForm
-            ticker={this.state.coin}
-            high={this.props.high}
-            low={this.props.low}
-          /> */}
+          <SnapshotChart ticker={this.props.coin}/>
         </div>
       </div>
     )

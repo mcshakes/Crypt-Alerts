@@ -42,7 +42,7 @@ let interval;
 const io = require("socket.io")(server);
 
 //------------ Currency Charts Component ------------------------
-const movement = io.of("/charts-io")
+const movement = io.of("/snapshot-io")
 
 movement.on("connection", function (socket) {
   let strData;

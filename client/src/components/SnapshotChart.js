@@ -1,16 +1,13 @@
 import React from "react";
 import IOClient from "socket.io-client";
-import { VictoryLine } from "victory";
-import LineChart from "./LineChart";
 
-class CurrencyChart extends React.Component {
+class SnapshotChart extends React.Component {
   constructor() {
     super();
     this.state = {
       data: null,
       response: false,
-      endpoint: `/charts-io`
-      // endpoint: `/charts-io/${this.props.ticker}`
+      endpoint: `/snapshot-io`
     };
   }
 
@@ -84,4 +81,4 @@ class CurrencyChart extends React.Component {
   }
 }
 
-export default CurrencyChart;
+export default SnapshotChart;
