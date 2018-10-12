@@ -56,7 +56,7 @@ class SnapshotChart extends React.Component {
                   24h Change: <span id="CHANGE24HOUR">{change24Hour}</span>
                   <span className="pct-change" id="CHANGE24HOUR">{pctChange}</span>
                 </h5>
-  							<h5>Last Market: <span class="exchange" id="LASTMARKET">{lastMarket}</span></h5>
+  							<h5>Last Market: <span className="exchange" id="LASTMARKET">{lastMarket}</span></h5>
   							<h5>Open Hour: <span id="OPENHOUR">{openHour}</span></h5>
   							<h5>High Hour: <span id="HIGHHOUR">{highHour}</span></h5>
   							<h5>Low Hour: <span id="LOWHOUR">{lowHour}</span></h5>
