@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { VictoryLine, VictoryChart, VictoryAxis } from "victory";
+import { VictoryArea, VictoryChart, VictoryAxis } from "victory";
 
 class LineChart extends React.Component {
   state = {
-    data: this.props.data
+    price: this.props.data
   }
 
   render() {
@@ -12,18 +12,17 @@ class LineChart extends React.Component {
       <div>
         <VictoryChart>
           <VictoryAxis
-          />
-          <VictoryAxis
             dependentAxis
             tickFormat={(x) => (`$${x}`)}
           />
-          <VictoryLine
-            style={{
-                    data: { stroke: "#c43a31" },
-                    parent: { border: "1px solid #ccc"}
-                  }}
-            data={this.state.data}
-            x="USD"
+          <VictoryAxis
+          />
+          <VictoryArea
+            style={{ data: { fill: "#c43a31" } }}
+            data={[ { price: this.state.price } ]}
+
+            x="Date"
+            y="USD"
           />
         </VictoryChart>
       </div>

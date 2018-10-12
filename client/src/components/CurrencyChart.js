@@ -57,7 +57,7 @@ class CurrencyChart extends React.Component {
         <div>
                 <h5>
                   24h Change: <span id="CHANGE24HOUR">{change24Hour}</span>
-                  <span class="pct-change" id="CHANGE24HOUR">{pctChange}</span>
+                  <span className="pct-change" id="CHANGE24HOUR">{pctChange}</span>
                 </h5>
   							<h5>Last Market: <span class="exchange" id="LASTMARKET">{lastMarket}</span></h5>
   							<h5>Open Hour: <span id="OPENHOUR">{openHour}</span></h5>
@@ -74,6 +74,12 @@ class CurrencyChart extends React.Component {
         </div>
       );
 
+    } else {
+      return (
+        <div>
+          Waiting for data
+        </div>
+      )
     }
   }
 }
