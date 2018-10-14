@@ -24,7 +24,6 @@ class App extends Component {
         <header className="app-header">
           <h1 className="app-title">CryptWatch</h1>
           <p>Track your favorite cryptocurrencies</p>
-          <p>Get SMS alerts when the price is right</p>
         </header>
         <div className="p p-1"></div>
          <div className="p p-2"></div>

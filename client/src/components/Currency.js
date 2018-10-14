@@ -8,7 +8,6 @@ class Currency extends React.Component {
     let price = this.props.coin.price
     let token = authService.getToken();
 
-    // console.log(this.props)
     const settings = {
       method: "POST",
       headers: {

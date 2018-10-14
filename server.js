@@ -42,7 +42,7 @@ let interval;
 const io = require("socket.io")(server);
 
 //------------ Currency Charts Component ------------------------
-const movement = io.of("/charts-io")
+const movement = io.of("/snapshot-io")
 
 movement.on("connection", function (socket) {
   let strData;
@@ -65,7 +65,7 @@ movement.on("connection", function (socket) {
 
 const emitChartData = async (socket, ticker) => {
   try {
-    return axios.get(`https://min-api.cryptocompare.com/data/price?fsym=${ticker}&tsyms=USD`)
+    return axios.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${ticker}&tsym=USD`)
                     .then((response) => {
                       socket.emit("FromAPI", response.data)
                     })

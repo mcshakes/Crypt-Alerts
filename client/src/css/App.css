@@ -4,7 +4,7 @@ body {
   background-image: radial-gradient(50% 176%, #253854 80%, #061922 100%);
 	min-height: 30rem;
 	position: relative;
-	overflow: hidden;
+	/* overflow: hidden; */
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -33,6 +33,11 @@ h1 {
   color: white;
   grid-column-start: 1;
   grid-column-end: 6;
+}
+
+.navigation a {
+  color: white;
+  text-decoration: none;
 }
 
 .app-title {
@@ -77,21 +82,26 @@ h1 {
 .p-2{
   animation-duration:5s;
   top:60%;
+  z-index: -1;
 }
 .p-3{
   animation-duration:20s;
   top:90%;
+  z-index: -1;
 }
 .p-4{
   animation-duration:15s;
+  z-index: -1;
 }
 .p-5{
   animation-duration:42s;
   top:33%;
+  z-index: -1;
 }
 .p-6{
   animation-duration:20s;
   top:75%;
+  z-index: -1;
 }
 
 ul {
@@ -107,6 +117,31 @@ body {
   margin-top: 30px;
   margin-left: 30px;
 }
+
+@media screen and (max-width: 425px) {
+  .App {
+    grid-template-columns: 1fr 2fr 1fr;
+    margin-left: 5px;
+  }
+
+  .login-container {
+    grid-column: 3/4;
+  }
+
+  .register-container {
+    grid-column: 3/4;
+  }
+
+  .register-form {
+    padding: 5px;
+  }
+
+  .dashboard {
+    grid-column: 2/6;
+    margin-left: 0px;
+  }
+}
+
 
 @media only screen and (min-width: 1024px) {
   .App {
