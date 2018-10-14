@@ -64,7 +64,7 @@ class SnapshotChart extends React.Component {
       const f24hVolumeTo = <NumberFormat value={volume24HourTo} displayType={"text"} prefix={'$'} thousandSeparator={true} decimalScale={3} />
 
       return (
-        <div>
+        <div className="coin-metadata">
                 <h5>
                   24h Change: <span id="CHANGE24HOUR">${fChange}</span>
                   <span className="pct-change" id="CHANGE24HOUR">{fPctChange}</span>

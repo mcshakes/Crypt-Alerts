@@ -109,7 +109,7 @@ class ListItem extends React.Component {
 
     return (
       <div className="list-item-coin">
-        <div >
+        <div className="instant-info">
           <h3>{this.state.coin}</h3>
           <h3>$ {this.state.price} USD</h3>
         </div>
