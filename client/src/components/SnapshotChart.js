@@ -1,6 +1,8 @@
 import React from "react";
 import IOClient from "socket.io-client";
 import NumberFormat from 'react-number-format';
+import '../css/SnapShot.css';
+
 
 class SnapshotChart extends React.Component {
   constructor() {

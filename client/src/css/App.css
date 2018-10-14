@@ -35,6 +35,11 @@ h1 {
   grid-column-end: 6;
 }
 
+.navigation a {
+  color: white;
+  text-decoration: none;
+}
+
 .app-title {
   font-size: 1.5em;
 }

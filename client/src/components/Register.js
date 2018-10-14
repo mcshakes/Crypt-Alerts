@@ -10,7 +10,6 @@ class Register extends React.Component {
     this.state = {
       email: "",
       password: "",
-      phoneNumber: ""
     }
   }
 
@@ -23,7 +22,7 @@ class Register extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { email, password, phoneNumber } = this.state;
+    const { email, password} = this.state;
     fetch("/api/users/signup", {
       method: "POST",
       headers: {
@@ -33,7 +32,6 @@ class Register extends React.Component {
       body: JSON.stringify({
         email: email,
         password: password,
-        phoneNumber: phoneNumber
       })
     })
       .then(res => res.json())
@@ -47,7 +45,6 @@ class Register extends React.Component {
         } else {
           localStorage.setItem("token", response.token)
           this.props.authCheck()
-          // this.props.history.push("/dashboard");
         }
 
       })
@@ -78,12 +75,6 @@ class Register extends React.Component {
             value={this.state.password}
           />
           <label>Phone Number</label>
-          <input
-            type="number"
-            name="phoneNumber"
-            onChange={this.handleChange}
-            value={this.state.phoneNumber}
-          />
           <button type="submit">
             Register
           </button>

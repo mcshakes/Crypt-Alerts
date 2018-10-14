@@ -115,9 +115,7 @@ class Login extends React.Component {
       );
     } else {
       return (
-        <div>
           <Register authCheck={this.props.authCheck}/>
-        </div>
       )
     }
 
