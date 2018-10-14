@@ -66,7 +66,7 @@ class SnapshotChart extends React.Component {
       return (
         <div className="coin-metadata">
                 <h5>
-                  24h Change: <span id="CHANGE24HOUR">${fChange}</span>
+                  24h Change: <span id="CHANGE24HOUR">{fChange}</span>
                   <span className="pct-change" id="CHANGE24HOUR">{fPctChange}</span>
                 </h5>
   							<h5>Last Market: <span className="exchange" id="LASTMARKET">{lastMarket}</span></h5>
