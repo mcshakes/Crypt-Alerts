@@ -86,17 +86,21 @@ h1 {
 .p-3{
   animation-duration:20s;
   top:90%;
+  z-index: -1;
 }
 .p-4{
   animation-duration:15s;
+  z-index: -1;
 }
 .p-5{
   animation-duration:42s;
   top:33%;
+  z-index: -1;
 }
 .p-6{
   animation-duration:20s;
   top:75%;
+  z-index: -1;
 }
 
 ul {
