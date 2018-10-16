@@ -47,12 +47,6 @@ const movement = io.of("/snapshot-io")
 movement.on("connection", function (socket) {
   let strData;
   const ticker = socket.handshake.query.namespace
-  // console.log("HANDSHAKE",socket.handshake.query.namespace)
-
-  pubnub = new PubNub({
-    subscribeKey: process.env.SUBSCRIBE_KEY,
-    publishKey: process.env.PUBLISH_KEY
-  })
 
   console.log("Updating chartz"), setInterval(
     () => emitChartData(socket, ticker),
