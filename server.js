@@ -41,10 +41,21 @@ let interval;
 
 const io = require("socket.io")(server);
 
-//------------ Currency Charts Component ------------------------
+//--------------------------------------------
+
+const port = process.env.PORT || 3001
+
+server.listen(port, () => {
+  console.log(`Express Server listening on %d, on %s mode`, port, app.get("env"))
+});
+
+
+//------------ Currency Snapshot Component ------------------------
+
 const movement = io.of("/snapshot-io")
 
 movement.on("connection", function (socket) {
+  // console.log(socket.handshake)
   let strData;
   const ticker = socket.handshake.query.namespace
 
@@ -70,8 +81,9 @@ const emitChartData = async (socket, ticker) => {
 }
 
 //------------ Market Leaders Component ------------------------
+const leaderSocket = io.of("/capleader")
 
-io.on('connection', function (socket) {
+leaderSocket.on('connection', function (socket) {
   console.log("Updating market cap leaders"), setInterval(
     () => emitCapLeaders(socket),
     10000
@@ -155,13 +167,6 @@ const job = new CronJob('*/8 * * * *', function() {
 
 job.start()
 
-//--------------------------------------------
-
-const port = process.env.PORT || 3001
-
-server.listen(port, () => {
-  console.log("listening on Port 3001")
-});
 
 //------------ DATABASE ------------------------
 

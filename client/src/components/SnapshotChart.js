@@ -10,7 +10,7 @@ class SnapshotChart extends React.Component {
     this.state = {
       data: null,
       response: false,
-      endpoint: `/snapshot-io`
+      endpoint: process.env.NODE_ENV === 'production' ? '/snapshot-io' : `http://localhost:3001/snapshot-io`
     };
   }
 

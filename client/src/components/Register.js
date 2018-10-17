@@ -74,7 +74,6 @@ class Register extends React.Component {
             onChange={this.handleChange}
             value={this.state.password}
           />
-          <label>Phone Number</label>
           <button type="submit">
             Register
           </button>

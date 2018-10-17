@@ -10,7 +10,7 @@ class CapLeader extends React.Component {
     this.state = {
       data: null,
       response: false,
-      endpoint: "http://127.0.0.1:3001"
+      endpoint: process.env.NODE_ENV === 'production' ? '/capleader' : "http://127.0.0.1:3001/capleader"
     };
   }
 
