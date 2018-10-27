@@ -3,8 +3,31 @@
   grid-column-end:5;
 }
 
+.search {
+  width: 500px;
+  height: 40px;
+  margin: auto;
+  background: #444;
+  background: rgba(0,0,0,.2);
+  border-radius:  3px;
+  border: 1px solid #fff;
+}
+
 .prompt {
-  width: 300px;
+  width: 450px;
+  padding: 10px 5px;
+  float: left;color: #ccc;
+  border: 0;
+  background: transparent;
+  border-radius: 3px 0 0 3px;
+  font-size: 20px;
+  padding-bottom: 5px;
+  padding-top: 7px;
+}
+
+.prompt:focus {
+  outline: 0;
+  background: transparent;
 }
 
 .search-suggestions {
