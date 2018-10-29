@@ -17,7 +17,9 @@ class LandingPage extends React.Component {
 
           <div className="explanation">
             <div className="login-aside">
-              <Link to="/home">Login</Link>
+              <button>
+                <Link to="/home">Login</Link>
+              </button>
             </div>
             <section className="intro-text">
               <h5>When it comes to I've always enjoyed watching my money dwindle with the constant . Now, I can sign up and keep an eye on all the cryptocurrencies plummeting, giving me peace of mind. Better to know what you’re losing than not know.
