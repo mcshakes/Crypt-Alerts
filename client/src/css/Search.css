@@ -1,6 +1,7 @@
 .coin-search {
   grid-column-start:3;
   grid-column-end:5;
+  margin-top: 18px;
 }
 
 .search {

@@ -76,7 +76,6 @@ class UserDashboard extends React.Component {
             isLoggedIn={this.isLoggedIn}
           />
         </div>
-        <h1>YOUR DASHBOARD</h1>
         <SearchBar
           addNew={this.addCoinNameWatchlist}
         />
