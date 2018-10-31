@@ -1,6 +1,7 @@
 import React from "react";
 import IOClient from "socket.io-client";
 import NumberFormat from 'react-number-format';
+import Spinner from "./Spinner"
 import '../css/SnapShot.css';
 
 

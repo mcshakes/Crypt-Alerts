@@ -19,4 +19,4 @@ const IntroSVG = () => {
   )
 }
 
-export default IntroSVG
+export default IntroSVG;
