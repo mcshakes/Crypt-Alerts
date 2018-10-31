@@ -88,7 +88,7 @@ class SnapshotChart extends React.Component {
     } else {
       return (
         <div>
-          Waiting for data
+          <Spinner />
         </div>
       )
     }
