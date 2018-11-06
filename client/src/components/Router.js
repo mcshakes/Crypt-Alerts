@@ -8,12 +8,14 @@ import Login from "./Login";
 import Register from "./Register";
 import Logout from "./Logout";
 import UserDashboard from "./UserDashboard";
+import LandingPage from "./LandingPage";
 import { authService } from "./AuthService";
 
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={App} />
+      <Route exact path="/home" component={App} />
+      <Route exact path="/" component={LandingPage} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
       <Route path='/logout' component={Logout} />

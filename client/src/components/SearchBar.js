@@ -60,7 +60,7 @@ class SearchBar extends React.Component {
 
     return (
       <div className="coin-search">
-        <form>
+        <form className="search">
           <input
             type="text"
             className="prompt"
@@ -69,10 +69,12 @@ class SearchBar extends React.Component {
             onChange={this.searchHandler}
           />
         </form>
+
         <ul className="search-suggestions">
           {
             coins.filter(searchingFor(searchValue)).map( coin =>
               <Currency
+                key={coin.currency}
                 coin={coin}
                 addNew={this.handleAddNew}
               />

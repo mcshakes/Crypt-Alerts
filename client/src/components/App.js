@@ -25,13 +25,6 @@ class App extends Component {
           <h1 className="app-title">CryptWatch</h1>
           <p>Track your favorite cryptocurrencies</p>
         </header>
-        <div className="p p-1"></div>
-         <div className="p p-2"></div>
-         <div className="p p-3"></div>
-
-         <div className="p p-4"></div>
-          <div className="p p-5"></div>
-          <div className="p p-6"></div>
         <CapLeader />
         {authService.authenticated() ?
           <UserDashboard /> :

@@ -1,6 +1,7 @@
 import React from "react";
 import IOClient from "socket.io-client";
 import NumberFormat from 'react-number-format';
+import Spinner from "./Spinner"
 import '../css/SnapShot.css';
 
 
@@ -87,7 +88,7 @@ class SnapshotChart extends React.Component {
     } else {
       return (
         <div>
-          Waiting for data
+          <Spinner />
         </div>
       )
     }
