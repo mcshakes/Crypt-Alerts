@@ -13,6 +13,39 @@ const base = 'http://localhost:3001';
 describe('Registration Service', () => {
 
   describe('when not stubbed', () => {
+    describe("POST /api/users/signup", () => {
+      it("should return error message if user already exists", (done) => {
+        const options = {
+          method: "post",
+          body: {
+          	"email": "test_user@test.com",
+          	"password": "password1"
+          },
+          json: true,
+          url: `${base}/api/users/signup`
+        };
+
+        request.post(options, (err, res, body) => {
+          res.statusCode.should.equal(422);
+          res.headers["content-type"].should.contain("application/json");
+          body.message.should.eql("Email already exists");
+          body.success.should.eql(false)
+          body.should.not.include.keys("token")
+        });
+        done();
+      })
+    })
+
+  });
+
+  describe('when stubbed', () => {
+    beforeEach(() => {
+      this.post = sinon.stub(request, 'post');
+    });
+
+    afterEach(() => {
+      request.post.restore();
+    });
 
     describe("POST /api/users/signup", () => {
 
@@ -20,8 +53,8 @@ describe('Registration Service', () => {
         const options = {
           method: "post",
           body: {
-          	"email": "fake_man_666@test.com",
-          	"password": "password1"
+            "email": "yammerstatter_666@test.com",
+            "password": "password1"
           },
           json: true,
           url: `${base}/api/users/signup`
@@ -37,18 +70,7 @@ describe('Registration Service', () => {
         done();
 
       }) // it block
-    })
+    });
 
   });
-
-  // describe('when stubbed', () => {
-  //   beforeEach(() => {
-  //     this.get = sinon.stub(request, 'post');
-  //   });
-  //   afterEach(() => {
-  //     request.restore();
-  //   });
-  //   // test cases
-  // });
-
 });
