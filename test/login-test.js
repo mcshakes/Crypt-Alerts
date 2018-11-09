@@ -53,18 +53,27 @@ describe('Login Service', () => {
         });
         done();
       }) //it block
+
+      it("should only return an error message on server if password is incorrect", (done) => {
+        const options = {
+          method: "post",
+          body: {
+          	"email": "test_user@test.com",
+          	"password": "wrongPassword"
+          },
+          json: true,
+          url: `${base}/api/users/login`
+        };
+
+        request.post(options, (err, res, body) => {
+          body.should.not.include.keys("token", "success")
+          res.statusCode.should.equal(401);
+          res.headers["content-type"].should.contain("application/json");
+          body.message.should.eql("Authorization Failed...");
+        });
+        done();
+      }) //it block
     })
-
-  });
-
-  describe('when stubbed', () => {
-    beforeEach(() => {
-      this.get = sinon.stub(request, 'post');
-    });
-    afterEach(() => {
-      request.restore();
-    });
-    // test cases
   });
 
 });
