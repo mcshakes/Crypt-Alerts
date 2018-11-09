@@ -30,13 +30,29 @@ describe('Login Service', () => {
         request.post(options, (err, res, body) => {
           res.statusCode.should.equal(200);
           res.headers["content-type"].should.contain("application/json");
-          body.status.should.eql("success");
-          console.log(body.data)
+          body.message.should.eql("Auth successful");
+          body.success.should.eql(true)
         });
         done();
 
       }) // it block
 
+      it("should return a JWT upon authentication", (done) => {
+        const options = {
+          method: "post",
+          body: {
+          	"email": "test_user@test.com",
+          	"password": "password1"
+          },
+          json: true,
+          url: `${base}/api/users/login`
+        };
+
+        request.post(options, (err, res, body) => {
+          body.should.include.keys("message", "token", "success")
+        });
+        done();
+      }) //it block
     })
 
   });
