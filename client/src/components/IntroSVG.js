@@ -2,7 +2,9 @@ import React from "react";
 
 const IntroSVG = () => {
   const styles = {
-    transform: "rotate(-3deg)"
+    transform: "rotate(-3deg)",
+    fill: "hsla(294, 100%, 48%, 1)"
+    // hsl(21, 100%, 70%) !important
   };
 
   return (

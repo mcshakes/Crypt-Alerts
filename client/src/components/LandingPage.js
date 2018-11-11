@@ -12,7 +12,7 @@ class LandingPage extends React.Component {
         <section className="main-hero">
           <div className="captions">
             <h1>CryptWatch</h1>
-            <h1>Watch and Hodl. All in one place</h1>
+            <h1>All the Coins. One place</h1>
           </div>
 
           <div className="explanation">
@@ -22,9 +22,16 @@ class LandingPage extends React.Component {
               </button>
             </div>
             <section className="intro-text">
-              <h5>When it comes to I've always enjoyed watching my money dwindle with the constant . Now, I can sign up and keep an eye on all the cryptocurrencies plummeting, giving me peace of mind. Better to know what you’re losing than not know.
+              <h5>When it comes to watching money dwindle, stay current with real time prices. Sign up and keep an eye on all the cryptocurrencies plummeting. Peace of mind means knowing what you're losing.
               </h5>
             </section>
+          </div>
+
+          <div id="illustration">
+            <img src="assets/dash.svg" alt="dash img" id="dash" className="crypto-icons" />
+            <img src="assets/miota.svg" alt="iota img" id="iota" className="crypto-icons" />
+            <img src="assets/eth.svg" alt="eth img" id="eth" className="crypto-icons" />
+            <img src="assets/monitor.svg" alt="monitor img" id="monitor" />
           </div>
 
         </section>

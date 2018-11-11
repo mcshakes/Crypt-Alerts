@@ -2,6 +2,8 @@
 .main-hero {
   display: grid;
   grid-template-columns: 50% 50%;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .login-aside button {
@@ -29,4 +31,8 @@
 .login-aside a:hover {
   background-color: darkcyan;
   color: white;
+}
+
+.intro-text {
+  color: white
 }
