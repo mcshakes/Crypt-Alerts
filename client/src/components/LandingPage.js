@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import IntroSVG from "./IntroSVG"
 import '../css/LandingPage.css';
+import Dash from "../assets/dash.svg";
+import Eth from "../assets/eth.svg";
+import Monitor from "../assets/monitor.svg";
 
 class LandingPage extends React.Component {
-
 
   render() {
     return (
@@ -27,11 +29,10 @@ class LandingPage extends React.Component {
             </section>
           </div>
 
-          <div id="illustration">
-            <img src="assets/dash.svg" alt="dash img" id="dash" className="crypto-icons" />
-            <img src="assets/miota.svg" alt="iota img" id="iota" className="crypto-icons" />
-            <img src="assets/eth.svg" alt="eth img" id="eth" className="crypto-icons" />
-            <img src="assets/monitor.svg" alt="monitor img" id="monitor" />
+          <div className="illustration">
+            <img src={Dash} alt="dash img" id="dash" className="crypto-icons" />
+            <img src={Eth} alt="eth img" id="eth" className="crypto-icons" />
+            <img src={Monitor} alt="monitor img" id="monitor" />
           </div>
 
         </section>

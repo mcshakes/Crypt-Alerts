@@ -1,9 +1,17 @@
+.landing-page {
+  display: grid;
+  grid-template-columns: .5fr 1fr 1fr .5fr;
+  grid-template-areas: ". left right .";
+}
 
 .main-hero {
   display: grid;
-  grid-template-columns: 50% 50%;
+  /* grid-template-columns: 50% 50%; */
   margin-left: 10px;
   margin-right: 10px;
+
+  grid-area: left;
+  align-self: center;
 }
 
 .login-aside button {
@@ -31,8 +39,44 @@
 .login-aside a:hover {
   background-color: darkcyan;
   color: white;
+
+  -webkit-animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  -moz-animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  -ms-animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
 }
+
+@-webkit-keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
+@-moz-keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
+@-ms-keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
+@keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
 
 .intro-text {
   color: white
+}
+
+.illustration {
+  grid-area: right;
+  align-self: center;
+  justify-self: center;
+  width: 80%;
+  padding: 20%;
+}
+
+#monitor{
+  animation: monitorIn 1s ease-in-out forwards; /* assign animation to monitor with 'monitorIn' as keyframe name */
+  opacity: 0;
+}
+
+.crypto-icons{
+    position: absolute;
+    width: 12%;
+}
+
+#dash {
+    margin-top: -4%;
+    margin-left: 9%;
+    animation: chatblips .5s ease-in-out 2.7s forwards; /* assign animation to dash with 'chatblips' as keyframe name */
+    opacity: 0;
+    z-index: 2;
 }
