@@ -40,16 +40,19 @@
   background-color: darkcyan;
   color: white;
 
-  -webkit-animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
-  -moz-animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
-  -ms-animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
-  animation: pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  -webkit-animation: Pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  -moz-animation: Pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  -ms-animation: Pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+  animation: Pulse 1.25s infinite cubic-bezier(0.50, 0, 0, 1);
+
 }
 
-@-webkit-keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
-@-moz-keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
-@-ms-keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
-@keyframes pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
+@-webkit-keyframes Pulse {
+  to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}
+}
+@-moz-keyframes Pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
+@-ms-keyframes Pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
+@keyframes Pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
 
 .intro-text {
   color: white
@@ -58,7 +61,6 @@
 .illustration {
   grid-area: right;
   align-self: center;
-  justify-self: center;
   width: 80%;
   padding: 20%;
 }
@@ -79,4 +81,41 @@
     animation: chatblips .5s ease-in-out 2.7s forwards; /* assign animation to dash with 'chatblips' as keyframe name */
     opacity: 0;
     z-index: 2;
+}
+
+#eth {
+    margin-top: 9.5%;
+    margin-left: 18%;
+    animation: chatblips 0.5s ease-in-out 1.9s forwards; /* assign animation to eth with 'chatblips' as keyframe name */
+    opacity: 0;
+    z-index: 2;
+}
+
+@keyframes monitorIn {
+    from {
+        transform: translateY(-30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes chatblips {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
