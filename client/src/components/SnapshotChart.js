@@ -36,8 +36,10 @@ class SnapshotChart extends React.Component {
   }
 
   render() {
-    if (this.state.data) {
+
+    if (this.state.data && this.state.data.Response === "Success") {
       const aggData = this.state.data.Data.AggregatedData
+
 
       const lastMarket = aggData.LASTMARKET
       const change24Hour = aggData.CHANGE24HOUR
@@ -86,11 +88,24 @@ class SnapshotChart extends React.Component {
       );
 
     } else {
-      return (
-        <div>
-          <Spinner />
-        </div>
-      )
+
+        // const error = this.state.data.Response
+      console.log(this.state.data)
+      // if (error === "Error") {
+      //   return (
+      //     <div>
+      //       {this.state.data.Message}
+      //     </div>
+      //   )
+      //
+      // } else {
+
+        return (
+          <div>
+            <Spinner />
+          </div>
+        )
+      // }
     }
   }
 }
