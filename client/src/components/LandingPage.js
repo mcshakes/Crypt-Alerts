@@ -11,7 +11,7 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-page">
-        
+
         <div className="call-action">
           <div className="captions">
             <h1>CryptWatch</h1>
@@ -31,12 +31,8 @@ class LandingPage extends React.Component {
           <img src={Monitor} alt="monitor img" id="monitor" />
         </div>
 
-        <div className="graph-image">
-          <IntroSVG />
-        </div>
-
         <section className="footer-text">
-          <h5>When it comes to watching money dwindle, stay current with real time prices. Sign up and keep an eye on all the cryptocurrencies plummeting. Peace of mind means knowing what you're losing.
+          <h5>Being empowered means staying current on real time prices. Sign up and keep an eye on all the cryptocurrencies plummeting. Peace of mind is knowing how much you're losing.
           </h5>
         </section>
 

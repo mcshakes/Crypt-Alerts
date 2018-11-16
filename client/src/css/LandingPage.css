@@ -60,6 +60,7 @@
 .footer-text {
   color: white;
   grid-column: 2/4;
+  text-align: center;
 }
 
 .illustration {
