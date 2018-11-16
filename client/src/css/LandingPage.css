@@ -4,9 +4,8 @@
   grid-template-areas: ". left right .";
 }
 
-.main-hero {
+.call-action {
   display: grid;
-  /* grid-template-columns: 50% 50%; */
   margin-left: 10px;
   margin-right: 10px;
 
@@ -16,6 +15,10 @@
 
 .login-aside button {
   border-radius: 6px;
+}
+
+.graph-image {
+  grid-column: 1/5;
 }
 
 .login-aside a {
@@ -54,8 +57,9 @@
 @-ms-keyframes Pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
 @keyframes Pulse {to {box-shadow: 0 0 0 20px rgba(9, 187, 233, 0);}}
 
-.intro-text {
-  color: white
+.footer-text {
+  color: white;
+  grid-column: 2/4;
 }
 
 .illustration {
