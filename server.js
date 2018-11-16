@@ -46,6 +46,7 @@ const io = require("socket.io")(server);
 const port = process.env.PORT || 3001
 
 server.listen(port, () => {
+  console.log("Node Version: ", process.version)
   console.log(`Express Server listening on %d, on %s mode`, port, app.get("env"))
 });
 
