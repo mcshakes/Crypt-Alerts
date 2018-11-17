@@ -1,5 +1,4 @@
 import React from 'react';
-import Login from "./Login";
 import { Link } from 'react-router-dom';
 import { authService } from "./AuthService"
 import '../css/App.css';

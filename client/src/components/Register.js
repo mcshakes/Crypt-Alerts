@@ -1,7 +1,6 @@
 import React from "react";
 import FormErrors from "./FormErrors";
 import '../css/Forms.css';
-import { Link, BrowserRouter, Route } from 'react-router-dom'
 
 class Register extends React.Component {
   constructor(props) {
