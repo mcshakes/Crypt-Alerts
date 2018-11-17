@@ -89,23 +89,14 @@ class SnapshotChart extends React.Component {
 
     } else {
 
-        // const error = this.state.data.Response
-      console.log(this.state.data)
-      // if (error === "Error") {
-      //   return (
-      //     <div>
-      //       {this.state.data.Message}
-      //     </div>
-      //   )
-      //
-      // } else {
+        const error = (this.state.data && this.state.data.Response === "Error") ? this.state.data.Message : ""
 
         return (
           <div>
+            <span>{error}</span>
             <Spinner />
           </div>
         )
-      // }
     }
   }
 }
