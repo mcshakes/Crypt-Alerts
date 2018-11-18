@@ -1,6 +1,4 @@
 import React from 'react';
-import { Route, Redirect, browserHistory} from 'react-router';
-import { Link } from "react-router-dom";
 import FormErrors from "./FormErrors";
 import '../css/Forms.css';
 import Register from "./Register";

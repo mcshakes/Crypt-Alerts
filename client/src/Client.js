@@ -1,5 +1,3 @@
-const axios = require('axios');
-const key = process.env.NOMICS_KEY
 
 function marketLeaders(cb) {
   return fetch(`/api/market-leaders`)
@@ -10,13 +8,6 @@ function marketLeaders(cb) {
 
 function searchList(cb) {
   return fetch("/api/search")
-  .then(checkStatus)
-  .then(parseJSON)
-  .then(cb)
-}
-
-function getPrices(cb) {
-  return fetch("/api/price")
   .then(checkStatus)
   .then(parseJSON)
   .then(cb)

@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import '../css/App.css';
 import CapLeader from "./CapLeader";
-import SearchBar from "./SearchBar";
 import Login from "./Login";
-import Register from "./Register";
-import Logout from "./Logout";
 import { authService } from "./AuthService";
 import UserDashboard from "./UserDashboard";
-import NavBar from "./NavBar";
 
-import { bindActionCreators } from "redux";
-import { connect } from "react-redux";
 
 class App extends Component {
 

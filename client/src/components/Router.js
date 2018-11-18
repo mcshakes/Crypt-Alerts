@@ -3,11 +3,9 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Redirect } from 'react-router'
 
 import App from "./App";
-import CapLeader from "./CapLeader";
 import Login from "./Login";
 import Register from "./Register";
 import Logout from "./Logout";
-import UserDashboard from "./UserDashboard";
 import LandingPage from "./LandingPage";
 import { authService } from "./AuthService";
 
