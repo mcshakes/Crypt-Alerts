@@ -32,7 +32,7 @@ class LandingPage extends React.Component {
         </div>
 
         <section className="footer-text">
-          <h5>Being empowered means staying current on real time prices. Sign up and keep an eye on all the cryptocurrencies plummeting. Peace of mind is knowing how much you're losing.
+          <h5>Being empowered means staying current on real time prices. Sign up and keep an eye on all the cryptocurrencies plummeting. Peace of mind is knowing how much you are losing.
           </h5>
         </section>
 
