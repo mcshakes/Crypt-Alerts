@@ -19,9 +19,9 @@ class LandingPage extends React.Component {
           </div>
 
             <div className="login-aside">
-              <button>
-                <Link to="/home">Login</Link>
-              </button>
+                <Link to="/home">
+                  Login
+                </Link>
             </div>
         </div>
 
