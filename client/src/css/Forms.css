@@ -66,6 +66,11 @@
   padding: 20px 15px;
 }
 
+.login-form label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .login-form input {
   background:#F6F7F9;
   border:none;
@@ -73,6 +78,7 @@
   height:40px;
   padding:0px 10px;
   outline:none;
+  font-size: inherit;
 }
 
 .login-form button {
@@ -81,12 +87,13 @@
   padding:0px 10px;
   outline:none;
 
+    margin-top: 20px;
+
   border-radius: 6px;
   border: none;
   color: black;
   padding: 16px 32px;
   font-size: 16px;
-  margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;

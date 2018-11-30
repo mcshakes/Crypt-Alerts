@@ -63,7 +63,6 @@ class SnapshotChart extends React.Component {
       const fLastVolume = <NumberFormat value={lastVolume} displayType={"text"} thousandSeparator={true} decimalScale={3} />
       const fLastVolumeTo = <NumberFormat value={lastVolumeTo} displayType={"text"} prefix={'$'} thousandSeparator={true} decimalScale={3} />
 
-      const f24hVolume = <NumberFormat value={volume24} displayType={"text"} thousandSeparator={true} decimalScale={3} />
       const f24hVolumeTo = <NumberFormat value={volume24HourTo} displayType={"text"} prefix={'$'} thousandSeparator={true} decimalScale={3} />
 
       return (
@@ -79,11 +78,6 @@ class SnapshotChart extends React.Component {
   							<h5>Open Day: <span id="OPEN24HOUR">{openHour}</span></h5>
   							<h5>High Day: <span id="HIGH24HOUR">{highHour}</span></h5>
   							<h5>Low Day: <span id="LOW24HOUR">{lowHour}</span></h5>
-  							<h5>Last Trade Volume: <span id="LASTVOLUME">{fLastVolume}</span></h5>
-  							<h5>Last Trade Volume To: <span id="LASTVOLUMETO">{fLastVolumeTo}</span></h5>
-  							<h5>24h Volume: <span id="VOLUME24HOUR">{f24hVolume}</span></h5>
-  							<h5>24h VolumeTo: <span id="VOLUME24HOURTO">{f24hVolumeTo}</span></h5>
-                <h5>Total Volume (USD): <span id="TOTALVOLUME24HTO">{formattedVolume}</span></h5>
         </div>
       );
 
