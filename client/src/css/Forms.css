@@ -5,33 +5,56 @@
 }
 
 .register-form {
-  display: grid;
-  background-color: #F6F7F8;
-  border: 1px solid #D6D9DC;
+  animation: hi 0.5s;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  white-space: nowrap;
+
+  background:linear-gradient(to left, #955DFF, #6FAAFF);
   border-radius: 3px;
-  padding: 50px;
   margin: 0 auto;
   margin-bottom: 10px;
-  grid-gap: 0.3em 0.6em;
+
+  transition: all 0.4s;
+  padding: 20px 15px;
+}
+
+.register-form label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.register-form input {
+  background:#F6F7F9;
+  border:none;
+  border-radius:4px;
+  height:40px;
+  padding:0px 10px;
+  outline:none;
+  font-size: inherit;
 }
 
 .register-form button {
-  color: #0099CC;
-  background: transparent;
-  border: 2px solid #008CBA;
+  border-radius:4px;
+  width:100%;
+  padding:0px 10px;
+  outline:none;
+
+    margin-top: 20px;
+
   border-radius: 6px;
   border: none;
   color: black;
   padding: 16px 32px;
-  text-align: center;
-  display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  text-decoration: none;
   text-transform: uppercase;
+
+  background:rgba(0, 0, 0, 0.5);
+  background:#F6F7F9;
 }
 
 .register-form button:hover {
@@ -41,37 +64,66 @@
 
 /*  =========================  LOGIN FORM ========================*/
 
+@keyframes hi{
+   from { transform: translateY(50%) scale(0, 0); opacity:0; }
+}
+
+
 .login-container {
   grid-column: 2/6;
 }
 
 .login-form {
-  display: grid;
-  background-color: #F6F7F8;
-  border: 1px solid #D6D9DC;
+  animation: hi 0.5s;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  white-space: nowrap;
+
+  background:linear-gradient(to left, #955DFF, #6FAAFF);
   border-radius: 3px;
-  padding: 50px;
   margin: 0 auto;
   margin-bottom: 10px;
-  grid-gap: 0.3em 0.6em;
+
+  transition: all 0.4s;
+  padding: 20px 15px;
+}
+
+.login-form label {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.login-form input {
+  background:#F6F7F9;
+  border:none;
+  border-radius:4px;
+  height:40px;
+  padding:0px 10px;
+  outline:none;
+  font-size: inherit;
 }
 
 .login-form button {
-  color: #0099CC;
-  background: transparent;
-  border: 2px solid #008CBA;
+  border-radius:4px;
+  width:100%;
+  padding:0px 10px;
+  outline:none;
+
+    margin-top: 20px;
+
   border-radius: 6px;
   border: none;
   color: black;
   padding: 16px 32px;
-  display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  text-decoration: none;
   text-transform: uppercase;
+
+  background:rgba(0, 0, 0, 0.5);
+  background:#F6F7F9;
 }
 
 .login-form button:hover {

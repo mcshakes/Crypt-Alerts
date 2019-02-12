@@ -1,12 +1,13 @@
-#LASTMARKET {
-  color: #42f492;
-}
-
 .coin-metadata {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  color: white;
 } h5 {
   margin-top: 15px;
   margin-bottom: 15px;
   font-size: 1em;
+}
+
+#LASTMARKET {
+  color: #42f492;
 }

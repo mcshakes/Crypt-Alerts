@@ -3,6 +3,7 @@ import Client from "../Client";
 import '../css/CapLeader.css';
 import LeaderCoin from "./LeaderCoin"
 import IOClient from "socket.io-client";
+import Puff from "../assets/puff.svg";
 
 class CapLeader extends React.Component {
   constructor() {
@@ -34,10 +35,15 @@ class CapLeader extends React.Component {
   }
 
   render() {
+    let wait = <div>
+                <p id="wait-message">Loading...</p>
+                <img src={Puff} />
+              </div>
+
     return (
       <div className="leader-container">
         <aside className="market-cap-leader">
-          {this.state.data == null ? "Please Wait..." :
+          {this.state.data == null ? wait :
           this.state.data.map((coin, idx) => <LeaderCoin key={idx} currency={coin.currency} price={coin.price}/>)}
         </aside>
       </div>
