@@ -65,6 +65,11 @@ class SnapshotChart extends React.Component {
 
       const f24hVolumeTo = <NumberFormat value={volume24HourTo} displayType={"text"} prefix={'$'} thousandSeparator={true} decimalScale={3} />
 
+      const colorScheme = {
+        red: "#FF4136",
+        blue: "white"
+      };
+  // const NumberFormat.state.value[0] === "-"
       return (
         <div className="coin-metadata">
                 <h5>

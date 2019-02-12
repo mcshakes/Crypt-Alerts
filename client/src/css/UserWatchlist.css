@@ -8,7 +8,7 @@
 
 .list-item-coin {
   border: 2.5px solid darkcyan;
-  background: darkcyan;
+  background-color: rgba(40,57,101,.9);
   border-radius: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
