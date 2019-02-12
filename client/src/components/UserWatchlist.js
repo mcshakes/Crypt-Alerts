@@ -22,7 +22,7 @@ class UserWatchlist extends React.Component {
     return (
       <div>
         <h2>You are Watching These Currencies</h2>
-        <ul className="coin-watchlist">
+        <div className="coin-watchlist">
           {
 
             this.props.coins.map((coin, idx) => {
@@ -35,7 +35,7 @@ class UserWatchlist extends React.Component {
                       />
             })
           }
-        </ul>
+        </div>
       </div>
     )
   }

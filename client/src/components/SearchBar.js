@@ -64,6 +64,7 @@ class SearchBar extends React.Component {
           <input
             type="text"
             className="prompt"
+            aria-label="Search by currency ticker symbol"
             placeholder="Search by ticker symbol"
             value={searchValue}
             onChange={this.searchHandler}

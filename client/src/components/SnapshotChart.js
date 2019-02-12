@@ -69,20 +69,20 @@ class SnapshotChart extends React.Component {
         red: "#FF4136",
         blue: "white"
       };
-  // const NumberFormat.state.value[0] === "-"
+
       return (
         <div className="coin-metadata">
                 <h5>
-                  24h Change: <span id="CHANGE24HOUR">{fChange}</span>
-                  <span className="pct-change" id="CHANGE24HOUR">{fPctChange}</span>
+                  24h Change: <span id={"CHANGE24HOUR_" + this.props.ticker}>{fChange}</span>
+                  <span id={"CHANGE24HOUR_" + this.props.ticker}>{fPctChange}</span>
                 </h5>
-  							<h5>Last Market: <span className="exchange" id="LASTMARKET">{lastMarket}</span></h5>
-  							<h5>Open Hour: <span id="OPENHOUR">{openHour}</span></h5>
-  							<h5>High Hour: <span id="HIGHHOUR">{highHour}</span></h5>
-  							<h5>Low Hour: <span id="LOWHOUR">{lowHour}</span></h5>
-  							<h5>Open Day: <span id="OPEN24HOUR">{openHour}</span></h5>
-  							<h5>High Day: <span id="HIGH24HOUR">{highHour}</span></h5>
-  							<h5>Low Day: <span id="LOW24HOUR">{lowHour}</span></h5>
+  							<h5>Last Market: <span className="exchange" id={"LASTMARKET_" + this.props.ticker}>{lastMarket}</span></h5>
+  							<h5>Open Hour: <span id={"OPENHOUR_" + this.props.ticker}>{openHour}</span></h5>
+  							<h5>High Hour: <span id={"HIGHHOUR_" + this.props.ticker}>{highHour}</span></h5>
+  							<h5>Low Hour: <span id={"LOWHOUR_" +this.props.ticker}>{lowHour}</span></h5>
+  							<h5>Open Day: <span id={"OPEN24HOUR_" + this.props.ticker}>{openHour}</span></h5>
+  							<h5>High Day: <span id={"HIGH24HOUR_" + this.props.ticker}>{highHour}</span></h5>
+  							<h5>Low Day: <span id={"LOW24HOUR_" + this.props.ticker}>{lowHour}</span></h5>
         </div>
       );
 
