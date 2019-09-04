@@ -171,11 +171,10 @@ job.start()
 
 //------------ DATABASE ------------------------
 
-mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
-  .MONGO_PASS}@ds127342.mlab.com:27342/crypt-alerts`, {
-    useNewUrlParser: true,
-    useCreateIndex: true
-  });
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0-b5rcs.mongodb.net/test?retryWrites=true&w=majority`, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 mongoose.Promise = global.Promise;
 
