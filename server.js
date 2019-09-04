@@ -72,9 +72,9 @@ movement.on("connection", function (socket) {
 const emitChartData = async (socket, ticker) => {
   try {
     return axios.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${ticker}&tsym=USD`)
-                    .then((response) => {
-                      socket.emit("FromAPI", response.data)
-                    })
+      .then((response) => {
+        socket.emit("FromAPI", response.data)
+      })
 
   } catch (error) {
     console.log(`Error: ${error.code}`);
@@ -97,19 +97,19 @@ const capLeaders = ["BTC", "ETH", "XRP", "BCH", "LTC", "ADA", "NEO", "XLM", "EOS
 const emitCapLeaders = async socket => {
   try {
     return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
-                    .then((response) => {
-                      let collection = []
+      .then((response) => {
+        let collection = []
 
-                      capLeaders.map((ticker) => {
-                        response.data.filter((coin) => {
-                          if (coin.currency === ticker) {
-                            collection.push(coin)
-                          }
-                        })
-                      })
+        capLeaders.map((ticker) => {
+          response.data.filter((coin) => {
+            if (coin.currency === ticker) {
+              collection.push(coin)
+            }
+          })
+        })
 
-                      socket.emit("FromAPI", collection)
-                    })
+        socket.emit("FromAPI", collection)
+      })
 
   } catch (error) {
     console.log(`Error: ${error.code}`);
@@ -129,7 +129,7 @@ function getNewPrices() {
 }
 
 
-const job = new CronJob('*/8 * * * *', function() {
+const job = new CronJob('*/8 * * * *', function () {
   let collection = new Array();
 
   Currency.find()
@@ -155,8 +155,8 @@ const job = new CronJob('*/8 * * * *', function() {
         .then(updates => {
           updates.map((newPrice) => {
             let query = Currency.findOneAndUpdate(
-              {ticker: newPrice.currency},
-              {price: newPrice.price}
+              { ticker: newPrice.currency },
+              { price: newPrice.price }
             )
             query.exec();
           })
@@ -172,7 +172,10 @@ job.start()
 //------------ DATABASE ------------------------
 
 mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
-            .MONGO_PASS}@ds127342.mlab.com:27342/crypt-alerts`);
+  .MONGO_PASS}@ds127342.mlab.com:27342/crypt-alerts`, {
+    useNewUrlParser: true,
+    useCreateIndex: true
+  });
 
 mongoose.Promise = global.Promise;
 
