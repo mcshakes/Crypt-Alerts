@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 const key = process.env.NOMICS_KEY
 
-const userRouter = require("./routes/user")
+const authRoute = require("./routes/auth")
 const watchlistRouter = require("./routes/watchlist")
 const currencyRouter = require("./routes/currency")
 
@@ -32,7 +32,7 @@ const APIRouter = require("./routes/nomicsAPI")
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use(userRouter);
+app.use("/api/user", authRoute);
 app.use(watchlistRouter);
 app.use(currencyRouter);
 app.use(APIRouter);
