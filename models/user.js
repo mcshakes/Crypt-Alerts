@@ -17,14 +17,12 @@ const userSchema = mongoose.Schema({
   firstName: {
     type: String
   },
-  watchlist: [
-    {
+  watchlist: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Watchlist",
-    }
-  ],
+    ref: "Watchlist"
+  },
   phoneNumber: String,
-  createdDate: {type: Date, default: Date.now}
+  createdDate: { type: Date, default: Date.now }
 })
 
 const User = mongoose.model("User", userSchema)
