@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const bodyParser = require("body-parser");
-const checkAuth = require("../middleware/check-auth");
+const checkAuth = require("../middleware/verifyAuthToken");
 
 const mongoose = require("mongoose");
 const { User } = require("../models/user")

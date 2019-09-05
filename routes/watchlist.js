@@ -1,30 +1,30 @@
 const express = require("express");
 const router = express.Router()
 const bodyParser = require("body-parser");
-const checkAuth = require("../middleware/check-auth");
+const verifyAuthToken = require("../middleware/verifyAuthToken");
 
 const mongoose = require("mongoose");
 const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
-router.get("/api/coin-watchlist", checkAuth, (req, res) => {
+router.get("/api/coin-watchlist", verifyAuthToken, (req, res) => {
   let userId = req.userData.userId;
 
-  Watchlist.find({userId: userId})
+  Watchlist.find({ userId: userId })
     .then(results => {
       return results.map(item => {
         let coinID = item.list[0]
         let high = item.highLimit
         let low = item.lowLimit
 
-      return Currency.findById(coinID, (err, coin) => {
+        return Currency.findById(coinID, (err, coin) => {
           if (err) throw err;
         })
-        .then(coin => {
-          const new_coin = Object.assign({}, coin, {high, low});
-          return new_coin
-        })
+          .then(coin => {
+            const new_coin = Object.assign({}, coin, { high, low });
+            return new_coin
+          })
       })
     })
     .then(promises => {
@@ -36,18 +36,18 @@ router.get("/api/coin-watchlist", checkAuth, (req, res) => {
     })
 })
 
-router.post("/api/set-alert", checkAuth, (req, res) => {
+router.post("/api/set-alert", verifyAuthToken, (req, res) => {
   let userId = req.userData.userId;
   let ticker = req.body.ticker
   let high = req.body.high
   let low = req.body.low
 
-  Currency.find({ticker: ticker})
+  Currency.find({ ticker: ticker })
     .then(coin => {
       return coin[0]._id
     })
     .then(coinID => {
-      let query = {userId: userId, list:[coinID]}
+      let query = { userId: userId, list: [coinID] }
       Watchlist.find(query)
         .then(userWatchlist => {
           // console.log("THIS?", userWatchlist[0])
@@ -67,11 +67,11 @@ router.post("/api/set-alert", checkAuth, (req, res) => {
 
 })
 
-router.post("/api/watchlist-status", checkAuth, (req, res) => {
+router.post("/api/watchlist-status", verifyAuthToken, (req, res) => {
   let userId = req.userData.userId;
   let coinId = req.body.coinID
 
-  let query = {userId: userId, list:[coinId]}
+  let query = { userId: userId, list: [coinId] }
   Watchlist.find(query)
     .then(data => {
       res.json(data)
@@ -81,11 +81,11 @@ router.post("/api/watchlist-status", checkAuth, (req, res) => {
     })
 })
 
-router.post("/api/change-alert-status", checkAuth, (req, res) => {
+router.post("/api/change-alert-status", verifyAuthToken, (req, res) => {
   let userId = req.userData.userId;
   let coinId = req.body.coinID
 
-  let query = {userId: userId, list:[coinId]}
+  let query = { userId: userId, list: [coinId] }
   Watchlist.find(query)
     .then(data => {
       return data[0].update({
