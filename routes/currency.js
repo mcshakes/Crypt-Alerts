@@ -1,95 +1,100 @@
 const express = require("express");
 const router = express.Router()
 const bodyParser = require("body-parser");
-const checkAuth = require("../middleware/verifyAuthToken");
+const verifyAuthToken = require("../middleware/verifyAuthToken");
 
 const mongoose = require("mongoose");
 const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
-router.post("/api/add-coin", checkAuth, (req, res) => {
-  let userId = req.userData.userId;
+router.post("/api/add-coin", verifyAuthToken, async (req, res) => {
+  let userID = req.user._id
   let ticker = req.body.ticker
   let price = req.body.price
 
-    Currency.find({
-        ticker: ticker
-      })
-      .exec()
-      .then(coin => {
-        if (coin.length < 1) {
-          Currency
-            .create({
-              _id: new mongoose.Types.ObjectId(),
-              ticker: ticker,
-              price: price
-            })
-            .then((coin) => {
+  const searchCoin = await Currency.find({ ticker: ticker })
+  // SEE IF COIN EXISTS
 
-              let watcher = Watchlist
-                              .create({
-                                _id: new mongoose.Types.ObjectId(),
-                                userId: userId,
-                                list: [
-                                  coin
-                                ]
-                              })
-            })
-            .catch(err => {
-              console.log(err)
-              res.status(500).json({
-                error: err
-              })
-            })
-        }
+  // IF NOT (ARRAY IS EMPTY):
+  if (searchCoin.length < 1) {
+    console.log("New Coin is being created in the DB")
 
-        if (coin.length > 0) {
-          // console.log("COINS EXISTS IN DB!")
-          // Watchlist.find({userId: userId})
-          //   .then(allWl => {
-          //     allWl.map(watchlist => {
-          //       if (!watchlist.list[0] === coin._id) {
-          //         console.log("DOESNT HAVE IT", coin)
-          //         // Watchlist
-          //         //   .create({
-          //         //     _id: new mongoose.Types.ObjectId(),
-          //         //     userId: userId,
-          //         //     list: [ coin[0] ]
-          //         //   })
-          //         //   .then((watchItem) => {
-          //         //     return response.json(watchItem)
-          //         //   })
-          //       } else {
-          //         // response.send({message: "You are already watching this coin"})
-          //         throw new Error("You are already watching this")
-          //       }
-          //     })
-          //   })
-
-          Watchlist
-            .create({
-              _id: new mongoose.Types.ObjectId(),
-              userId: userId,
-              list: [ coin[0] ]
-            })
-            .then((watchItem) => {
-              return response.json(watchItem)
-            })
-        }
-      })
-
-    .then(result => {
-      res.status(201).json({
-        message: "Watch created on coin"
-      })
+    const newCoin = new Currency({
+      ticker: ticker,
+      price: price
     })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({
-        error: err
+
+    try {
+      const savedCoin = await newCoin.save();
+
+      // Save coin on Watchlist.target array
+
+      const newWatcher = await Watchlist.create({
+        userId: userID,
+        targets: [
+          savedCoin
+        ]
       })
-    })
+    } catch (err) {
+      res.status(400).send(err);
+    }
+  }
+
+
+
+  // .then(coin => {
+  //   if (coin.length < 1) {
+  //     Currency
+  //       .create({
+  //         _id: new mongoose.Types.ObjectId(),
+  //         ticker: ticker,
+  //         price: price
+  //       })
+  //       .then((coin) => {
+
+  //         let watcher = Watchlist
+  //           .create({
+  //             _id: new mongoose.Types.ObjectId(),
+  //             userId: userID,
+  //             list: [
+  //               coin
+  //             ]
+  //           })
+  //       })
+  //       .catch(err => {
+  //         console.log(err)
+  //         res.status(500).json({
+  //           error: err
+  //         })
+  //       })
+  //   }
+
+  //   if (coin.length > 0) {
+
+  //     Watchlist
+  //       .create({
+  //         _id: new mongoose.Types.ObjectId(),
+  //         userId: userID,
+  //         targets: [coin[0]]
+  //       })
+  //       .then((watchItem) => {
+  //         return response.json(watchItem)
+  //       })
+  //   }
+  // })
+
+  // .then(result => {
+  //   res.status(201).json({
+  //     message: "Watch created on coin"
+  //   })
+  // })
+  // .catch(err => {
+  //   console.log(err)
+  //   res.status(500).json({
+  //     error: err
+  //   })
+  // })
 })
 
 module.exports = router;
