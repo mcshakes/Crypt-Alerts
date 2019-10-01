@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import IntroSVG from "./IntroSVG"
+import IntroSVG from "../components/IntroSVG"
 import '../css/LandingPage.css';
 import Dash from "../assets/dash.svg";
 import Eth from "../assets/eth.svg";

@@ -33,7 +33,7 @@ const APIRouter = require("./routes/nomicsAPI")
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use("/api/user", authRoute);
-app.use(watchlistRouter);
+app.use("/api", watchlistRouter);
 app.use(currencyRouter);
 app.use(APIRouter);
 
