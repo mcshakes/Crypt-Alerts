@@ -26,6 +26,9 @@ router.post("/login", async (req, res) => {
   res.header("auth-token", token).send(token);
 })
 
+// @route   POST api/users
+// @desc    Register new user
+// @access  Public
 
 router.post("/register", async (req, res) => {
   // Validate data before creation
@@ -41,19 +44,24 @@ router.post("/register", async (req, res) => {
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt)
 
-  const user = new User({
+  const newUser = new User({
     email: req.body.email,
     password: hashedPassword
   });
 
   try {
-    const savedUser = await user.save()
-    // const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY)
-    // res.header("auth-token", token).send(token).send({ user: user._id })
-    res.send({ user: user._id })
+    await newUser.save()
+
+
+    const token = jwt.sign({ _id: newUser._id }, process.env.JWT_KEY, { expiresIn: 3600 })
+
+    // res.send({ user: newUser._id, token })
+    res.header("auth-token", token).send({ user: newUser._id, token });
+
   } catch (err) {
-    res.status(400).send(err);
+    console.log("REGISTRATION ERRORS", err)
   }
+
 })
 
 module.exports = router;
