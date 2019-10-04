@@ -23,6 +23,8 @@ export default function (state = initialState, action) {
                 ...state,
                 isLoading: true
             };
+
+        //Runs with every request, to see if it's authenticated
         case USER_LOADED:
             return {
                 ...state,
@@ -38,9 +40,24 @@ export default function (state = initialState, action) {
                 isAuthenticated: true,
                 isLoading: false
             };
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                ...action.payload,
+                isAuthenticated: true,
+                isLoading: false
+            }
         case AUTH_ERROR:
         case LOGIN_FAIL:
         case LOGOUT_SUCCESS:
+        case REGISTER_FAIL:
+            return {
+                ...state,
+                token: null,
+                user: null,
+                isAuthenticated: false,
+                isLoading: false
+            }
         default:
             return state;
     }

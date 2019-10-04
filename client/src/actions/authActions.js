@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { returnErrors } from "./errorActions";
 
 import {
     USER_LOADED,
@@ -14,7 +15,7 @@ import {
 export const loadUser = () => (dispatch, getState) => {
     // User loading
     dispatch({ type: USER_LOADING });
-
+    // this is a GET action for users; maybe loading everything associated with the user.
     axios
         .get('/api/auth/user', tokenConfig(getState))
         .then(res =>
@@ -31,8 +32,61 @@ export const loadUser = () => (dispatch, getState) => {
         });
 };
 
+// Register User
+
+export const register = ({ email, password }) => dispatch => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    const body = JSON.stringify({ email, password });
+
+    axios.post("/api/user/register", body, config)
+        .then(res => dispatch({
+            type: REGISTER_SUCCESS,
+            payload: res.data
+        }))
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status, "REGISTER_FAIL"));
+            dispatch({
+                type: REGISTER_FAIL
+            })
+        })
+}
+
 // Login User
-export const login = ({ email, password }) => dispatch => {
+// export const login = ({ email, password }) => dispatch => {
+
+
+//     // Request body
+//     const body = JSON.stringify({ email, password });
+
+//     axios
+//         .post('http://localhost:3001/api/user/login', body, config)
+//         .then(res =>
+//             dispatch({
+//                 type: LOGIN_SUCCESS,
+//                 payload: res.data
+//             })
+//         )
+//         .catch(err => {
+//             dispatch(
+//                 returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+//             );
+//             dispatch({
+//                 type: LOGIN_FAIL
+//             });
+//         });
+// };
+
+// Setup config/headers and token
+
+export const tokenConfig = getState => {
+
+    const token = getState().auth.token;
+
     // Headers
     const config = {
         headers: {
@@ -40,23 +94,7 @@ export const login = ({ email, password }) => dispatch => {
         }
     };
 
-    // Request body
-    const body = JSON.stringify({ email, password });
-
-    axios
-        .post('http://localhost:3001/api/user/login', body, config)
-        .then(res =>
-            dispatch({
-                type: LOGIN_SUCCESS,
-                payload: res.data
-            })
-        )
-        .catch(err => {
-            dispatch(
-                returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
-            );
-            dispatch({
-                type: LOGIN_FAIL
-            });
-        });
-};
+    if (token) {
+        config.headers["auth-token"] = token;
+    }
+}
