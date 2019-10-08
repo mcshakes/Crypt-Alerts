@@ -1,7 +1,7 @@
 import React from "react";
 import "./Auth.css";
 import { connect } from 'react-redux';
-import { register } from '../../actions/authActions';
+import { register, login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
 
 class AuthPage extends React.Component {
@@ -39,8 +39,11 @@ class AuthPage extends React.Component {
             password
         }
 
-        this.props.register(newUser);
-
+        if (!this.state.isLogin) {
+            this.props.register(newUser);
+        } else {
+            this.props.login(newUser);
+        }
     };
 
     render() {
@@ -86,6 +89,6 @@ const mapStateToProps = state => ({
 
 export default connect(
     mapStateToProps,
-    { register }
+    { register, login }
 )(AuthPage)
 // export default AuthPage;

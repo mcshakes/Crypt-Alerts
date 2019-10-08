@@ -34,6 +34,8 @@ export default function (state = initialState, action) {
             };
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
+            console.log("LOGIN SUCCESS REDUCER", action.payload);
+
             return {
                 ...state,
                 ...action.payload,
@@ -41,6 +43,7 @@ export default function (state = initialState, action) {
                 isLoading: false
             };
         case REGISTER_SUCCESS:
+            console.log("REGISTER SUCCESS REDUCER", action.payload);
             return {
                 ...state,
                 ...action.payload,

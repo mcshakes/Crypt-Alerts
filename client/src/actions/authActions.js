@@ -57,36 +57,41 @@ export const register = ({ email, password }) => dispatch => {
 }
 
 // Login User
-// export const login = ({ email, password }) => dispatch => {
+export const login = ({ email, password }) => dispatch => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
 
+    // Request body
+    const body = JSON.stringify({ email, password });
 
-//     // Request body
-//     const body = JSON.stringify({ email, password });
+    axios
+        .post('/api/user/login', body, config)
+        .then(res =>
 
-//     axios
-//         .post('http://localhost:3001/api/user/login', body, config)
-//         .then(res =>
-//             dispatch({
-//                 type: LOGIN_SUCCESS,
-//                 payload: res.data
-//             })
-//         )
-//         .catch(err => {
-//             dispatch(
-//                 returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
-//             );
-//             dispatch({
-//                 type: LOGIN_FAIL
-//             });
-//         });
-// };
+            dispatch({
+                type: LOGIN_SUCCESS,
+                payload: res.data
+            })
+        )
+        .catch(err => {
+            dispatch(
+                returnErrors(err.response.data, err.response.status, 'LOGIN_FAIL')
+            );
+            dispatch({
+                type: LOGIN_FAIL
+            });
+        });
+};
 
 // Setup config/headers and token
 
 export const tokenConfig = getState => {
 
     const token = getState().auth.token;
-
+    console.log("within tokenConfic", token)
     // Headers
     const config = {
         headers: {
