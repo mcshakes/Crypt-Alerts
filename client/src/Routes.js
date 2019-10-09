@@ -3,11 +3,12 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 
 import Dashboard from "./pages/UserDashboard/UserDashboard";
 import Home from "./pages/Home/Home";
-import Login from "./pages/Login/Login";
+import Auth from "./pages/Auth/Auth";
 import NavBar from "./components/NavBar";
+import RequireAuth from "./RequireAuth";
 
 const Routes = () => (
-  <Router>
+  < Router >
     <div>
       <NavBar />
       <Switch>
@@ -15,11 +16,12 @@ const Routes = () => (
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/login" component={Login} />
+        <Route path="/user" component={RequireAuth} />
+        <Route path="/login" component={Auth} />
       </Switch>
     </div>
-  </Router>
+  </Router >
 )
+
 
 export default Routes;
