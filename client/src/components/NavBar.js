@@ -3,7 +3,6 @@ import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 
 const NavBar = (props) => {
-    console.log("NAVBAR", props.isAuthenticated)
     return (
         <div>
             <ul>
@@ -21,4 +20,3 @@ export default connect(state => ({
     isAuthenticated: state.auth.isAuthenticated
 }))(NavBar);
 
-// export default NavBar;

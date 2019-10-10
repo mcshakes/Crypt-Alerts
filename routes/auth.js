@@ -7,6 +7,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { registrationValidation, loginValidation } = require("../utils/validation");
+const verifyAuthToken = require("../middleware/verifyAuthToken");
 
 // @route   POST api/user/login
 // @desc    Register new user
@@ -74,6 +75,15 @@ router.post("/register", async (req, res) => {
     console.log("REGISTRATION ERRORS => ", err)
   }
 
+})
+
+router.get("/auth-user", verifyAuthToken, (req, res) => {
+
+  User.findById(req.user._id)
+    .select("-password")
+    .then(user => {
+      res.json(user)
+    });
 })
 
 module.exports = router;

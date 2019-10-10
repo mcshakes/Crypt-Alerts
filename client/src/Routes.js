@@ -6,6 +6,7 @@ import Home from "./pages/Home/Home";
 import Auth from "./pages/Auth/Auth";
 import NavBar from "./components/NavBar";
 import RequireAuth from "./RequireAuth";
+import { loadUser } from "./actions/authActions";
 
 const Routes = () => (
   < Router >
