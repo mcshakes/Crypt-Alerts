@@ -8,6 +8,9 @@ const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { registrationValidation, loginValidation } = require("../utils/validation");
 
+// @route   POST api/user/login
+// @desc    Register new user
+// @access  Public
 router.post("/login", async (req, res) => {
 
   const { error } = loginValidation(req.body);
@@ -22,11 +25,23 @@ router.post("/login", async (req, res) => {
   if (!validPass) return res.status(400).send("Invalid Password")
 
   // CREATE and SIGN TOKEN
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY)
-  res.header("auth-token", token).send(token);
+  try {
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_KEY, { expiresIn: 3600 })
+    res.header("auth-token", token)
+      .json({
+        token,
+        user: {
+          id: user._id
+        }
+      }
+      );
+  } catch (err) {
+    console.log("LOGIN ERRORS => ", err)
+  }
+
 })
 
-// @route   POST api/users
+// @route   POST api/user/register
 // @desc    Register new user
 // @access  Public
 
@@ -51,15 +66,12 @@ router.post("/register", async (req, res) => {
 
   try {
     await newUser.save()
-
-
     const token = jwt.sign({ _id: newUser._id }, process.env.JWT_KEY, { expiresIn: 3600 })
-
     // res.send({ user: newUser._id, token })
     res.header("auth-token", token).send({ user: newUser._id, token });
 
   } catch (err) {
-    console.log("REGISTRATION ERRORS", err)
+    console.log("REGISTRATION ERRORS => ", err)
   }
 
 })
