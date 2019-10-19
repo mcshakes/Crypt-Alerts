@@ -47,7 +47,7 @@ class AuthPage extends React.Component {
     };
 
     render() {
-        console.log("login? ", this.state.isLogin)
+        console.log("AUTH Componnet? ", this.state.isLogin)
 
         return (
             <form className="auth-form" onSubmit={this.handleSubmit}>

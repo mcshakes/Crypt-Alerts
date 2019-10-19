@@ -7,7 +7,7 @@ const jwt = require('jsonwebtoken');
 const { User } = require("../models/user")
 const { Watchlist } = require("../models/watchlist")
 const { registrationValidation, loginValidation } = require("../utils/validation");
-const verifyAuthToken = require("../middleware/verifyAuthToken");
+const authenticate = require("../middleware/verifyAuthToken");
 
 // @route   POST api/user/login
 // @desc    Register new user
@@ -77,8 +77,8 @@ router.post("/register", async (req, res) => {
 
 })
 
-router.get("/auth-user", verifyAuthToken, (req, res) => {
-
+router.get("/auth-user", authenticate, (req, res) => {
+  console.log("within GET /auth", req.user)
   User.findById(req.user._id)
     .select("-password")
     .then(user => {

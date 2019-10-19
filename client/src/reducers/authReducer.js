@@ -26,6 +26,7 @@ export default function (state = initialState, action) {
 
         //Runs with every request, to see if it's authenticated
         case USER_LOADED:
+            console.log("USER_LOADED REDUCER", action.payload);
             return {
                 ...state,
                 isAuthenticated: true,
@@ -34,7 +35,7 @@ export default function (state = initialState, action) {
             };
         case LOGIN_SUCCESS:
             localStorage.setItem('token', action.payload.token);
-            console.log("LOGIN SUCCESS REDUCER", action.payload);
+            // console.log("LOGIN SUCCESS REDUCER", action.payload);
 
             return {
                 ...state,
