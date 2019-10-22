@@ -1,38 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import SearchBar from "./SearchBar";
 
-const SearchBar = () => {
+import axios from "axios";
 
-    const [searchValue, setSearchValue] = useState("")
+const API_URL = "/api/search"
 
-    const handleSearchInputChanges = (e) => {
-        setSearchValue(e.target.value)
-    }
+const Search = () => {
+    const [loading, setLoading] = useState(true);
+    const [coins, setCoins] = useState([]);
+    const [errorMessage, setErrorMessage] = useState(null);
 
-    const resetInputField = () => {
-        setSearchValue("")
-    }
 
-    const callSearchFunction = (e) => {
-        e.preventDefault();
-        // call the api with the search value
-        //reset the input field
-    }
+    useEffect(() => {
+        axios.get(API_URL)
+            .then(response => {
+                return response.data
+            })
+            .then(jsonRes => {
+                setCoins(jsonRes)
+            })
+
+        setLoading(false)
+    })
 
     return (
-        <div className="search-params">
-            <form>
-                <label htmlFor="cryptocurrency">
-                    Cryptocurrency
-                <input
-                        id="cryptocurrency"
-                        placeholder="search by ticker"
-                        value={searchValue}
-                        onChange={handleSearchInputChanges}
-                    />
-                </label>
-            </form>
+        <div className="search-box">
+            <SearchBar />
         </div>
     )
 }
 
-export default SearchBar;
+export default Search;
