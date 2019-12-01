@@ -107,7 +107,6 @@ const emitCapLeaders = async socket => {
             }
           })
         })
-
         socket.emit("FromAPI", collection)
       })
 
