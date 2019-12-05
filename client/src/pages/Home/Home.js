@@ -30,26 +30,33 @@ class Home extends React.Component {
         })
     }
 
-    renderTableHeader = () => {
-        let header = Object.keys(this.state.data[0])
+    renderTableHeader() {
+        let header = ["Symbol", "Name", "Price", "Market Cap", "24H Change", "7d Change ", "30d Change", "1Year Change", "All Time High"]
 
         return header.map((key, idx) => {
-            return <th key={idx}>{key.toUpperCase()}</th>
+            return <th key={idx}>{key}</th>
         })
     }
 
-
     renderTableData = () => {
         return this.state.data.map((coin, idx) => {
-
-            const { id, symbol, name, price, circulating_supply, high } = coin
+            // console.log(coin)
+            const { id, symbol, name, price, market_cap, high } = coin
+            const OneDayChange = coin["1d"].price_change_pct;
+            const SevenDayChange = coin["7d"].price_change_pct;
+            const ThirtyDayChange = coin["30d"].price_change_pct;
+            const YearChange = coin.ytd.price_change_pct;
 
             return (
                 <tr key={id}>
                     <td>{symbol}</td>
                     <td>{name}</td>
                     <td>{price}</td>
-                    <td>{circulating_supply}</td>
+                    <td>{market_cap}</td>
+                    <td>{OneDayChange}</td>
+                    <td>{SevenDayChange}</td>
+                    <td>{ThirtyDayChange}</td>
+                    <td>{YearChange}</td>
                     <td>{high}</td>
                 </tr>
             )
