@@ -1,0 +1,22 @@
+:root {
+    --COLOR-textStrong: rgba(255,255,255,1);
+    --COLOR-textBasic: rgba(240,240,240,1);
+}
+
+h1 {
+    color: var(--COLOR-textStrong);
+}
+
+.top-cryptos-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.top-cryptos-table {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+.table-row {
+    color: var(--COLOR-textBasic);
+}

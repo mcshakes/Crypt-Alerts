@@ -40,7 +40,7 @@ class Home extends React.Component {
 
     renderTableData = () => {
         return this.state.data.map((coin, idx) => {
-            // console.log(coin)
+
             const { id, symbol, name, price, market_cap, high } = coin
             const OneDayChange = coin["1d"].price_change_pct;
             const SevenDayChange = coin["7d"].price_change_pct;
@@ -48,7 +48,7 @@ class Home extends React.Component {
             const YearChange = coin.ytd.price_change_pct;
 
             return (
-                <tr key={id}>
+                <tr className="table-row" key={id}>
                     <td>{symbol}</td>
                     <td>{name}</td>
                     <td>{price}</td>
@@ -81,7 +81,7 @@ class Home extends React.Component {
         }
         else {
             renderObject = (
-                <table>
+                <table className="top-cryptos-table">
                     <tbody>
                         <tr>{this.renderTableHeader()}</tr>
                         {this.renderTableData()}
