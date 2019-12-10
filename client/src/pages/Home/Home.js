@@ -34,37 +34,52 @@ class Home extends React.Component {
         let header = ["Symbol", "Name", "Price", "Market Cap", "24H Change", "7d Change ", "30d Change", "1Year Change", "All Time High"]
 
         return header.map((key, idx) => {
-            return <th key={idx}>{key}</th>
+            return <th key={idx} className="table-headers">{key}</th>
         })
+    }
+
+    checkPriceLoss = (price) => {
+        let priceElems = price.split("");
+        if (priceElems[0] === "-") {
+            return true
+        }
     }
 
     renderTableData = () => {
         return this.state.data.map((coin, idx) => {
 
             const { id, symbol, name, price, market_cap, high } = coin
-            const OneDayChange = coin["1d"].price_change_pct;
-            const SevenDayChange = coin["7d"].price_change_pct;
-            const ThirtyDayChange = coin["30d"].price_change_pct;
-            const YearChange = coin.ytd.price_change_pct;
+            const OneDayChange = parseFloat(coin["1d"].price_change_pct).toFixed(2);
+            const SevenDayChange = parseFloat(coin["7d"].price_change_pct).toFixed(2);
+            const ThirtyDayChange = parseFloat(coin["30d"].price_change_pct).toFixed(2);
+            const YearChange = parseFloat(coin.ytd.price_change_pct).toFixed(2);
+            const priceDollar = parseFloat(price).toFixed(2);
+            const allTimeHigh = parseFloat(high).toFixed(2);
+
+            const priceStyling = (price) => {
+                let base = "price-color-";
+                if (this.checkPriceLoss(price)) base += "loss";
+                if (!this.checkPriceLoss(price)) base += "gain"
+                return base;
+            }
 
             return (
                 <tr className="table-row" key={id}>
                     <td>{symbol}</td>
                     <td>{name}</td>
-                    <td>{price}</td>
+                    <td>$ {priceDollar}</td>
                     <td>{market_cap}</td>
-                    <td>{OneDayChange}</td>
-                    <td>{SevenDayChange}</td>
-                    <td>{ThirtyDayChange}</td>
-                    <td>{YearChange}</td>
-                    <td>{high}</td>
+                    <td className={priceStyling(OneDayChange)}>{OneDayChange}%</td>
+                    <td className={priceStyling(SevenDayChange)}>{SevenDayChange}%</td>
+                    <td className={priceStyling(ThirtyDayChange)}>{ThirtyDayChange}%</td>
+                    <td className={priceStyling(YearChange)}>{YearChange}%</td>
+                    <td>$ {allTimeHigh}</td>
                 </tr>
             )
         })
     }
 
     render() {
-
         let renderObject;
         let { isLoading } = this.state;
         let { data } = this.state;

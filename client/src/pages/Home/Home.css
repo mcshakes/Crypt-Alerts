@@ -1,6 +1,12 @@
 :root {
     --COLOR-textStrong: rgba(255,255,255,1);
     --COLOR-textBasic: rgba(240,240,240,1);
+    --COLOR-loss: #EA0D3F;
+    --COLOR-gain: #639F4D;
+}
+
+table {
+    border-collapse: collapse;
 }
 
 h1 {
@@ -9,14 +15,31 @@ h1 {
 
 .top-cryptos-container {
     width: 100%;
-    display: flex;
     justify-content: center;
 }
 .top-cryptos-table {
-    display: flex;
-    flex-direction: column;
+    margin: auto;
     width: 90%;
 }
+
+tbody tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, .3);
+  }
+
+.table-headers {
+    color: var(--COLOR-textBasic);
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+}
+
 .table-row {
     color: var(--COLOR-textBasic);
+}
+
+.price-color-loss {
+    color: var(--COLOR-loss);
+}
+
+.price-color-gain {
+    color: var(--COLOR-gain);
 }
