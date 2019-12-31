@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-d
 import Dashboard from "./pages/UserDashboard/UserDashboard";
 import Home from "./pages/Home/Home";
 import Auth from "./pages/Auth/Auth";
-import NavBar from "./components/NavBar";
+import NavBar from "./components/Navbar/NavBar";
 import RequireAuth from "./RequireAuth";
 
 import { Provider } from 'react-redux';

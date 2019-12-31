@@ -1,0 +1,50 @@
+:root {
+    --COLOR-textStrong: rgba(255,255,255,1);
+    --COLOR-textBasic: rgba(240,240,240,1);
+
+ 
+}
+
+nav {
+    width: 100vw;
+    border-bottom: 1px solid grey;
+    font-family: 'Titillium Web', sans-serif;
+}
+
+
+.nav-list-items {
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+}
+
+li {
+    list-style-type: none;
+    margin: 0 2vw;
+    font-size: 1.5rem;
+}
+
+a {
+    text-decoration: none;
+    font-family: monospace;
+    color: var(--COLOR-textStrong)
+}
+
+a:hover{
+    background-color: rgba(14,109,147,1.00);
+}
+
+@media only screen and (max-width: 500px) {
+    ul{
+      flex-direction: column;
+    }
+    
+    li{
+      margin: 0;
+    }
+
+    a{
+      display: block;
+    }
+}

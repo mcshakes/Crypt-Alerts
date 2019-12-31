@@ -13,6 +13,7 @@ table {
 .top-cryptos-table {
     margin: auto;
     width: 90%;
+    font-family: 'Arvo', serif;
 }
 
 tbody tr:nth-child(even) {

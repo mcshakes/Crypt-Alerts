@@ -16,8 +16,11 @@ export const loadUser = () => (dispatch, getState) => {
     // User loading
     dispatch({ type: USER_LOADING });
     // this is a GET action for users; checks every time if user is loaded
+
+    let token = tokenConfig(getState)
+
     axios
-        .get('/api/user/auth-user', tokenConfig(getState))
+        .get('/api/user/auth-user', token)
         .then(res =>
             dispatch({
                 type: USER_LOADED,
@@ -91,7 +94,7 @@ export const login = ({ email, password }) => dispatch => {
 export const tokenConfig = getState => {
 
     const token = getState().auth.token;
-    console.log("within authAction.tokenConfig", token)
+
     // Headers
     const config = {
         headers: {
@@ -101,5 +104,7 @@ export const tokenConfig = getState => {
 
     if (token) {
         config.headers["auth-token"] = token;
+        // console.log("within authAction.tokenConfig", config.headers)
     }
+    return config;
 }
