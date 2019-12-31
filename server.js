@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 
 const key = process.env.NOMICS_KEY
 
-const userRouter = require("./routes/user")
+const authRoute = require("./routes/auth")
 const watchlistRouter = require("./routes/watchlist")
 const currencyRouter = require("./routes/currency")
 
@@ -32,8 +32,8 @@ const APIRouter = require("./routes/nomicsAPI")
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
-app.use(userRouter);
-app.use(watchlistRouter);
+app.use("/api/user", authRoute);
+app.use("/api", watchlistRouter);
 app.use(currencyRouter);
 app.use(APIRouter);
 
@@ -72,9 +72,9 @@ movement.on("connection", function (socket) {
 const emitChartData = async (socket, ticker) => {
   try {
     return axios.get(`https://min-api.cryptocompare.com/data/top/exchanges/full?fsym=${ticker}&tsym=USD`)
-                    .then((response) => {
-                      socket.emit("FromAPI", response.data)
-                    })
+      .then((response) => {
+        socket.emit("FromAPI", response.data)
+      })
 
   } catch (error) {
     console.log(`Error: ${error.code}`);
@@ -84,38 +84,26 @@ const emitChartData = async (socket, ticker) => {
 //------------ Market Leaders Component ------------------------
 const leaderSocket = io.of("/capleader")
 
-leaderSocket.on('connection', function (socket) {
+leaderSocket.on("connection", function (socket) {
   console.log("Updating market cap leaders"), setInterval(
-    () => emitCapLeaders(socket),
+    () => emitMarketLeaders(socket),
     10000
   );
-  socket.on("disconnect", () => console.log("Client disconnected"))
-});
+})
 
-const capLeaders = ["BTC", "ETH", "XRP", "BCH", "LTC", "ADA", "NEO", "XLM", "EOS", "DASH"]
+const emitMarketLeaders = async socket => {
+  const url = `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=BTC,ETH,XRP,BCH,LTC,ADA,NEO,XLM,EOS,DASH,LINK,ETC,BNB,TRX`
 
-const emitCapLeaders = async socket => {
+
   try {
-    return axios.get(`https://api.nomics.com/v1/prices?key=${key}`)
-                    .then((response) => {
-                      let collection = []
+    let response = await axios.get(url);
+    socket.emit("FromAPI", response.data)
 
-                      capLeaders.map((ticker) => {
-                        response.data.filter((coin) => {
-                          if (coin.currency === ticker) {
-                            collection.push(coin)
-                          }
-                        })
-                      })
-
-                      socket.emit("FromAPI", collection)
-                    })
-
-  } catch (error) {
-    console.log(`Error: ${error.code}`);
+  }
+  catch (error) {
+    console.log(`Error: ${error}`);
   }
 }
-
 //------------ Cron Job ------------------------
 
 function getNewPrices() {
@@ -129,7 +117,7 @@ function getNewPrices() {
 }
 
 
-const job = new CronJob('*/8 * * * *', function() {
+const job = new CronJob('*/8 * * * *', function () {
   let collection = new Array();
 
   Currency.find()
@@ -155,8 +143,8 @@ const job = new CronJob('*/8 * * * *', function() {
         .then(updates => {
           updates.map((newPrice) => {
             let query = Currency.findOneAndUpdate(
-              {ticker: newPrice.currency},
-              {price: newPrice.price}
+              { ticker: newPrice.currency },
+              { price: newPrice.price }
             )
             query.exec();
           })
@@ -171,8 +159,10 @@ job.start()
 
 //------------ DATABASE ------------------------
 
-mongoose.connect(`mongodb://${process.env.MONGO_USER}:${process.env
-            .MONGO_PASS}@ds127342.mlab.com:27342/crypt-alerts`);
+mongoose.connect(`mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASS}@cluster0-b5rcs.mongodb.net/test?retryWrites=true&w=majority`, {
+  useNewUrlParser: true,
+  useCreateIndex: true
+});
 
 mongoose.Promise = global.Promise;
 

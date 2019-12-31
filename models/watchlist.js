@@ -2,8 +2,9 @@ const mongoose = require("mongoose")
 mongoose.Promise = global.Promise;
 
 const watchlistSchema = mongoose.Schema({
-  list: [
-    { type: mongoose.Schema.Types.ObjectId,
+  targets: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Currency"
     }
   ],

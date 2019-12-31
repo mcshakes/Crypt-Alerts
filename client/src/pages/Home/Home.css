@@ -1,0 +1,33 @@
+:root {
+    --COLOR-textStrong: rgba(255,255,255,1);
+    --COLOR-textBasic: rgba(240,240,240,1);
+    --COLOR-loss: #EA0D3F;
+    --COLOR-gain: #639F4D;
+
+    --COLOR-layer-1: rgba(13,51,66,1.00);
+    --COLOR-layer-2: rgba(19,108,144,1.00);
+}
+
+.landing-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+
+    background: radial-gradient(14rem 8rem at bottom,var(--COLOR-layer-2), var(--COLOR-layer-1));
+    ;
+}
+
+h1 {
+    color: var(--COLOR-textStrong);
+}
+
+h3 {
+    color: var(--COLOR-textStrong);
+}
+
+.top-cryptos-container {
+    width: 100%;
+    justify-content: center;
+}

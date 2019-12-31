@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router()
 const bodyParser = require("body-parser");
-const checkAuth = require("../middleware/check-auth");
+const checkAuth = require("../middleware/verifyAuthToken");
 const axios = require('axios');
 const key = process.env.NOMICS_KEY
 

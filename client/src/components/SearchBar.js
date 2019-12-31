@@ -1,90 +1,41 @@
-import React from "react";
-import Client from "../Client";
-import '../css/Search.css';
-import Currency from "./Currency"
+import React, { useState } from "react";
+import axios from "axios";
 
-function searchingFor(term) {
-    if(!term) return ()=>false;
-    let searchLet = term.split("").slice(0,3).join("")
-    return function(x) {
-      return x.currency.toLowerCase().includes(searchLet.toLowerCase()) || !term;
+const SearchBar = (props) => {
+
+    const [searchValue, setSearchValue] = useState("")
+
+    const handleSearchInputChanges = (e) => {
+        setSearchValue(e.target.value)
     }
-}
 
-class SearchBar extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      coins: [],
-      searchValue: ""
+    const resetInputField = () => {
+        setSearchValue("")
     }
-  }
 
+    const callSearchFunction = (e) => {
+        e.preventDefault();
 
-  searchHandler = e => {
-    e.preventDefault()
-    const value = e.target.value
+        // pass searchValue up the prop function
 
-    this.setState({
-      searchValue: value
-    });
-
-    if (value === "") {
-      this.setState({
-        coins: []
-      })
-    } else {
-      this.getInfo()
+        //reset the input field
     }
-  }
-
-  getInfo = () => {
-    Client.searchList()
-    .then((data) => {
-      this.setState({
-        coins: data
-      })
-    })
-  }
-
-  handleAddNew = (coin) => {
-    this.props.addNew(coin)
-    this.setState({
-      searchValue: ''
-    });
-  }
-
-  render() {
-    const {coins, searchValue} = this.state
 
     return (
-      <div className="coin-search">
-        <form className="search">
-          <input
-            type="text"
-            className="prompt"
-            aria-label="Search by currency ticker symbol"
-            placeholder="Search by ticker symbol"
-            value={searchValue}
-            onChange={this.searchHandler}
-          />
-        </form>
-
-        <ul className="search-suggestions">
-          {
-            coins.filter(searchingFor(searchValue)).map( coin =>
-              <Currency
-                key={coin.currency}
-                coin={coin}
-                addNew={this.handleAddNew}
-              />
-            )
-          }
-        </ul>
-      </div>
-    );
-  }
+        <div className="search-params">
+            <form>
+                <label htmlFor="cryptocurrency">
+                    Cryptocurrency
+                <input
+                        id="cryptocurrency"
+                        placeholder="search by ticker"
+                        value={searchValue}
+                        onChange={handleSearchInputChanges}
+                    />
+                </label>
+            </form>
+        </div>
+    )
 }
 
 export default SearchBar;
