@@ -85,9 +85,8 @@ const emitChartData = async (socket, ticker) => {
 //------------ Market Leaders Component ------------------------
 
 checkCache = (req, res, next) => {
-  const { id } = req.params;
 
-  redis_client.get(id, (err, data) => {
+  redisClient.get("COINS", (err, data) => {
     if (err) {
       console.log(err);
       res.status(500).send(err);
@@ -119,17 +118,26 @@ leaderSocket.on("connection", function (socket) {
 const emitMarketLeaders = async socket => {
   const url = `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=BTC,ETH,XRP,BCH,LTC,ADA,NEO,XLM,EOS,DASH,LINK,ETC,BNB,TRX`
 
+  return redisClient.get("COINS", async (err, coins) => {
+    if (err) throw err;
+    if (coins) {
+      // return res.json({ source: "cache", ...JSON.parse(coins) })
+      console.log("From cache")
+      console.log(coins)
+    }
+    else {
+      try {
+        let response = await axios.get(url);
 
-  try {
-    let response = await axios.get(url);
+        redisClient.setex("COINS", 3600, JSON.stringify(response.data));
 
-    redisClient.setex("COIN", 3600, JSON.stringify(response.data));
-
-    socket.emit("FromAPI", response.data)
-  }
-  catch (error) {
-    console.log(`Error: ${error}`);
-  }
+        socket.emit("FromAPI", response.data)
+      }
+      catch (error) {
+        console.log(`Error: ${error}`);
+      }
+    }
+  })
 }
 //------------ Cron Job ------------------------
 
