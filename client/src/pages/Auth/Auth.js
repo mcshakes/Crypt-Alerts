@@ -3,6 +3,7 @@ import "./Auth.css";
 import { connect } from 'react-redux';
 import { register, login } from '../../actions/authActions';
 import { clearErrors } from '../../actions/errorActions';
+import { Redirect } from 'react-router-dom';
 
 class AuthPage extends React.Component {
     constructor(props) {
@@ -41,13 +42,19 @@ class AuthPage extends React.Component {
 
         if (!this.state.isLogin) {
             this.props.register(newUser);
+            // this.props.history.push("/dashboard");
+            console.log(this.props.history)
         } else {
             this.props.login(newUser);
+
+            this.props.history.push("/user/dashboard");
         }
     };
 
     render() {
-        console.log("AUTH Componnet? ", this.state.isLogin)
+        if (this.props.isAuthenticated) {
+            return <Redirect to="/user/dashboard" />;
+        }
 
         return (
             <form className="auth-form" onSubmit={this.handleSubmit}>
@@ -91,4 +98,3 @@ export default connect(
     mapStateToProps,
     { register, login }
 )(AuthPage)
-// export default AuthPage;
