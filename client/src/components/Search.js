@@ -11,17 +11,21 @@ const Search = () => {
     const [errorMessage, setErrorMessage] = useState(null);
 
 
-    // useEffect(() => {
-    //     axios.get(API_URL)
-    //         .then(response => {
-    //             return response.data
-    //         })
-    //         .then(jsonRes => {
-    //             setCoins(jsonRes)
-    //         })
+    useEffect(() => {
+        loadSearchCoins();
 
-    //     setLoading(false)
-    // })
+        setLoading(false);
+    }, [])
+
+    const loadSearchCoins = () => {
+        axios.get(API_URL)
+            .then(response => {
+                return response.data
+            })
+            .then(jsonRes => {
+                setCoins(jsonRes)
+            })
+    }
 
     return (
         <div className="search-box">
