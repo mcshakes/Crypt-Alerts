@@ -7,18 +7,15 @@ const SearchBar = (props) => {
 
     const handleSearchInputChanges = (e) => {
         setSearchValue(e.target.value)
+        callSearchFunction(searchValue)
     }
 
     const resetInputField = () => {
         setSearchValue("")
     }
 
-    const callSearchFunction = (e) => {
-        e.preventDefault();
-
-        // pass searchValue up the prop function
-
-        //reset the input field
+    const callSearchFunction = (value) => {
+        props.trimCoinsResponse(value)
     }
 
     return (
