@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SearchCoinList extends React.Component {
+class SearchCoinGrid extends React.Component {
     constructor(props) {
         super(props);
 
@@ -19,10 +19,10 @@ class SearchCoinList extends React.Component {
     render() {
         return (
             <div>
-                
+
             </div>
         )
     }
 }
 
-export default SearchCoinList;
+export default SearchCoinGrid;

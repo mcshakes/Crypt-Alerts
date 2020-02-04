@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import SearchCoinList from "./SearchCoinList";
-
+import SearchCoinGrid from "./SearchCoinGrid";
 import axios from "axios";
 
-const SearchContext = React.createContext("");
-
 class SearchManager extends React.Component {
+
     constructor(props) {
         super(props)
 
@@ -33,10 +31,8 @@ class SearchManager extends React.Component {
             })
     }
 
-    handleFuzzySearch = fuzzyValue => {
-        this.setState({
-            searchQuery: fuzzyValue
-        })
+    trimCoinGrid = (thing) => {
+        console.log(thing)
     }
 
     render() {
@@ -47,16 +43,16 @@ class SearchManager extends React.Component {
         if (searchQuery) {
             searchContent = (
                 <div className="query-result">
-                    <SearchCoinList coins={coins} />
+                    <SearchCoinGrid coins={coins} />
                 </div>
             )
+        } else {
+            searchContent = <p>waiting...</p>
         }
         return (
             <div className="search-box">
-                <SearchContext.Provider>
-                    <SearchBar trimCoinsResponse={this.handleFuzzySearch} />
-                    {searchContent}
-                </SearchContext.Provider>
+                <SearchBar trimSearchResponse={this.trimCoinGrid} />
+                {searchContent}
             </div>
         )
     }
