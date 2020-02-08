@@ -31,8 +31,22 @@ class SearchManager extends React.Component {
             })
     }
 
-    trimCoinGrid = (thing) => {
-        console.log(thing)
+    trimCoinGrid = (term) => {
+        if (!term) return () => false;
+        if (term) {
+            this.setState({ searchQuery: term })
+        }
+
+        let searchLet = term.split("").slice(0, 3).join("")
+        return function (x) {
+            return x.currency.toLowerCase().includes(searchLet.toLowerCase()) || !term;
+        }
+    }
+
+    filterCoins = (searchQuery) => {
+        this.state.coins.filter(this.trimCoinGrid(searchQuery)).map(
+            coin => <SearchCoinGrid coins={coin} />
+        )
     }
 
     render() {
@@ -41,11 +55,7 @@ class SearchManager extends React.Component {
         let searchContent;
 
         if (searchQuery) {
-            searchContent = (
-                <div className="query-result">
-                    <SearchCoinGrid coins={coins} />
-                </div>
-            )
+            searchContent = this.filterCoins(searchQuery)
         } else {
             searchContent = <p>waiting...</p>
         }
@@ -59,3 +69,4 @@ class SearchManager extends React.Component {
 }
 
 export default SearchManager;
+

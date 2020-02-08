@@ -19,7 +19,7 @@ class SearchCoinGrid extends React.Component {
     render() {
         return (
             <div>
-
+                <h2>{this.state.filtered}</h2>
             </div>
         )
     }
