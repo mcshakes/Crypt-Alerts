@@ -38,17 +38,16 @@ class SearchCoin extends React.Component {
 
     render() {
         return (
-            <div className="search-results">
-                <li>
-                    <h3> {this.props.coin.currency} </h3>
-                    <button
-                        className="add-to-list"
-                        onClick={this.clickHandler}
-                    >
-                        + to Watchlist
+            <li className="coin-result">
+                <h3> {this.props.coin.currency} </h3>
+                <h3> {this.props.coin.price} </h3>
+                <button
+                    className="add-to-list"
+                    onClick={this.clickHandler}
+                >
+                    + to Watchlist
               </button>
-                </li>
-            </div>
+            </li>
         )
     }
 }

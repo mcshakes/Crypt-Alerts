@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
-import SearchCoinGrid from "./SearchCoinGrid";
+import SearchCoin from "./SearchCoin";
 import axios from "axios";
+import "./SearchManager.css";
+
 
 class SearchManager extends React.Component {
 
@@ -31,11 +33,13 @@ class SearchManager extends React.Component {
             })
     }
 
+    searchHandler = query => {
+        this.setState({ searchQuery: query })
+
+    }
+
     trimCoinGrid = (term) => {
         if (!term) return () => false;
-        if (term) {
-            this.setState({ searchQuery: term })
-        }
 
         let searchLet = term.split("").slice(0, 3).join("")
         return function (x) {
@@ -43,26 +47,32 @@ class SearchManager extends React.Component {
         }
     }
 
-    filterCoins = (searchQuery) => {
-        this.state.coins.filter(this.trimCoinGrid(searchQuery)).map(
-            coin => <SearchCoinGrid coins={coin} />
+
+    filterCoins = (coins, searchQuery) => {
+        return coins.filter(this.trimCoinGrid(searchQuery)).map(coin =>
+            < SearchCoin
+                key={coin.currency}
+                coin={coin}
+            />
         )
+
     }
 
     render() {
-        const { coins } = this.state;
-        const { searchQuery } = this.state;
+        const { coins, searchQuery } = this.state;
         let searchContent;
 
         if (searchQuery) {
-            searchContent = this.filterCoins(searchQuery)
+            searchContent = this.filterCoins(coins, searchQuery)
         } else {
             searchContent = <p>waiting...</p>
         }
         return (
-            <div className="search-box">
-                <SearchBar trimSearchResponse={this.trimCoinGrid} />
-                {searchContent}
+            <div className="search-container">
+                <SearchBar trimSearchResponse={this.searchHandler} />
+                <ul className="search-results">
+                    {searchContent}
+                </ul>
             </div>
         )
     }

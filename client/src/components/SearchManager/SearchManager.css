@@ -3,9 +3,45 @@
     --COLOR-textBasic: rgba(240,240,240,1);
     --COLOR-loss: #EA0D3F;
     --COLOR-gain: #639F4D;
+
+    --COLOR-green:#a2ed56;
+    --COLOR-yellow: #fddc32;
+    --COLOR-blue: #83e4e2;
+    /* background-color: rgba(66,94,113,1); */
+    --COLOR-searchLabel: rgba(23,114,140,1);
 }
 
 
 .search-results {
-    border: var(--COLOR-textBasic);
+    list-style: none;
+    margin: 1.75rem 0;
 }
+
+.coin-result {
+    display: flex;
+    background: var(--COLOR-searchLabel);
+    border-radius: 0 0.5rem 0.5rem 0.5rem;
+    margin-top: 1rem;
+    max-height: 1.5rem;
+    padding: 1rem 1rem 1rem 3rem;
+    position: relative;
+    color: var(--COLOR-textStrong);
+    
+} h3 {
+    margin: 0 auto;
+} 
+
+.coin-result::after {
+    box-sizing: border-box;
+    background: linear-gradient(135deg, var(--COLOR-blue) 0%, var(--COLOR-green) 100%);
+    border-radius: 1rem 1rem 0 1rem;
+    content: '';
+    height: 3rem;
+    left: -1rem;
+    overflow: hidden;
+    position: absolute;
+    top: -1rem;
+    width: 3rem;
+}
+
+

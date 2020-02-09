@@ -16,7 +16,7 @@ const SearchBar = (props) => {
     }
 
     return (
-        <div className="search-params">
+        <div className="search-field">
             <form>
                 <label htmlFor="cryptocurrency">
                     Cryptocurrency
