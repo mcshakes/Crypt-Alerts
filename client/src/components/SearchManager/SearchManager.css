@@ -1,0 +1,11 @@
+:root {
+    --COLOR-textStrong: rgba(255,255,255,1);
+    --COLOR-textBasic: rgba(240,240,240,1);
+    --COLOR-loss: #EA0D3F;
+    --COLOR-gain: #639F4D;
+}
+
+
+.search-results {
+    border: var(--COLOR-textBasic);
+}
