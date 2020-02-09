@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { SearchContext } from "./SearchManager";
 
 const SearchBar = (props) => {
 
@@ -7,26 +8,19 @@ const SearchBar = (props) => {
 
     const handleSearchInputChanges = (e) => {
         setSearchValue(e.target.value)
+        props.trimSearchResponse(e.target.value)
     }
 
     const resetInputField = () => {
         setSearchValue("")
     }
 
-    const callSearchFunction = (e) => {
-        e.preventDefault();
-
-        // pass searchValue up the prop function
-
-        //reset the input field
-    }
-
     return (
-        <div className="search-params">
+        <div className="search-field">
             <form>
                 <label htmlFor="cryptocurrency">
                     Cryptocurrency
-                <input
+                        <input
                         id="cryptocurrency"
                         placeholder="search by ticker"
                         value={searchValue}
@@ -34,6 +28,7 @@ const SearchBar = (props) => {
                     />
                 </label>
             </form>
+
         </div>
     )
 }

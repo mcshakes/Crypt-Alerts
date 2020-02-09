@@ -28,8 +28,8 @@ class App extends React.Component {
               <Route exact path="/">
                 <Redirect to="/home" />
               </Route>
-              <Route path="/user" component={RequireAuth} />
               <Route path="/login" component={Auth} />
+              <Route path="/user" component={RequireAuth} />
             </Switch>
           </div>
         </Router >

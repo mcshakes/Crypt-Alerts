@@ -5,7 +5,7 @@ const path = require("path");
 const axios = require('axios');
 require("dotenv").config();
 const bcrypt = require("bcrypt");
-const PubNub = require("pubnub")
+const redis = require('redis');
 
 const CronJob = require("cron").CronJob;
 const { lookAndSee } = require("./cron-jobs/checkPrice")
@@ -29,6 +29,7 @@ const watchlistRouter = require("./routes/watchlist")
 const currencyRouter = require("./routes/currency")
 
 const APIRouter = require("./routes/nomicsAPI")
+const redisClient = redis.createClient(process.env.REDIS_URL);
 
 app.use(express.static(path.join(__dirname, 'client/build')));
 
@@ -82,6 +83,7 @@ const emitChartData = async (socket, ticker) => {
 }
 
 //------------ Market Leaders Component ------------------------
+
 const leaderSocket = io.of("/capleader")
 
 leaderSocket.on("connection", function (socket) {
@@ -93,7 +95,6 @@ leaderSocket.on("connection", function (socket) {
 
 const emitMarketLeaders = async socket => {
   const url = `https://api.nomics.com/v1/currencies/ticker?key=${key}&ids=BTC,ETH,XRP,BCH,LTC,ADA,NEO,XLM,EOS,DASH,LINK,ETC,BNB,TRX`
-
 
   try {
     let response = await axios.get(url);

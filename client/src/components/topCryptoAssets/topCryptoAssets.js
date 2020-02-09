@@ -4,6 +4,7 @@ import "./topCryptoAssets.css";
 
 
 class TopCryptoAssets extends React.Component {
+    _isMounted = false;
 
     constructor() {
         super();
@@ -15,7 +16,13 @@ class TopCryptoAssets extends React.Component {
     }
 
     componentDidMount() {
+        this._isMounted = true;
         this.fetchAllMarketLeaders()
+    }
+
+    componentWillUnmount() {
+        this._isMounted = false;
+        this.stopSocketFetch()
     }
 
     fetchAllMarketLeaders = () => {
@@ -23,12 +30,25 @@ class TopCryptoAssets extends React.Component {
 
         const { ioEndpoint } = this.state;
         const socket = IOClient(ioEndpoint);
-
         socket.on("FromAPI", data => {
-            this.setState({
-                data: data,
-            })
+            if (this._isMounted) {
+                this.setState({
+                    data: data,
+                })
+            }
         })
+
+    }
+
+    stopSocketFetch = () => {
+        this.setState({ isLoading: false })
+
+        const { ioEndpoint } = this.state;
+        const socket = IOClient(ioEndpoint);
+
+        // socket.close();
+
+        socket.disconnect();
     }
 
     renderTableHeader() {

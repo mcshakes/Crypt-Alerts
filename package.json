@@ -27,8 +27,8 @@
     "mocha": "^5.2.0",
     "mongoose": "^5.2.9",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.3",
-    "npm": "^6.4.1",
+    "nodemon": "^2.0.2",
+    "npm": "^6.13.7",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
@@ -36,12 +36,11 @@
     "react-number-format": "^3.6.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
-    "redux": "^4.0.0",
-    "save-dev": "^2.0.0",
+    "redis": "^2.8.0",
+    "redux": "^4.0.5",
     "socket.io": "^2.1.1",
     "socket.io-client": "^2.1.1",
-    "twilio": "^3.19.2",
-    "victory": "^30.5.0"
+    "twilio": "^3.19.2"
   },
   "devDependencies": {
     "chai-http": "^4.2.0",
