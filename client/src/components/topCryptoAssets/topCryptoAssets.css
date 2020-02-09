@@ -2,7 +2,9 @@
     --COLOR-textStrong: rgba(255,255,255,1);
     --COLOR-textBasic: rgba(240,240,240,1);
     --COLOR-loss: #EA0D3F;
+    --COLOR-label: rgba(14,109,147,0.3);
     --COLOR-gain: #639F4D;
+    --COLOR-highlight: rgba(18,146,196,1);
 }
 
 
@@ -17,7 +19,9 @@ table {
 }
 
 tbody tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, .3);
+
+
+    background-color: var(--COLOR-label);
   }
 
 .table-headers {
