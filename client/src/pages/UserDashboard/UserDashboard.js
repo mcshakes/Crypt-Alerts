@@ -1,13 +1,18 @@
 import React from "react";
-import Search from "../../components/Search";
+import SearchManager from "../../components/SearchManager/SearchManager";
 
 class Dashboard extends React.Component {
     render() {
         return (
-            <div>
-                <h1>This is User Dashboard</h1>
-                <Search />
-            </div>
+            <main>
+                <section className="head">
+                    <h1>This is User Dashboard</h1>
+                </section>
+
+                <section className="search-engine">
+                    <SearchManager />
+                </section>
+            </main>
         )
     }
 }

@@ -22,7 +22,7 @@ class TopCryptoAssets extends React.Component {
 
     componentWillUnmount() {
         this._isMounted = false;
-        this.ceaseSocketFetch()
+        this.stopSocketFetch()
     }
 
     fetchAllMarketLeaders = () => {
@@ -30,7 +30,6 @@ class TopCryptoAssets extends React.Component {
 
         const { ioEndpoint } = this.state;
         const socket = IOClient(ioEndpoint);
-
         socket.on("FromAPI", data => {
             if (this._isMounted) {
                 this.setState({
@@ -41,14 +40,15 @@ class TopCryptoAssets extends React.Component {
 
     }
 
-    ceaseSocketFetch = () => {
+    stopSocketFetch = () => {
         this.setState({ isLoading: false })
 
         const { ioEndpoint } = this.state;
         const socket = IOClient(ioEndpoint);
 
-        socket.off("FromAPI")
-        console.log("SHOULD BE NOTHING", this.state.data)
+        // socket.close();
+
+        socket.disconnect();
     }
 
     renderTableHeader() {
