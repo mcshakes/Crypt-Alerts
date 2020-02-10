@@ -11,6 +11,10 @@
     --COLOR-searchLabel: rgba(23,114,140,1);
 }
 
+.search-container {
+    display: flex;
+    flex-direction: column;
+}
 
 .search-results {
     list-style: none;
@@ -19,29 +23,18 @@
 
 .coin-result {
     display: flex;
+    justify-content: space-around;
     background: var(--COLOR-searchLabel);
     border-radius: 0 0.5rem 0.5rem 0.5rem;
-    margin-top: 1rem;
-    max-height: 1.5rem;
-    padding: 1rem 1rem 1rem 3rem;
+    margin-top: .5rem;
+    height: 2rem;
+    padding: .5rem .5rem .5rem 1.5rem;
     position: relative;
     color: var(--COLOR-textStrong);
     
-} h3 {
-    margin: 0 auto;
+} p {
+    font-size: 1.5rem;
+    margin: 0;
 } 
-
-.coin-result::after {
-    box-sizing: border-box;
-    background: linear-gradient(135deg, var(--COLOR-blue) 0%, var(--COLOR-green) 100%);
-    border-radius: 1rem 1rem 0 1rem;
-    content: '';
-    height: 3rem;
-    left: -1rem;
-    overflow: hidden;
-    position: absolute;
-    top: -1rem;
-    width: 3rem;
-}
 
 
