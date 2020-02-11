@@ -18,14 +18,13 @@ const SearchBar = (props) => {
     return (
         <div className="search-field">
             <form>
+                <input
+                    id="cryptocurrency"
+                    placeholder="search by ticker"
+                    value={searchValue}
+                    onChange={handleSearchInputChanges}
+                />
                 <label htmlFor="cryptocurrency">
-                    Cryptocurrency
-                        <input
-                        id="cryptocurrency"
-                        placeholder="search by ticker"
-                        value={searchValue}
-                        onChange={handleSearchInputChanges}
-                    />
                 </label>
             </form>
 

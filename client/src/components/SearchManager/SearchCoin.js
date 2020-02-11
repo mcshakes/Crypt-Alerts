@@ -37,10 +37,13 @@ class SearchCoin extends React.Component {
     }
 
     render() {
+        let { price } = this.props.coin;
+        let fixedPrice = parseFloat(price).toFixed(2);
+
         return (
             <li className="coin-result">
-                <h3> {this.props.coin.currency} </h3>
-                <h3> {this.props.coin.price} </h3>
+                <p> {this.props.coin.currency} </p>
+                <p> {fixedPrice} </p>
                 <button
                     className="add-to-list"
                     onClick={this.clickHandler}
