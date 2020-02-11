@@ -1,24 +1,16 @@
-Skip to content
-Why GitHub? 
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
+:root {
+    --COLOR-textStrong: rgba(255,255,255,1);
+    --COLOR-textBasic: rgba(240,240,240,1);
+    --COLOR-loss: #EA0D3F;
+    --COLOR-gain: #639F4D;
 
-Sign in
-Sign up
-100mcshakes/eventAdder-GraphQL
- Code Issues 0 Pull requests 0 Projects 0 Security Insights
-All your code in one place
-GitHub makes it easy to scale back on context switching. Read rendered documentation, see the history of any file, and collaborate with contributors on projects across GitHub.
+    --COLOR-green:#a2ed56;
+    --COLOR-yellow: #fddc32;
+    --COLOR-blue: #83e4e2;
+    --COLOR-something: rgba(66,94,113,1);
+    --COLOR-searchLabel: rgba(23,114,140,1);
+}
 
- See pricing for teams and enterprises
-eventAdder-GraphQL/client/src/components/Auth.css
-@mcshakes mcshakes Prettier form now
-4002f25 on Jul 8
-36 lines (31 sloc)  547 Bytes
-  
 .auth-form {
 	width: 25rem;
 	max-width: 80%;
@@ -56,3 +48,15 @@ eventAdder-GraphQL/client/src/components/Auth.css
 	border-color: #01a7a7;
 }
 
+#email, #password {
+	border-color: var(--COLOR-something);
+    box-sizing: border-box;
+    border-width: 2px;
+	border-style: solid;
+	padding-left: 10px;
+    padding-right: 10px;
+}
+
+label {
+	color: var(--COLOR-formInput);
+}
