@@ -28,30 +28,6 @@ router.get("/watchlist", verifyAuthToken, async (req, res) => {
     res.status(400).send(err)
   }
 
-
-  // Watchlist.find({ userId: userID })
-  //   .then(results => {
-  //     return results.map(item => {
-  //       let coinID = item.list[0]
-  //       let high = item.highLimit
-  //       let low = item.lowLimit
-
-  //       return Currency.findById(coinID, (err, coin) => {
-  //         if (err) throw err;
-  //       })
-  //         .then(coin => {
-  //           const new_coin = Object.assign({}, coin, { high, low });
-  //           return new_coin
-  //         })
-  //     })
-  //   })
-  //   .then(promises => {
-  //     return Promise.all(promises)
-  //   })
-  //   .then(allCoins => {
-  //     // { _id: 5b8c5fca8d1e3230eaf68ea6, ticker: 'XRP', __v: 0 }
-  //     res.json(allCoins)
-  //   })
 })
 
 router.post("/api/set-alert", verifyAuthToken, (req, res) => {
