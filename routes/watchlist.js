@@ -9,17 +9,21 @@ const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
 router.get("/watchlist", verifyAuthToken, async (req, res) => {
-  let userID = req.user._id
+  let userID = req.query.user
 
   try {
     const userWatchlist = await Watchlist.find({ userId: userID })
 
-    userWatchlist.map(data => {
-      let coinID = data.targets[0]
-      console.log("What's this?", data.targets[0])
+    const coinIdPromises = userWatchlist.map(async coin => {
+      let coinID = coin.targets[0];
+      const listCoin = await Currency.findById(coinID);
 
-      // const coinInQuestion = 
-    })
+      return listCoin;
+    });
+
+    const results = await Promise.all(coinIdPromises)
+    res.json(results)
+
   } catch (err) {
     res.status(400).send(err)
   }
