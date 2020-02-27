@@ -15,7 +15,6 @@ const SearchCoin = (props) => {
             headers: {
                 Accept: "application/json",
                 "Content-Type": "application/json",
-                // "Authorization": `Bearer ${token}`
                 "auth-token": `${token}`
             },
             body: JSON.stringify({
@@ -33,9 +32,13 @@ const SearchCoin = (props) => {
             })
     }
 
+    const clearCoins = () => {
+        props.onSubmit()
+    }
+
     const clickHandler = () => {
         addToWatchlist()
-        // props.addNew(props.coin)
+        clearCoins()
     }
 
     let { price } = props.coin;

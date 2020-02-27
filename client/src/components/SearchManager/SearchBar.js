@@ -9,9 +9,12 @@ const SearchBar = (props) => {
     const handleSearchInputChanges = (e) => {
         setSearchValue(e.target.value)
         props.trimSearchResponse(e.target.value)
+
     }
 
     const resetInputField = () => {
+        props.resetInputField()
+        console.log("HEY FROM CHILD")
         setSearchValue("")
     }
 

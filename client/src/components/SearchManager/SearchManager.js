@@ -35,7 +35,6 @@ class SearchManager extends React.Component {
 
     searchHandler = query => {
         this.setState({ searchQuery: query })
-
     }
 
     trimCoinGrid = (term) => {
@@ -47,12 +46,28 @@ class SearchManager extends React.Component {
         }
     }
 
+    clearSearchBar = () => {
+        console.log("HEY FROM PARENT_MANAGER")
+    }
+
+    clearStateQuery = () => {
+        this.setState({
+            searchQuery: ""
+        })
+        this.clearSearchBar();
+    }
+
+    handleCoinSubmission = () => {
+        this.clearStateQuery();
+    }
+
 
     filterCoins = (coins, searchQuery) => {
         return coins.filter(this.trimCoinGrid(searchQuery)).map(coin =>
             < SearchCoin
                 key={coin.currency}
                 coin={coin}
+                onSubmit={this.handleCoinSubmission}
             />
         )
 
@@ -69,7 +84,7 @@ class SearchManager extends React.Component {
         }
         return (
             <div className="search-container">
-                <SearchBar trimSearchResponse={this.searchHandler} />
+                <SearchBar trimSearchResponse={this.searchHandler} resetInputField={this.clearSearchBar} />
                 <ul className="search-results">
                     {searchContent}
                 </ul>

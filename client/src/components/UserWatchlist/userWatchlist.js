@@ -39,8 +39,12 @@ class UserWatchlist extends React.Component {
     }
 
     render() {
+        const length = this.state.coins.length;
+
         return (
             <div>
+                <h3>You have {length} coins being watched</h3>
+
                 {this.state.coins.map((coin, idx) => {
                     return <div key={idx} className="watched-currency">
                         <h3>{coin.ticker}</h3>
