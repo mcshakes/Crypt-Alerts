@@ -30,26 +30,25 @@ class UserWatchlist extends React.Component {
             }
         }
 
-        let res = await axios(config)
+        let res = await axios(config);
+        // return res.data;
 
-        // console.log(res.data)
         this.setState({
             coins: res.data
         })
-        // axios
-        //     .then(response => {
-        //         return response.data
-        //     })
-        //     .then(jsonRes => {
-        //         this.setState({
-        //             coins: jsonRes
-        //         })
-        //     })
     }
 
     render() {
         return (
-            <h1>HELLO</h1>
+            <div>
+                {this.state.coins.map((coin, idx) => {
+                    return <div key={idx} className="watched-currency">
+                        <h3>{coin.ticker}</h3>
+                        <h3>{coin.price}</h3>
+                    </div>
+                })}
+            </div>
+
         )
     }
 

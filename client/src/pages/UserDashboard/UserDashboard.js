@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
                 </section>
 
                 <section className="main-body">
+                    <h1>Currencies you watch:</h1>
                     <UserWatchlist />
                 </section>
             </main>
