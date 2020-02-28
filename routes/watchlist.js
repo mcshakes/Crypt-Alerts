@@ -9,45 +9,25 @@ const { Watchlist } = require("../models/watchlist")
 const { Currency } = require("../models/currency")
 
 router.get("/watchlist", verifyAuthToken, async (req, res) => {
-  let userID = req.user._id
+  let userID = req.query.user
 
   try {
     const userWatchlist = await Watchlist.find({ userId: userID })
 
-    userWatchlist.map(data => {
-      let coinID = data.targets[0]
-      console.log("What's this?", data.targets[0])
+    const coinIdPromises = userWatchlist.map(async coin => {
+      let coinID = coin.targets[0];
+      const listCoin = await Currency.findById(coinID);
 
-      // const coinInQuestion = 
-    })
+      return listCoin;
+    });
+
+    const results = await Promise.all(coinIdPromises)
+    res.json(results)
+
   } catch (err) {
     res.status(400).send(err)
   }
 
-
-  // Watchlist.find({ userId: userID })
-  //   .then(results => {
-  //     return results.map(item => {
-  //       let coinID = item.list[0]
-  //       let high = item.highLimit
-  //       let low = item.lowLimit
-
-  //       return Currency.findById(coinID, (err, coin) => {
-  //         if (err) throw err;
-  //       })
-  //         .then(coin => {
-  //           const new_coin = Object.assign({}, coin, { high, low });
-  //           return new_coin
-  //         })
-  //     })
-  //   })
-  //   .then(promises => {
-  //     return Promise.all(promises)
-  //   })
-  //   .then(allCoins => {
-  //     // { _id: 5b8c5fca8d1e3230eaf68ea6, ticker: 'XRP', __v: 0 }
-  //     res.json(allCoins)
-  //   })
 })
 
 router.post("/api/set-alert", verifyAuthToken, (req, res) => {

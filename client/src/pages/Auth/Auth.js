@@ -34,7 +34,6 @@ class AuthPage extends React.Component {
 
         const { email, password } = this.state;
 
-        // create user object
         const newUser = {
             email,
             password
@@ -42,7 +41,6 @@ class AuthPage extends React.Component {
 
         if (!this.state.isLogin) {
             this.props.register(newUser);
-            // this.props.history.push("/dashboard");
             console.log(this.props.history)
         } else {
             this.props.login(newUser);

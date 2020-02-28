@@ -1,5 +1,7 @@
 import React from "react";
 import SearchManager from "../../components/SearchManager/SearchManager";
+import UserWatchlist from "../../components/UserWatchlist/userWatchlist";
+
 
 class Dashboard extends React.Component {
     render() {
@@ -11,6 +13,11 @@ class Dashboard extends React.Component {
 
                 <section className="search-engine">
                     <SearchManager />
+                </section>
+
+                <section className="main-body">
+                    <h1>Currencies you watch:</h1>
+                    <UserWatchlist />
                 </section>
             </main>
         )

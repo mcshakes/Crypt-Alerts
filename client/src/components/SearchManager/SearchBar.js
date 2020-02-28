@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useImperativeHandle, forwardRef } from "react";
 import axios from "axios";
 import { SearchContext } from "./SearchManager";
 
-const SearchBar = (props) => {
+const SearchBar = forwardRef((props, ref) => {
 
     const [searchValue, setSearchValue] = useState("")
 
     const handleSearchInputChanges = (e) => {
-        setSearchValue(e.target.value)
-        props.trimSearchResponse(e.target.value)
+        const { value } = e.target;
+        props.trimSearchResponse(value);
+        setSearchValue(value)
     }
 
-    const resetInputField = () => {
-        setSearchValue("")
-    }
+    useImperativeHandle(ref, () => {
+        return {
+            resetField: resetField
+        }
+    })
+
+    const resetField = () => setSearchValue("")
 
     return (
-        <div className="search-field">
+
+        < div className="search-field" >
             <form>
                 <input
                     id="cryptocurrency"
@@ -28,8 +34,8 @@ const SearchBar = (props) => {
                 </label>
             </form>
 
-        </div>
+        </div >
     )
-}
+});
 
 export default SearchBar;

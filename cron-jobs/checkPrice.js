@@ -15,7 +15,7 @@ const { createMessage } = require("../helpers/twilioAlert")
 const { User } = require("../models/user");
 const key = process.env.NOMICS_KEY
 
-const lookAndSee = new CronJob("*/10 * * * *", function() {
+const lookAndSee = new CronJob("*/10 * * * *", function () {
   console.log("\nTaking a look-see on your watchlists...")
   let collection = new Array();
 
@@ -28,35 +28,35 @@ const lookAndSee = new CronJob("*/10 * * * *", function() {
     .then(coinIDs => {
 
       coinIDs.forEach(id => {
-        Currency.find( { _id: id } )
+        Currency.find({ _id: id })
           .then(coin => {
             // coin.price here within DB
-            Watchlist.find({list:[id]})
+            Watchlist.find({ list: [id] })
               .then(lists => {
                 // An array of watchlists that are watching a specific coin
                 lists.map(watcher => {
-                    let high = parseFloat(watcher.highLimit)
-                    let priceIdx = parseFloat(coin[0].price, 10)
-                    let diff = Math.abs(high - priceIdx)
+                  let high = parseFloat(watcher.highLimit)
+                  let priceIdx = parseFloat(coin[0].price, 10)
+                  let diff = Math.abs(high - priceIdx)
 
-                    // { list: [ 5ba1959000775e0f229563e5 ],
-                    // //   _id: 5ba1959100775e0f229563e7,
-                    // //   userId: 5ba18ee300775e0f229563e3,
-                    // //   __v: 0,
-                    // //   hasAlert: true,
-                    // //   highLimit: '208',
-                    // //   lowLimit: '190',
-                    //   sentAlert: false })
+                  // { list: [ 5ba1959000775e0f229563e5 ],
+                  // //   _id: 5ba1959100775e0f229563e7,
+                  // //   userId: 5ba18ee300775e0f229563e3,
+                  // //   __v: 0,
+                  // //   hasAlert: true,
+                  // //   highLimit: '208',
+                  // //   lowLimit: '190',
+                  //   sentAlert: false })
 
-                    if (diff < 3.50) {
-                      console.log("\nSENDING A MESSAGE...")
+                  if (diff < 3.50) {
+                    console.log("\nSENDING A MESSAGE...")
 
-                      // if sentAlert is true
-                      User.findById({_id: watcher.userId})
-                        .exec()
-                        .then(user => {
+                    // if sentAlert is true
+                    User.findById({ _id: watcher.userId })
+                      .exec()
+                      .then(user => {
 
-                          Currency.find({ _id: watcher.list[0] })
+                        Currency.find({ _id: watcher.list[0] })
                           .then(currency => {
                             return currency[0]
                           })
@@ -67,18 +67,18 @@ const lookAndSee = new CronJob("*/10 * * * *", function() {
 
                             // createMessage(contents) NOTE: commented out until I figure out my account info
 
-                            Watchlist.update({ _id: watcher._id }, { sentAlert: true}, function(err, raw) {
+                            Watchlist.update({ _id: watcher._id }, { sentAlert: true }, function (err, raw) {
                               if (err) {
                                 res.send(err);
                               }
                               console.log("Success. Raw response from Mongo was ", raw)
                             })
                           })
-                        })
+                      })
 
-                    } else {
-                      console.log("\nDifference is greater than $3.50. Let's wait and see...")
-                    }
+                  } else {
+                    console.log("\nDifference is greater than $3.50. Let's wait and see...")
+                  }
 
                 })
               }) //end of then block
@@ -87,7 +87,7 @@ const lookAndSee = new CronJob("*/10 * * * *", function() {
     })
 
 })
-lookAndSee.start()
+// lookAndSee.start()
 
 
 

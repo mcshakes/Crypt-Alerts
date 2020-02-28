@@ -1,58 +1,61 @@
 import React from "react";
 import "./SearchManager.css";
 
+const SearchCoin = (props) => {
+    const [token, getToken] = React.useState(
+        localStorage.getItem("token")
+    )
 
-class SearchCoin extends React.Component {
+    const addToWatchlist = () => {
+        let ticker = props.coin.currency
+        let price = props.coin.price
 
-    // addToWatchlist = () => {
-    //     let ticker = this.props.coin.currency
-    //     let price = this.props.coin.price
-    //     let token = authService.getToken();
+        const settings = {
+            method: "POST",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+                "auth-token": `${token}`
+            },
+            body: JSON.stringify({
+                ticker: ticker,
+                price: price
+            })
+        };
 
-    //     const settings = {
-    //         method: "POST",
-    //         headers: {
-    //             Accept: "application/json",
-    //             "Content-Type": "application/json",
-    //             "Authorization": `Bearer ${token}`
-    //         },
-    //         body: JSON.stringify({
-    //             ticker: ticker,
-    //             price: price
-    //         })
-    //     };
-
-    //     fetch("/api/add-coin", settings)
-    //         .then((response) => {
-    //             return response.json()
-    //         })
-    //         .catch(err => {
-    //             return err
-    //         })
-    // }
-
-    clickHandler = () => {
-        // this.addToWatchlist()
-        // this.props.addNew(this.props.coin)
+        fetch("/api/add-coin", settings)
+            .then((response) => {
+                return response.json()
+            })
+            .catch(err => {
+                return err
+            })
     }
 
-    render() {
-        let { price } = this.props.coin;
-        let fixedPrice = parseFloat(price).toFixed(2);
+    const clearCoins = () => {
+        props.onSubmit()
+    }
 
-        return (
-            <li className="coin-result">
-                <p> {this.props.coin.currency} </p>
-                <p> {fixedPrice} </p>
-                <button
-                    className="add-to-list"
-                    onClick={this.clickHandler}
-                >
-                    + to Watchlist
+    const clickHandler = () => {
+        addToWatchlist()
+        clearCoins()
+    }
+
+    let { price } = props.coin;
+    let fixedPrice = parseFloat(price).toFixed(2);
+
+    return (
+        <li className="coin-result">
+            <p> {props.coin.currency} </p>
+            <p> {fixedPrice} </p>
+            <button
+                className="add-to-list"
+                onClick={clickHandler}
+            >
+                + to Watchlist
               </button>
-            </li>
-        )
-    }
+        </li>
+    )
 }
 
 export default SearchCoin;
