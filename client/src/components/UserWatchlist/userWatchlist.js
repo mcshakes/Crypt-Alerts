@@ -9,7 +9,6 @@ class UserWatchlist extends React.Component {
         coins: []
     }
 
-
     componentDidMount() {
         this.loadCurrencyWatchlist()
     }
@@ -31,7 +30,6 @@ class UserWatchlist extends React.Component {
         }
 
         let res = await axios(config);
-        // return res.data;
 
         this.setState({
             coins: res.data
