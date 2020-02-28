@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useImperativeHandle, forwardRef } from "react";
 import axios from "axios";
 import { SearchContext } from "./SearchManager";
 
-const SearchBar = (props) => {
+const SearchBar = forwardRef((props, ref) => {
 
     const [searchValue, setSearchValue] = useState("")
 
@@ -12,9 +12,11 @@ const SearchBar = (props) => {
         setSearchValue(value)
     }
 
-    const poopFunction = () => {
-        props.poopFunction()
-    }
+    useImperativeHandle(ref, () => {
+        return {
+            resetField: resetField
+        }
+    })
 
     const resetField = () => setSearchValue("")
 
@@ -34,6 +36,6 @@ const SearchBar = (props) => {
 
         </div >
     )
-}
+});
 
 export default SearchBar;

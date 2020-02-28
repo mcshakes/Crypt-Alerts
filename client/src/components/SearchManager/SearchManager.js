@@ -49,17 +49,13 @@ class SearchManager extends React.Component {
     }
 
     clearSearchBar = () => {
-        // this.searchBarElement.current.resetField();
-        console.log("YOOOO")
+        this.searchBarElement.current.resetField();
     }
 
     clearStateQuery = () => {
         this.setState({
             searchQuery: ""
         })
-        // this.searchBarElement.current.focus();;
-        // 
-
     }
 
     handleCoinSubmission = () => {
@@ -90,7 +86,7 @@ class SearchManager extends React.Component {
         }
         return (
             <div className="search-container">
-                <SearchBar trimSearchResponse={this.searchHandler} poopFunction={this.clearSearchBar} />
+                <SearchBar trimSearchResponse={this.searchHandler} ref={this.searchBarElement} />
                 <ul className="search-results">
                     {searchContent}
                 </ul>
