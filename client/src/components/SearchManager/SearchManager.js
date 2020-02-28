@@ -15,6 +15,8 @@ class SearchManager extends React.Component {
             loading: false,
             coins: []
         }
+
+        this.searchBarElement = React.createRef();
     }
 
     componentDidMount() {
@@ -47,18 +49,22 @@ class SearchManager extends React.Component {
     }
 
     clearSearchBar = () => {
-        console.log("HEY FROM PARENT_MANAGER")
+        // this.searchBarElement.current.resetField();
+        console.log("YOOOO")
     }
 
     clearStateQuery = () => {
         this.setState({
             searchQuery: ""
         })
-        this.clearSearchBar();
+        // this.searchBarElement.current.focus();;
+        // 
+
     }
 
     handleCoinSubmission = () => {
         this.clearStateQuery();
+        this.clearSearchBar();
     }
 
 
@@ -84,7 +90,7 @@ class SearchManager extends React.Component {
         }
         return (
             <div className="search-container">
-                <SearchBar trimSearchResponse={this.searchHandler} resetInputField={this.clearSearchBar} />
+                <SearchBar trimSearchResponse={this.searchHandler} poopFunction={this.clearSearchBar} />
                 <ul className="search-results">
                     {searchContent}
                 </ul>
